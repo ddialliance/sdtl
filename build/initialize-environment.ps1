@@ -6,9 +6,9 @@ Start-FileDownload 'http://ci.appveyor.com/api/projects/DanSmith/cogs/artifacts/
 
 # Download Graphviz
 Start-FileDownload 'http://www.graphviz.org/pub/graphviz/stable/windows/graphviz-2.38.zip'
-7z e graphviz-2.38.zip -y
-ls release
-ls release\bin
+7z e graphviz-2.38.zip -y -o"graphviz"
+ls graphviz
+ls graphviz\release\bin
 
 # Download .NET Core 2.0 Preview 2 SDK and add to PATH
 $urlCurrent = "https://download.microsoft.com/download/F/A/A/FAAE9280-F410-458E-8819-279C5A68EDCF/dotnet-sdk-2.0.0-preview2-006497-win-x64.zip"
