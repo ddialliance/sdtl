@@ -1,5 +1,5 @@
 # Download COGS
-Start-FileDownload 'https://ci.appveyor.com/api/buildjobs/n95t2byfet043px6/artifacts/Cogs.Console/bin/Release/Windows-CogsRelease.zip'
+Start-FileDownload 'http://ci.appveyor.com/api/projects/DanSmith/cogs/artifacts/Cogs.Console/bin/Release/netcoreapp2.0/Windows-CogsRelease.zip'
 7z e Windows-CogsRelease.zip -y
 
 # Download Graphviz
