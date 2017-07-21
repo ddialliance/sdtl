@@ -1,9 +1,7 @@
 mkdir out\
 
-REM Validate the model.
+echo Validate
 dotnet Cogs.Console.dll validate .
-
-REM Build all the COGS outputs.
 
 echo JSON
 dotnet Cogs.Console.dll publish-json . out\json --overwrite
