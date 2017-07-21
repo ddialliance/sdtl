@@ -8,7 +8,7 @@ Start-FileDownload 'http://www.graphviz.org/pub/graphviz/stable/windows/graphviz
 
 # Download .NET Core 2.0 Preview 2 SDK and add to PATH
 Start-FileDownload 'https://download.microsoft.com/download/F/A/A/FAAE9280-F410-458E-8819-279C5A68EDCF/dotnet-sdk-2.0.0-preview2-006497-win-x64.zip'
-7z e dotnet-sdk-2.0.0-preview2-006497-win-x64.zip -y -o.dotnetsdk
+7z e dotnet-sdk-2.0.0-preview2-006497-win-x64.zip -y -o".dotnetsdk"
 $env:Path = ".dotnetsdk;$env:Path"  
 
 # Download Sphinx
