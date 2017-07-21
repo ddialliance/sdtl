@@ -1,0 +1,5 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+From,string,0,n,TODO,,,,,,,,,,,
+To,string,0,1,TODO,,,,,,,,,,,
+Label,string,0,1,TODO,,,,,,,,,,,
+
