@@ -14,7 +14,7 @@ dotnet Cogs.Console.dll publish-sphinx . out\sphinx c:\bin\graphviz\bin --overwr
 dotnet Cogs.Console.dll publish-cs . out\csharp --overwrite
 
 REM Generate documentation with Sphinx.
-PUSHD %sphinxdir%
+PUSHD out\sphinx
 make dirhtml
 POPD
 
