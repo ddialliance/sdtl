@@ -13,13 +13,13 @@ echo XSD
 dotnet Cogs.Console.dll publish-xsd . out\xsd --overwrite --namespace "http://example.org/sdtl" --namespacePrefix sdtl
 
 echo UML
-dotnet Cogs.Console.dll publish-uml . out\uml graphviz\bin\ --overwrite
+dotnet Cogs.Console.dll publish-uml . out\uml graphviz\ --overwrite
 
-REM dotnet Cogs.Console.dll publish-dot . out\dot graphviz\bin\ --overwrite --single
-REM dotnet Cogs.Console.dll publish-dot . out\dot graphviz\bin\ --overwrite --all --inheritance
+REM dotnet Cogs.Console.dll publish-dot . out\dot graphviz\ --overwrite --single
+REM dotnet Cogs.Console.dll publish-dot . out\dot graphviz\ --overwrite --all --inheritance
 
 echo Sphinx
-dotnet Cogs.Console.dll publish-sphinx . out\sphinx graphviz\bin\ --overwrite
+dotnet Cogs.Console.dll publish-sphinx . out\sphinx graphviz\ --overwrite
 
 echo C#
 dotnet Cogs.Console.dll publish-cs . out\csharp --overwrite

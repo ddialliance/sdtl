@@ -19,3 +19,4 @@ $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
 
 # Download Sphinx
 pip install sphinx
+pip install sphinx_rtd_theme
