@@ -29,10 +29,5 @@ echo Build Sphinx
 REM Generate documentation with Sphinx.
 PUSHD out\sphinx
 make dirhtml
-make html
 POPD
-
-REM TODO Zip the CSharp source code
-
-REM TODO Copy artifacts
 
