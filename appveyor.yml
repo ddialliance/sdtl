@@ -1,9 +1,10 @@
 version: 1.0.{build}
 image: Visual Studio 2017 Preview
 environment:
-  APPVEYOR_RDP_PASSWORD: Ha5$vW
   access_token:
     secure: 7UWsR6399VCdfeYzFZJEpEZ7+IIg1PPhmuQhBRnWwPc=
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 install:
 - ps: build/appveyor-install-dependencies.ps1
 build_script:
@@ -12,3 +13,5 @@ artifacts:
 - path: out
 deploy_script:
 - ps: build\deploy-gitlab-pages.ps1
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

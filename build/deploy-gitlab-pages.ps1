@@ -1,4 +1,3 @@
-
 REM Push the dirhtml subdirectory to Gitlab Pages
 PUSHD out\sphinx\build
 git config --global credential.helper store
