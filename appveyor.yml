@@ -2,7 +2,7 @@ version: 1.0.{build}
 image: Visual Studio 2017 Preview
 environment:
   access_token:
-    secure: 7UWsR6399VCdfeYzFZJEpEZ7+IIg1PPhmuQhBRnWwPc=
+    secure: x+cI/7/PGJKR3+BrzK7QxRL8ywOPnFnx4kg1AiGcElIcJuspy5wNQBQxLOA3jehu
 init:
 - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 install:
