@@ -1,4 +1,7 @@
 # Push the dirhtml subdirectory to Gitlab Pages
+
+Get-ChildItem env:
+
 PUSHD out\sphinx\build
 
 git config --global credential.helper store
