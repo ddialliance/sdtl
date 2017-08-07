@@ -1,3 +1,3 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Source,string,0,1,TODO,,,,,,,,,,,
-Target,string,0,1,TODO,,,,,,,,,,,
+Source,string,0,1,The name of the variable which will have its values recoded,,,,,,,,,,,
+Target,string,0,1,The name of the new variable into which the recoded values are inserted. This may be the same as the source variable if values are recoded in place.,,,,,,,,,,,

@@ -1,1 +1,1 @@
-TODO
+Describes how values will be recoded.
