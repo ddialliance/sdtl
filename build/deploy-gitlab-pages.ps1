@@ -9,7 +9,7 @@ Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token)@gi
 git config --global user.name "AppVeyor"
 git config --global user.email "build@c2metadata.org"
 
-git clone https://gitlab.com/c2metadata/sdtl-docs.git --depth 1
+git clone https://gitlab.com/c2metadata/sdtl-docs.git
 PUSHD sdtl-docs
 Copy-Item ..\dirhtml\* master -Force
 
