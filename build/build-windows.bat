@@ -16,6 +16,9 @@ echo XSD
 echo UML
 %cogs% publish-uml . out\uml --location graphviz\release\bin --overwrite
 
+echo OWL
+%cogs% publish-owl . out\owl --overwrite
+
 REM %cogs% publish-dot . --location out\dot graphviz\release\bin --overwrite --single
 REM %cogs% publish-dot . --location out\dot graphviz\release\bin --overwrite --all --inheritance
 
