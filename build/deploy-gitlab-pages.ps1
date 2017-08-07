@@ -2,7 +2,7 @@
 PUSHD out\sphinx\build
 
 git config --global credential.helper store
-Add-Content "$env:USERPROFILE\.git-credentials" "https://$env:access_token:x-oauth-basic@github.com`n"
+Add-Content "$env:USERPROFILE\.git-credentials" "https://$env:access_token:x-oauth-basic@gitlab.com`n"
 git config --global user.name "AppVeyor"
 git config --global user.email "build@c2metadata.org"
 
