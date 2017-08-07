@@ -11,7 +11,7 @@ git config --global user.email "build@c2metadata.org"
 
 git clone https://gitlab.com/c2metadata/sdtl-docs.git
 PUSHD sdtl-docs
-Copy-Item ..\dirhtml\* master -Force
+Copy-Item ..\dirhtml\* master -Force -Recurse
 
 git add master
 git commit -m 'docs'
