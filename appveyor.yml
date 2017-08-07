@@ -9,9 +9,12 @@ install:
 - ps: build/appveyor-install-dependencies.ps1
 build_script:
 - cmd: build/build-windows.bat
+- cmd: pwd
 artifacts:
 - path: out
 on_success:
+- ps: pwd
+- ps: cd \projects\sdtl-cogs
 - ps: pwd
 - ps: ./build/deploy-gitlab-pages.ps1
 on_finish:
