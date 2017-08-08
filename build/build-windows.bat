@@ -34,9 +34,6 @@ cd sdtl\sphinx
 CALL make dirhtml
 cd \projects\sdtl-cogs
 
-pwd
-
 echo Zipping artifacts
 7z a -tzip sdtl.zip sdtl\*
 
-dir
