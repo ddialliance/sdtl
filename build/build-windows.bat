@@ -31,7 +31,7 @@ echo C#
 echo Build Sphinx
 REM Generate documentation with Sphinx.
 cd sdtl\sphinx
-make dirhtml
+CALL make dirhtml
 cd \projects\sdtl-cogs
 
 pwd
