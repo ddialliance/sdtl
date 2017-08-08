@@ -34,5 +34,9 @@ PUSHD sdtl\sphinx
 make dirhtml
 POPD
 
-REM Zipping all output.
+pwd
+
+echo Zipping artifacts
 7z a -tzip sdtl.zip sdtl\*
+
+dir
