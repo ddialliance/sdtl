@@ -1,8 +1,8 @@
+# Copy the artifact zip to the sphinx _static directory
+copy sdtl.zip sdtl\sphinx\build\dirhtml\_static\
+
 # Push the dirhtml subdirectory to Gitlab Pages
-
-Get-ChildItem env:
-
-PUSHD out\sphinx\build
+PUSHD sdtl\sphinx\build
 
 git config --global credential.helper store
 Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token)@gitlab.com`n"

@@ -1,36 +1,38 @@
 set cogs=dotnet cogs\Cogs.Console.dll
-mkdir out\
+mkdir sdtl\
 
 echo Validate
 %cogs% validate .
 
 echo JSON
-%cogs% publish-json . out\json --overwrite
+%cogs% publish-json . sdtl\json --overwrite
 
 echo GraphQL
-%cogs% publish-graphql . out\graphql --overwrite
+%cogs% publish-graphql . sdtl\graphql --overwrite
 
 echo XSD
-%cogs% publish-xsd . out\xsd --overwrite --namespace "http://example.org/sdtl" --namespacePrefix sdtl
+%cogs% publish-xsd . sdtl\xsd --overwrite --namespace "http://example.org/sdtl" --namespacePrefix sdtl
 
 echo UML
-%cogs% publish-uml . out\uml --location graphviz\release\bin --overwrite
+%cogs% publish-uml . sdtl\uml --location graphviz\release\bin --overwrite
 
 echo OWL
-%cogs% publish-owl . out\owl --overwrite
+%cogs% publish-owl . sdtl\owl --overwrite
 
-REM %cogs% publish-dot . --location out\dot graphviz\release\bin --overwrite --single
-REM %cogs% publish-dot . --location out\dot graphviz\release\bin --overwrite --all --inheritance
+REM %cogs% publish-dot . --location sdtl\dot graphviz\release\bin --overwrite --single
+REM %cogs% publish-dot . --location sdtl\dot graphviz\release\bin --overwrite --all --inheritance
 
 echo Sphinx
-%cogs% publish-sphinx . out\sphinx --location graphviz\release\bin --overwrite
+%cogs% publish-sphinx . sdtl\sphinx --location graphviz\release\bin --overwrite
 
 echo C#
-%cogs% publish-cs . out\csharp --overwrite
+%cogs% publish-cs . sdtl\csharp --overwrite
 
 echo Build Sphinx
 REM Generate documentation with Sphinx.
-PUSHD out\sphinx
+PUSHD sdtl\sphinx
 make dirhtml
 POPD
 
+REM Zipping all output.
+7z a -tzip sdtl.zip sdtl\*

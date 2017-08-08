@@ -11,7 +11,7 @@ build_script:
 - cmd: build/build-windows.bat
 - cmd: pwd
 artifacts:
-- path: out
+- path: sdtl
 on_success:
 - ps: pwd
 - ps: cd \projects\sdtl-cogs
