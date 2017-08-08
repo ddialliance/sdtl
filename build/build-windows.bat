@@ -30,9 +30,9 @@ echo C#
 
 echo Build Sphinx
 REM Generate documentation with Sphinx.
-PUSHD sdtl\sphinx
+cd sdtl\sphinx
 make dirhtml
-POPD
+cd \projects\sdtl-cogs
 
 pwd
 
