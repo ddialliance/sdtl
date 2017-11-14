@@ -1,4 +1,4 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-From,string,0,n,The value or range of values that will be recoded,,,,,,,,,,,
-To,string,0,1,The new value,,,,,,,,,,,
-Label,string,0,1,"A value label for the new recoded value, if appropriate",,,,,,,,,,,
+Type,string,0,1,"The type of number (for example 'int' or 'double')",,,,,,,,,,,
+IntValue,int,0,1,TODO,,,,,,,,,,,1
+DoubleValue,double,0,1,TODO,,,,,,,,,,,1

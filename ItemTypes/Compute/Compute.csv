@@ -1,4 +1,0 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Target,string,0,1,TODO,,,,,,,,,,,
-Expression,Expression,0,1,TODO,,,,,,,,,,,
-Condition,Expression,0,1,TODO,,,,,,,,,,,

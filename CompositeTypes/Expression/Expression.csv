@@ -1,7 +1,0 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Operator,Operator,0,1,TODO,,,,,,,,,,,1
-TextConstant,string,0,1,TODO,,,,,,,,,,,1
-NumericConstant,int,0,1,TODO,,,,,,,,,,,1
-NullConstant,string,0,1,TODO,,,,,,,,,,,1
-Varname,string,0,1,TODO,,,,,,,,,,,1
-Missing,string,0,1,TODO,,,,,,,,,,,1
