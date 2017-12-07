@@ -1,0 +1,3 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+Value,string,0,1,The value to which a label is assigned,,,,,,,,,,,
+Label,string,0,1,The label to be assigned to the value,,,,,,,,,,,
