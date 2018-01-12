@@ -1,7 +1,5 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 Command,string,0,1,The type of transform command,,,,,,,,,,,
-SourceLanguage,string,0,1,"The language of the original transform (e.g., SPSS, SAS, Stata, R)",,,,,,,,,,,
-SourceFileName,string,0,1,The name of the file that contained the original transform code,,,,,,,,,,,
 SourceStartIndex,int,0,1,The character index of the beginning of the transform code,,,,,,,,,,,
 SourceStopIndex,int,0,1,The character index of the end of the transform code,,,,,,,,,,,
 SourceText,string,0,1,The original source code of the data transform code,,,,,,,,,,,

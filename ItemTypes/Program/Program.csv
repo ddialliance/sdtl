@@ -1,3 +1,4 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 SourceFileName,string,0,1,The name of the file containing the source code.,,,,,,,,,,,
+SourceLanguage,string,0,1,The language of the source code.,,,,,,,,,,,
 Commands,TransformBase,0,n,The list of commands that make up the program.,,,,,,,,,,,
