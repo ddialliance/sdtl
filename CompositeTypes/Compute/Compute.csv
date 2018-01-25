@@ -2,4 +2,4 @@ Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enum
 Target,string,0,1,The name of the variable that is computed.,,,,,,,,,,,
 TargetRange,VariableRangeExpression,0,1,"The range of variables, each of which is to be computed.",,,,,,,,,,,
 Formula,ExpressionBase,0,1,The expression used to compute the value of the variable(s),,,,,,,,,,,
-Condition,ExpressionBase,0,1,The condition that must be true in order for the computation to take place,,,,,,,,,,,
+Condition,ConditionBase,0,1,The condition that must be true in order for the computation to take place,,,,,,,,,,,

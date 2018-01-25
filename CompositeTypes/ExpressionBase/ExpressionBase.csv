@@ -1,2 +1,2 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-ExpressionType,string,0,1,The type of the expression.,,,,,,,,,,,
+Operator,string,0,1,The type of the expression.,,,,,,,,,,,
