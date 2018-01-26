@@ -1,4 +1,2 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-NumericType,string,0,1,"The type of number (for example 'int' or 'double')",,,,,,,,,,,
-IntValue,int,0,1,TODO,,,,,,,,,,,1
 DoubleValue,double,0,1,TODO,,,,,,,,,,,1
