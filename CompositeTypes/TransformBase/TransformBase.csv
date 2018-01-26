@@ -1,8 +1,3 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 Command,string,0,1,The type of transform command,,,,,,,,,,,
-LineNumberStart,int,0,1,The line number of the beginning of the transform code,,,,,,,,,,,
-LineNumberEnd,int,0,1,The line number of the end of the transform code,,,,,,,,,,,
-SourceStartIndex,int,0,1,The character index of the beginning of the transform code,,,,,,,,,,,
-SourceStopIndex,int,0,1,The character index of the end of the transform code,,,,,,,,,,,
-OriginalSourceText,string,0,1,The original source code of the data transform code,,,,,,,,,,,
-ProcessedSourceText,string,0,1,The source code of the data transform code after processing macros or loops,,,,,,,,,,,
+SourceInformation,SourceInformation,0,1,Information about the source of the transform command.,,,,,,,,,,,
