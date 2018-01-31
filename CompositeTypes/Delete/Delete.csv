@@ -1,0 +1,3 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+VariableList,VariableListExpression,0,1,The list of variables removed from the dataset.,,,,,,,,,,,
+TargetRange,VariableRangeExpression,0,n,"The range of variables to be removed from the dataset.",,,,,,,,,,,
