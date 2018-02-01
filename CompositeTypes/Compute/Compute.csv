@@ -1,5 +1,5 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 Target,string,0,1,The name of the variable that is computed.,,,,,,,,,,,
 TargetRange,VariableRangeExpression,0,1,"The range of variables, each of which is to be computed.",,,,,,,,,,,
-Formula,ExpressionBase,0,1,The expression used to compute the value of the variable(s),,,,,,,,,,,
+Expression,ExpressionBase,0,1,The expression used to compute the value of the variable(s),,,,,,,,,,,
 Condition,ConditionBase,0,1,The condition that must be true in order for the computation to take place,,,,,,,,,,,
