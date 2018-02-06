@@ -1,7 +1,0 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-FileName,string,0,1,The name of the file,,,,,,,,,,,
-Software,string,0,1,"The name of the file format, or the software package that works with the file.",,,,,,,,,,,
-IsCompressed,boolean,0,1,Indicates whether the file format is compressed.,,,,,,,,,,,
-DropVariables,string,0,n,A list of names of variables that will be dropped during the save operation.,,,,,,,,,,,
-KeepVariables,string,0,n,A list of names of variables that will be kept during the save operation. All other variables will be dropped.,,,,,,,,,,,
-RenameVariables,RenamePair,0,n,A list of variables that will be renamed as part of the save operation.,,,,,,,,,,,
