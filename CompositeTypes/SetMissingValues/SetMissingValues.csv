@@ -1,5 +1,5 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-VariableList,VariableListExpression,0,1,The list of variables to which the missing values are assigned,,,,,,,,,,,
+Variables,string,0,n,The list of variables to which the missing values are assigned,,,,,,,,,,,
 VariableRange,VariableRangeExpression,0,1,"The range of variables, each of which is to have the missing values assigned",,,,,,,,,,,
 Value,string,0,n,The values to be considered as missing values,,,,,,,,,,,
 ValueRange,ValueRange,0,n,The range of values to be considered as missing values,,,,,,,,,,,

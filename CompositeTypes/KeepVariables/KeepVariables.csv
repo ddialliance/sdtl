@@ -1,3 +1,3 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-VariableList,VariableListExpression,0,1,The list of variables kept in the dataset.,,,,,,,,,,,
-TargetRange,VariableRangeExpression,0,1,"The range of variables to be kept in the dataset.",,,,,,,,,,,
+Variables,string,0,n,The list of variables kept in the dataset.,,,,,,,,,,,
+VariableRange,VariableRangeExpression,0,1,"The range of variables to be kept in the dataset.",,,,,,,,,,,

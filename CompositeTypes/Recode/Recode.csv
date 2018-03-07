@@ -1,4 +1,3 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 RecodedVariables,RecodeVariable,0,n,"The variables that will have their values recoded. The resulting values may be either stored in the same variable, or a newly created destination variable",,,,,,,,,,,
-TargetVariables,VariableRangeExpression,0,1,A range of variables to which the recode rules are applied. The resulting values are stored in the same variable.,,,,,,,,,,,
 Rules,RecodeRule,0,n,A mapping describing which values will be recoded to which new values,,,,,,,,,,,
