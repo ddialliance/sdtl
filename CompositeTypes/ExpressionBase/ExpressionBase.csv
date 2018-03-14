@@ -1,2 +1,2 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Function,string,0,1,The type of the expression.,,,,,,,,,,,
+Name,string,0,1,"The name of the argument, when the expression is passed to a function.",,,,,,,,,,,

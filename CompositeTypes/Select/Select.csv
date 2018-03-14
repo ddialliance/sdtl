@@ -1,2 +1,2 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Condition,ConditionBase,0,1,The logical expresion that must be true for a case to remain in the working dataset.,,,,,,,,,,,
+Condition,Condition,0,1,The logical expresion that must be true for a case to remain in the working dataset.,,,,,,,,,,,
