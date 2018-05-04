@@ -1,0 +1,5 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+Severity,string,0,1,"Information, Warning, Error",,,,,,,,,,,
+LineNumber,int,0,1,"The line number of the source that the messages is related to, if relevant.",,,,,,,,,,,
+CharacterPosition,int,0,1,"The character position of the source that the message is related to, if relevant.",,,,,,,,,,,
+MessageText,string,0,1,The content of the message.,,,,,,,,,,,
