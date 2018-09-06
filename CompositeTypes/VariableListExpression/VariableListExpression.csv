@@ -1,3 +1,4 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 Type,string,1,1,TODO,,,,,,,,,,,1
 VariableNames,string,0,n,TODO,,,,,,,,,,,
+VariableRanges,VariableRangeExpression,0,n,TODO,,,,,,,,,,,
