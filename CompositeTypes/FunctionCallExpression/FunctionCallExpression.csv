@@ -1,5 +1,5 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Function,string,1,1,The name of the function being called.,,,,,,,,,,,
-ProprietaryOperator,string,0,1,"When the source language used an infix or prefix operator to invoke the function, this is the symbol that represents that operator.",,,,,,,,,,,
-IsProprietary,boolean,0,1,"When true, the Function property contains the name of a system-specfied function. When false, the Function property contains the name of a harmonized function as documented at TODO.",,,,,,,,,,,
-Arguments,ExpressionBase,0,n,A list of parameters to the function.,,,,,,,,,,,
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+Function,string,1,1,The name of the function being called.,,,,,,,,,,,,,
+ProprietaryOperator,string,0,1,"When the source language used an infix or prefix operator to invoke the function, this is the symbol that represents that operator.",,,,,,,,,,,,,
+IsProprietary,boolean,0,1,"When true, the Function property contains the name of a system-specfied function. When false, the Function property contains the name of a harmonized function as documented at TODO.",,,,,,,,,,,,,
+Arguments,ExpressionBase,0,n,A list of parameters to the function.,true,true,,,,,,,,,,,

@@ -1,7 +1,7 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-FromValue,string,0,n,The values to be recoded.,,,,,,,,,,,
-FromValueRange,ValueRange,0,n,The ranges of values to be recoded.,,,,,,,,,,,
-SpecialFromValue,string,0,1,"Indicates the type of value that is recoded ('unhandled', 'lowest', 'highest', 'missing')",,,,,,,,,,,
-To,string,0,1,The new value,,,,,,,,,,,
-SpecialToValue,string,0,1,"Indicates how the value is recoded ('copy', 'missing')",,,,,,,,,,,
-Label,string,0,1,"A value label for the new recoded value, if appropriate",,,,,,,,,,,
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+FromValue,string,0,n,The values to be recoded.,,,,,,,,,,,,,
+FromValueRange,ValueRange,0,n,The ranges of values to be recoded.,,,,,,,,,,,,,
+SpecialFromValue,string,0,1,"Indicates the type of value that is recoded ('unhandled', 'lowest', 'highest', 'missing')",,,,,,,,,,,,,
+To,string,0,1,The new value,,,,,,,,,,,,,
+SpecialToValue,string,0,1,"Indicates how the value is recoded ('copy', 'missing')",,,,,,,,,,,,,
+Label,string,0,1,"A value label for the new recoded value, if appropriate",,,,,,,,,,,,,
