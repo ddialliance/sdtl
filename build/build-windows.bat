@@ -1,4 +1,4 @@
-set cogs=dotnet cogs\Cogs.Console.dll
+set cogs=dotnet cogs\cogs.dll
 mkdir sdtl\
 
 echo Validate
