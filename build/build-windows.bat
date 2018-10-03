@@ -1,4 +1,4 @@
-set cogs=dotnet cogs
+set cogs=cogs
 mkdir sdtl\
 
 echo Validate

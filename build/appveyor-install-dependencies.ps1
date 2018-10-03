@@ -5,7 +5,7 @@ pwd
 #7z x Windows-CogsRelease.zip -y -o"cogs"
 
 dotnet tool install -g cogs
-dotnet cogs --help
+cogs --help
 
 # Development versions can be installed from the appveyor nuget feed
 # dotnet tool install -g --add-source https://ci.appveyor.com/nuget/cogs/ cogs
