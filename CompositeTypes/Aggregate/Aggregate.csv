@@ -1,0 +1,3 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+Operation,AggregationOperation,0,1,"One or more operations that aggregate data.",,,,,,,,,,,,,
+SkipWhenAnyValuesAreMissing,boolean,0,1,"Indicates how to handle missing values; if true, if any value is missing, the aggregate value will be missing; if false, only non-missing values are used to compute the aggregate.",,,,,,,,,,,,,

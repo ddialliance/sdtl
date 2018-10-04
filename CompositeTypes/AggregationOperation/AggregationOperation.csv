@@ -1,0 +1,3 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+GroupByVariables,VariableReferenceBase,0,n,"TODO",,true,,,,,,,,,,,
+AggregationFunction,Compute,0,n,"The compute expression that generates a new, aggregated value. The expression will use an aggregation function.",,,,,,,,,,,,,
