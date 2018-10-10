@@ -1,3 +1,3 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-FileName,string,0,n,The names of the files to be merged,,,,,,,,,,,,,
-MatchByVariable,VariableSymbolExpression,1,1,The variable that acts as the unique case identifier across datasets.,,,,,,,,,,,,,
+GroupByVariables,VariableReferenceBase,0,n,"TODO",,,,,,,,,,,,,
+AggregateVariables,Compute,1,n,"The expressions that compute the aggregations. An aggregation function should be used.",,,,,,,,,,,,,

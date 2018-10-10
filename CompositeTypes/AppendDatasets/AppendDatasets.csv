@@ -1,2 +1,2 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-DoubleValue,double,0,1,TODO,,,,,,,,,,,,,1
+FileName,string,0,n,The names of the files to be appended.,,,,,,,,,,,,,
