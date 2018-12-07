@@ -1,1 +1,1 @@
-TODO
+A numeric constant.

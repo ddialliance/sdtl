@@ -1,3 +1,3 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Condition,ExpressionBase,0,1,TODO,,true,,,,,,,,,,,
-Commands,TransformBase,0,n,TODO,,true,,,,,,,,,,,
+Condition,ExpressionBase,0,1,A logical expression,,TRUE,,,,,,,,,,,
+Commands,TransformBase,0,n,Commands to be performed if the condition is true.,,TRUE,,,,,,,,,,,

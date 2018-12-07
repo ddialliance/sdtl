@@ -1,1 +1,1 @@
-TODO
+Deletes variables from the data.
