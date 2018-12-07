@@ -1,3 +1,11 @@
+```
+NOTE:  These Stata Merge options are not represented in SDTL:  
+	noreport   
+	nolabel   
+	nonotes   
+	sorted   
+```
+
 ====================  EXAMPLE 1   ====================================
 
 ```
