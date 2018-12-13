@@ -1,4 +1,4 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 OutputDatasetName,string,0,1,"The name of a new, aggregated dataset to be created.",,,,,,,,,,,,,
-GroupByVariables,VariableReferenceBase,0,n,"TODO",,true,,,,,,,,,,,
-AggregateVariables,Compute,1,n,"The expressions that compute the aggregations. An aggregation function should be used.",,,,,,,,,,,,,
+GroupByVariables,VariableReferenceBase,0,n,Variables used as keys to identify groups.,,TRUE,,,,,,,,,,,
+AggregateVariables,Compute,1,n,The expressions that compute the aggregations. An aggregation function should be used.,,,,,,,,,,,,,

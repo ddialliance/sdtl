@@ -1,1 +1,1 @@
-TODO
+Assigns the value of an expression to a variable.  The assignment may be conditional on a logical expression.  

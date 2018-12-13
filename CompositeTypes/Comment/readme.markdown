@@ -1,1 +1,1 @@
-Describes the a source code comment.
+Describes a source code comment.
