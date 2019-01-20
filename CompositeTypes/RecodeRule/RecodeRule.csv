@@ -1,5 +1,5 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-FromValue,ExpressionBase,0,n,The values to be recoded.,,,,,,,,,,,,,
+FromValue,ExpressionBase,0,n,The values to be recoded.,,true,,,,,,,,,,,
 SpecialFromValue,string,0,1,"Indicates the type of value that is recoded ('unhandled', 'lowest', 'highest', 'missing')",,,,,,,,,,,,,
 To,string,0,1,The new value,,,,,,,,,,,,,
 SpecialToValue,string,0,1,"Indicates how the value is recoded ('copy', 'missing')",,,,,,,,,,,,,
