@@ -1,0 +1,8 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+TargetVariableName,string,0,1,Name of new variable created by this command.,,,,,,,,,,,,,
+TargetVariableLabel,string,0,1,Label for new variable created by this command.,,,,,,,,,,,,,
+SourceVariables,VariableReferenceBase,0,1,Source variables in the original dataset used to create this variable.,,TRUE,,,,,,,,,,,
+Stub,string,0,1,The stub is a string used in the names of variables in the wide dataset.,,,,,,,,,,,,,
+IndexValues,ExpressionBase,0,1,A list of values that produce new rows (long) or columns (wide) for this variable.,,TRUE,,,,,,,,,,,
+IndexVariableName,string,0,1,Name of the variable that will contain the value of the index for this row.,,,,,,,,,,,,,
+IndexVariableLabel,string,0,1,Label for the variable in IndexVariableName.,,,,,,,,,,,,,

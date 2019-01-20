@@ -1,4 +1,9 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-MakeItems,string,0,n,TODO,,,,,,,,,,,,,
-IndexValues,int,0,n,TODO,,,,,,,,,,,,,
-IndexVarName,string,0,1,TODO,,,,,,,,,,,,,
+MakeItems,ReshapeItemDescription,0,n,New variables created by this command.,,TRUE,,,,,,,,,,,
+CaseNumberVariable,string,0,1,New variable identifying the case number in the wide data that created this row.,,,,,,,,,,,,,
+IDVariables,VariableReferenceBase,0,1,One or more variables identifying unique rows in the wide data.,,TRUE,,,,,,,,,,,
+DropVariables,VariableReferenceBase,0,1,Variables to be dropped from the new dataset.,,TRUE,,,,,,,,,,,
+KeepVariables,VariableReferenceBase,0,1,Variables to be kept in the new dataset.,,TRUE,,,,,,,,,,,
+KeepNullCases,boolean,0,1,"When set to TRUE, rows in which all constructed variables are missing are not deleted.",,,,,,,,,,,,,
+CountByID,string,0,1,New variable with the number of cases in the long dataset that were created from the source row in the wide dataset.,,,,,,,,,,,,,
+CountByIDLabel,string,0,1,Label for the CountByID variable.,,,,,,,,,,,,,

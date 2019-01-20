@@ -1,4 +1,5 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-KeepItems,string,0,n,TODO,,,,,,,,,,,,,
-IdVar,string,0,1,TODO,,,,,,,,,,,,,
-IndexVar,string,0,1,TODO,,,,,,,,,,,,,
+MakeItems,ReshapeItemDescription,0,n,New variables created by this command.,,TRUE,,,,,,,,,,,
+IDVariables,VariableReferenceBase,0,1,One or more variables identifying unique rows in the wide data.,,TRUE,,,,,,,,,,,
+DropVariables,VariableReferenceBase,0,1,Variables to be dropped from the new dataset.,,TRUE,,,,,,,,,,,
+KeepVariables,VariableReferenceBase,0,1,Variables to be kept in the new dataset.,,TRUE,,,,,,,,,,,
