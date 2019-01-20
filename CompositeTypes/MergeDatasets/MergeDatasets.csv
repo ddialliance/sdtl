@@ -1,3 +1,7 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-FileName,string,0,n,The names of the files to be merged,,,,,,,,,,,,,
-MatchByVariable,VariableSymbolExpression,1,1,The variable that acts as the unique case identifier across datasets.,,,,,,,,,,,,,
+MergeFiles,MergeFileDescription,2,n,Description of files to be merged.,,TRUE,,,,,,,,,,,
+MergeByVariables,VariableReferenceBase,0,1,"A variable or list of variables that acts as the unique case identifier across datasets.  If MatchByVariables is absent, MergeType must be ""sequential"" on all files.",,TRUE,,,,,,,,,,,
+FirstVariable,string,0,1,The name of a variable set to 1 for the first row of each group of cases with the same value for the MatchByVariables variables and set to  0 for all other rows.,,,,,,,,,,,,,
+LastVariable,string,0,1,The name of a variable set to 1 for the last row of each group of cases with the same value for the MatchByVariables variables and set to  0 for all other rows.,,,,,,,,,,,,,
+KeepVariables,VariableReferenceBase,0,1,List of variables to keep,,TRUE,,,,,,,,,,,
+DropVariables,VariableReferenceBase,0,1,List of variables to drop,,TRUE,,,,,,,,,,,
