@@ -1,0 +1,3 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+IteratorSymbolName,string,1,1,The name used in  IteratorCommands  for the index variable that changes value in the loop.,,,,,,,,,,,,,
+IteratorValues,ExpressionBase,1,n,Describes the values that are substituted for the index variable that changes value in the loop.,,true,,,,,,,,,,,
