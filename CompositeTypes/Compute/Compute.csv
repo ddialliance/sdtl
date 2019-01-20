@@ -1,4 +1,4 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-VariableName,VariableReferenceBase,1,1,The variable that is computed.,,true,,,,,,,,,,,
+Variable,VariableReferenceBase,1,1,The variable that is computed.,,true,,,,,,,,,,,
 Expression,ExpressionBase,1,1,The expression used to compute the value of the variable(s),,true,,,,,,,,,,,
 Condition,ExpressionBase,0,1,The condition that must be true in order for the computation to take place,,true,,,,,,,,,,,
