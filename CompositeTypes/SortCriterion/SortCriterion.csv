@@ -1,0 +1,3 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+Variable,VariableReferenceBase,1,1,The variable used to sort.,,true,,,,,,,,,,,
+SortDirection,string,1,1,The direction in which to sort.,,,,,Ascending Descending,,,,,,,,
