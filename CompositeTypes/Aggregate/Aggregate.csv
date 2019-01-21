@@ -1,4 +1,4 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-GroupByVariables,VariableReferenceBase,0,1,Variables used as keys to identify groups. ,,TRUE,,,,,,,,,,,
+GroupByVariables,VariableReferenceBase,0,n,Variables used as keys to identify groups.,,TRUE,,,,,,,,,,,
 AggregateVariables,Compute,1,n,The expressions that compute the aggregations. An aggregation function should be used.,,,,,,,,,,,,,
 WeightVariable,VariableSymbolExpression,0,1,The variable used as a weight in the operation.,,,,,,,,,,,,,
