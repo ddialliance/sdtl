@@ -5,5 +5,5 @@ MergeFlagVariable,string,0,1,Creates a new variable indicating whether the row c
 RenameVariables,RenamePair,0,n,Variables to be renamed,,TRUE,,,,,,,,,,,
 Overlap,string,0,1,"Outcome when the same variables exist in more than one file. ""Master"" means the value is taken from this file.  ""Merge"" means the value is taken from the other file.  ""Update"" means that value is taken from the other file when the value in this file is missing.",,,,,"Master Merge Update",,,,,,,,
 NewRow,boolean,0,1,Generate new row when not matched to other files,,,,,,,,,,,,,
-KeepVariables,VariableReferenceBase,0,1,List of variables to keep,,TRUE,,,,,,,,,,,
-DropVariables,VariableReferenceBase,0,1,List of variables to drop,,TRUE,,,,,,,,,,,
+KeepVariables,VariableReferenceBase,0,n,List of variables to keep,,TRUE,,,,,,,,,,,
+DropVariables,VariableReferenceBase,0,n,List of variables to drop,,TRUE,,,,,,,,,,,
