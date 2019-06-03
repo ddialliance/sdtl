@@ -2,3 +2,5 @@ Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,Mi
 Command,string,1,1,The type of transform command,,,,,,,,,,,,,
 SourceInformation,SourceInformation,1,1,Information about the source of the transform command.,,,,,,,,,,,,,
 CanChangeData,boolean,0,1,Indicates that the transform is capable of changing the values in the data.,,,,,,,,,,,,,
+ProducesDataframe,string,0,n,Signify the dataframe which this transform produces.,,,,,,,,,,,,,
+ConsumesDataframe,string,0,n,Signify the dataframe which this transform acts upon.,,,,,,,,,,,,,
