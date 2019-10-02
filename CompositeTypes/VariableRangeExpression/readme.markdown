@@ -1,1 +1,1 @@
-TODO
+A list of variables in adjacent columns defined by the variable names of first and last columns.

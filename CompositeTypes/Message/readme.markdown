@@ -1,1 +1,1 @@
-Represents information about the parsing process.
+Inserts message text in the SDTL file.
