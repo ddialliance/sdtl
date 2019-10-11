@@ -1,1 +1,1 @@
-LoopWhile is iterates over a set of commands under the control of one or more logical expressions.  Since the logical conditions typically depend upon values in the data, commands executed in a LoopWhile cannot be anticipated and expanded in SDTL.
+LoopWhile iterates over a set of commands under the control of one or more logical expressions.  Since the logical conditions typically depend upon values in the data, commands executed in a LoopWhile cannot be anticipated and expanded in SDTL.

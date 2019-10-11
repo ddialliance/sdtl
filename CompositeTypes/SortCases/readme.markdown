@@ -1,1 +1,1 @@
-Describes the way in which rows are sorted.
+Sorts rows in the dataframe in a specified order.

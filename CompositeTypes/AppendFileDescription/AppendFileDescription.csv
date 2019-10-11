@@ -1,0 +1,6 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+FileName,string,1,1,"Name of the file being merged.  May be ""Active file"".",,,,,,,,,,,,,
+RenameVariables,RenamePair,0,n,Variables to be renamed,,TRUE,,,,,,,,,,,
+KeepVariables,VariableReferenceBase,0,n,List of variables to keep,,TRUE,,,,,,,,,,,
+DropVariables,VariableReferenceBase,0,n,List of variables to drop,,TRUE,,,,,,,,,,,
+Force,string,0,1,"Forces variable attributes to be changed to the attributes in the ""master""  dataframe, when appended dataframes have the same variable names but different attributes.  For example, ""string"" may be forced to ""numeric""",,,,,master,,,,,,,,

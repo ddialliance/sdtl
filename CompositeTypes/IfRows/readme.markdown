@@ -1,0 +1,1 @@
+A set of commands that are performed on each row in the dataframe when a logical expression is true for that row.  May also include ElseCommands to be performed if the logical expression is false.  Use DoIf for a logical condition that applies to the entire dataframe and commands that are performed once.  

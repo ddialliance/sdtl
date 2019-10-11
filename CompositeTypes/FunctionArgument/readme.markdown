@@ -1,1 +1,1 @@
-Describes the arguments name, as specified in the SDTL function library.
+Describes the arguments in a function as specified in the SDTL Function Library.

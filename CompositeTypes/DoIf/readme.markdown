@@ -1,1 +1,1 @@
-A set of commands that are performed when a logical expression is true.
+A set of commands that are performed when a logical expression is true.  May also include ElseCommands to be performed if the logical expression is false.  The commands in DoIf are performed once, and it expects a logical condition that applies to the entire dataframe.  Use IfRows for commands that are performed on each row depending upon values on those rows. 
