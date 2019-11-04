@@ -1,7 +1,6 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 Command,string,1,1,The type of transform command,,,,,,,,,,,,,
 SourceInformation,SourceInformation,1,1,Information about the source of the transform command.,,,,,,,,,,,,,
-CanChangeData,boolean,0,1,Indicates that the transform is capable of changing the values in the data.,,,,,,,,,,,,,
 ProducesDataframe,string,0,n,Signify the dataframe which this transform produces.,,,,,,,,,,,,,
 ConsumesDataframe,string,0,n,Signify the dataframe which this transform acts upon.,,,,,,,,,,,,,
 Message,string,0,n,Adds a message that can be displayed with the command.,,,,,,,,,,,,,
