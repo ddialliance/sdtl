@@ -1,0 +1,3 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+nRows,numeric,0,1,Number of rows in new dataframe,,,,,,,,,,,,,
+nColumns,numeric,0,1,Number of columns in new dataframe,,,,,,,,,,,,,
