@@ -1,4 +1,4 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Variables,VariableReferenceBase,0,n,The variables that will have their format set,,TRUE,,,,,,,,,,,
-DisplayFormatSchema,string,0,1,A vendor or standards body with a controlled vocabulary.  The value can be a URL.,,,,,,,,,,,,,
-DisplayFormatName,string,0,1,The name used in the associated schema.,,,,,,,,,,,,,
+Variables,VariableReferenceBase,1,n,The variables that will have their format set,,TRUE,,,,,,,,,,,
+displayFormatSchema,string,0,1,A vendor or standards body with a controlled vocabulary.  The value can be a URL.,,,,,,,,,,,,,
+displayFormatName,string,0,1,The name used in the associated schema.,,,,,,,,,,,,,

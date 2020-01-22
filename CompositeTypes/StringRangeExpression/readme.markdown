@@ -1,1 +1,1 @@
-Defines a range of string values.
+Defines a range of string values, such as "A to N".
