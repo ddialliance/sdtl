@@ -1,4 +1,0 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Condition,ExpressionBase,0,1,A logical expression that is evaluated separately for every row in the dataframe.,,TRUE,,,,,,,,,,,
-ThenCommands,TransformBase,0,n,Commands to be performed if the condition is true.,,TRUE,,,,,,,,,,,
-ElseCommands,TransformBase,0,n,Commands to be performed if the condition is false.,,TRUE,,,,,,,,,,,

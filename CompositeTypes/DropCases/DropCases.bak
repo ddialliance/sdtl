@@ -1,2 +1,0 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Condition,ExpressionBase,0,1,"If the logical expresion is true, the case (row) will be deleted from the working dataset.",,TRUE,,,,,,,,,,,

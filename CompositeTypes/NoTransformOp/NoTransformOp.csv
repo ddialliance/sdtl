@@ -1,2 +1,1 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-SourceInformation,SourceInformation,1,1,Information about the source of the  command.,,,,,,,,,,,,,
