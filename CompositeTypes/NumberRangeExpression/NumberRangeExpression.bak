@@ -1,4 +1,0 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-NumberRangeStart,ExpressionBase,0,1,Starting value for range,,TRUE,,,,,,,,,,,
-NumberRangeEnd,ExpressionBase,0,1,Ending value for range,,TRUE,,,,,,,,,,,
-NumberRangeIncrement,ExpressionBase,0,1,Increment for stepping through range,,,,,,,,,,,,,

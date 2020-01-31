@@ -1,3 +1,0 @@
-Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Variable,VariableReferenceBase,0,1,The name of the variable to which a label will be assigned,,true,,,,,,,,,,,
-Label,string,0,1,The label to be assigned to the variable,,,,,,,,,,,,,
