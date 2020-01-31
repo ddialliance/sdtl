@@ -1,1 +1,1 @@
-TODO
+Types used to describe variables in expressions.

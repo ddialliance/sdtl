@@ -1,1 +1,1 @@
-Rename changes the name of a variable.
+Rename changes the names of variables.

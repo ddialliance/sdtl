@@ -1,2 +1,2 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Variables,VariableReferenceBase,0,n,The variables to be deleted.,,true,,,,,,,,,,,
+Variables,VariableReferenceBase,1,n,The variables to be dropped.,,true,,,,,,,,,,,

@@ -1,2 +1,2 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Value,string,0,1,"The missing value as it appears in the system (e.g., .a, .b, .c)",,,,,,,,,,,,,1
+Value,string,0,1,"The missing value as it appears in the system (e.g., .a, .b, .c).  If Null, this is the system missing value.",,,,,,,,,,,,,1
