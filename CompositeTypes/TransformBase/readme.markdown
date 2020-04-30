@@ -1,1 +1,1 @@
-TransformBase defines general properties available on all transform commands.
+TransformBase defines properties available for transform commands.
