@@ -1,1 +1,1 @@
-Assigns a label to the value of a categorical variable.
+Associates a label with a  value in a categorical variable.
