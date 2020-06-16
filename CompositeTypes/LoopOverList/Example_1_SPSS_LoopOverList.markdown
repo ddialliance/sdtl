@@ -16,15 +16,13 @@ END REPEAT.
 							END REPEAT."
 							},
 "Iterators": [
-    {"IteratorType": "Variable",
-	"IteratorSymbolName": "existVar",
+    {"IteratorSymbolName": "existVar",
 	"IteratorValues":
     {"$type":"VariableRangeExpression",
         "First": "firstVar",
         "Last": "var5"}
 	},
-    {"IteratorType": "Variable",
-	"IteratorSymbolName": "newVar",
+    {"IteratorSymbolName": "newVar",
 	"IteratorValues":
     {"$type": "VariableListExpression",
     "Variables": [
@@ -34,8 +32,7 @@ END REPEAT.
         ]
         }
     },
-    {"IteratorType": "Numeric",
-	"IteratorSymbolName": "value",
+    {"IteratorSymbolName": "value",
 	"IteratorValues":
     {"$type": "NumberListExpression",
     "Variables": [

@@ -12,8 +12,7 @@ foreach partyidk of varlist PARTYID1 PARTYID2 PARTYID3 {
 								replace democrats=democrats+1 if `partyidk'==1 }"
 							},
 "Iterators": [
-    {"IteratorType": "Variable",
-		"IteratorSymbolName": "partyidk",
+		{"IteratorSymbolName": "partyidk",
 		"IteratorValues":
 			{"$type": "VariableListExpression",
 			"Variables": [
