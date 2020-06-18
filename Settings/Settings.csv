@@ -5,6 +5,6 @@ Slug,sdtl
 Description,A model for describing data transformations
 Version,0.2
 Author,C2Metadata Contributors
-Copyright,Copyright (c) 2017 C2Metadata Contributors
+Copyright,Copyright (c) 2020 C2Metadata Contributors
 NamespaceUrl,http://example.org/sdtl
 NamespacePrefix,sdtl
