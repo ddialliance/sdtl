@@ -1,5 +1,5 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 Variables,VariableReferenceBase,0,n,The variables that will have their type set,,TRUE,,,,,,,,,,,
-DataType,string,1,1,"General type of a variable,  e.g.  ""Text"" or ""Numeric"".",,,,,Text Numeric Boolean Date-Time,,,,,,,,
+DataType,string,1,1,"General type of a variable,  e.g.  ""Text"" or ""Numeric"".",,,,,Text Numeric Boolean Date-Time Factor,,,,,,,,
 SubTypeSchema,string,0,1,A vendor or standards body with a controlled vocabulary.  The value can be a URL.,,,,,,,,,,,,,
 SubType,string,0,1,The name used in the associated schema.,,,,,,,,,,,,,
