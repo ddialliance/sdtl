@@ -271,29 +271,11 @@ Table 4. Example Source Language function definitions
 | "funct    | “sub”     |        |        |           |         |
 | ion_name" |           |        |        |           |         |
 +-----------+-----------+--------+--------+-----------+---------+
-| "syntax"  | “         |        |        |           |         |
-|           | sub(EXP2, |        |        |           |         |
-|           | EXP3,     |        |        |           |         |
-|           | EXP1,     |        |        |           |         |
-|           | ig        |        |        |           |         |
-|           | nore.case |        |        |           |         |
-|           | = EXP4,   |        |        |           |         |
-|           | perl =    |        |        |           |         |
-|           | FALSE,    |        |        |           |         |
-|           | fixed =   |        |        |           |         |
-|           | EXP5,     |        |        |           |         |
-|           | useBytes  |        |        |           |         |
-|           | = FALSE)” |        |        |           |         |
+| "syntax"  | “sub(EXP2, EXP3, EXP1, ignore.case = EXP4,        |
+|           | perl = FALSE, fixed = EXP5, useBytes = FALSE)”    |
 +-----------+-----------+--------+--------+-----------+---------+
-| "URL"     | “         |        |        |           |         |
-|           | https://w |        |        |           |         |
-|           | ww.rdocum |        |        |           |         |
-|           | entation. |        |        |           |         |
-|           | org/packa |        |        |           |         |
-|           | ges/base/ |        |        |           |         |
-|           | versions/ |        |        |           |         |
-|           | 3.6.2/top |        |        |           |         |
-|           | ics/grep” |        |        |           |         |
+| "URL"     |“https://www.rdocumentation.org/packages/base/     |  
+|           |versions/3.6.2/topics/grep”                        |
 +-----------+-----------+--------+--------+-----------+---------+
 | "pa       |           |        |        |           |         |
 | rameters" |           |        |        |           |         |
@@ -424,3 +406,9 @@ Example: Random Number Functions in SDTL, SPSS, and Python
             "..."
         ]
     }
+	
+	
+Links to related documents
+--------------------------
+
+:doc:`Notes on the cut() function:  </Articles/function-library/Cut_Function.rst>`

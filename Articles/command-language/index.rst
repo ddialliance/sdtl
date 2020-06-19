@@ -198,14 +198,12 @@ Although **sourceInformation** is only one property of a command, the
 information.
 
 +----------------------------------+----------------------------------+
-| **Table 1**                      |                                  |
-|                                  |                                  |
-| **TransformBase: SDTL Types that |                                  |
-| Change a Dataframe**             |                                  |
+| **Table 1**                                                         |
+|   **TransformBase: SDTL Types that Change a Dataframe**             |
 +----------------------------------+----------------------------------+
-| A. Commands that create          |                                  |
-|    variables or change the       |                                  |
-|    values of a variable          |                                  |
+| \A. Commands that create                                            |
+| variables or change the                                             |
+| values of a variable                                                |
 +----------------------------------+----------------------------------+
 | **Aggregate**                    | An aggregation summarizes data   |
 |                                  | using aggregation functions      |
@@ -242,9 +240,9 @@ information.
 +----------------------------------+----------------------------------+
 |                                  |                                  |
 +----------------------------------+----------------------------------+
-| B. Commands that change the      |                                  |
-|    metadata associated with a    |                                  |
-|    variable or dataframe         |                                  |
+| \B. Commands that change the                                        |
+| metadata associated with a                                          |
+| variable or dataframe                                               |
 +----------------------------------+----------------------------------+
 | **Rename**                       | Rename changes the name of a     |
 |                                  | variable or list of variables.   |
@@ -267,8 +265,8 @@ information.
 +----------------------------------+----------------------------------+
 |                                  |                                  |
 +----------------------------------+----------------------------------+
-| C. Commands that read or write   |                                  |
-|    files                         |                                  |
+| \C. Commands that read or write                                     |
+| files                                                               |
 +----------------------------------+----------------------------------+
 | **Load**                         | Load data from a file.           |
 +----------------------------------+----------------------------------+
@@ -276,8 +274,8 @@ information.
 +----------------------------------+----------------------------------+
 |                                  |                                  |
 +----------------------------------+----------------------------------+
-| D. Commands that change the      |                                  |
-|    structure of a dataframe      |                                  |
+| \D. Commands that change the                                        |
+| structure of a dataframe                                            |
 +----------------------------------+----------------------------------+
 | **AppendDatasets**               | Combines datasets by             |
 |                                  | concatenation for datasets with  |
@@ -341,9 +339,8 @@ information.
 +----------------------------------+----------------------------------+
 |                                  |                                  |
 +----------------------------------+----------------------------------+
-| E. Commands that control the     |                                  |
-|    flow of operations in a       |                                  |
-|    script                        |                                  |
+| \E. Commands that control the                                       |
+| flow of operations in a script                                      |
 +----------------------------------+----------------------------------+
 | **DoIf**                         | A set of commands that are       |
 |                                  | performed when a logical         |
@@ -392,10 +389,8 @@ information.
 +----------------------------------+----------------------------------+
 
 +----------------------------------+----------------------------------+
-| **Table 2.**                     |                                  |
-|                                  |                                  |
-| **InformBase: Commands that      |                                  |
-| provide information**            |                                  |
+| **Table 2.**                                                        |
+|   **InformBase: Commands that provide information**                 |
 +----------------------------------+----------------------------------+
 | **Analysis**                     | Describes an analysis command.   |
 |                                  | An analysis command does not     |
@@ -438,104 +433,98 @@ information.
 |                                  | application.                     |
 +----------------------------------+----------------------------------+
 
-+----------------------------------+----------------------------------+
-| **Table 3.**                     |                                  |
-|                                  |                                  |
-| **ExpressionBase: SDTL Types     |                                  |
-| Used in Expressions**            |                                  |
-+----------------------------------+----------------------------------+
-| **BooleanConstantExpression**    | BooleanConstantExpression takes  |
-|                                  | values of TRUE and FALSE.        |
-+----------------------------------+----------------------------------+
-| **FunctionCallExpression**       | An expression evaluated by       |
-|                                  | reference to the Function        |
-|                                  | Library.                         |
-+----------------------------------+----------------------------------+
-| **GroupedExpression**            | A group of expressions to be     |
-|                                  | evaluated before expressions     |
-|                                  | outside of the group. Used to    |
-|                                  | control the order of operations  |
-|                                  | in a formula.                    |
-+----------------------------------+----------------------------------+
-| **IteratorSymbolExpression**     | The name of an iterator symbol   |
-|                                  | used as an index in describing   |
-|                                  | the actions of a loop.           |
-+----------------------------------+----------------------------------+
-| **                               | A missing value constant. Some   |
-| MissingValueConstantExpression** | languages allow multiple missing |
-|                                  | value constants.                 |
-+----------------------------------+----------------------------------+
-| **NumberRangeExpression**        | Defines a range of numeric       |
-|                                  | values.                          |
-+----------------------------------+----------------------------------+
-| **NumericConstantExpression**    | A numeric constant.              |
-+----------------------------------+----------------------------------+
-|                                  | Represents the largest numeric   |
-| **NumericMaximumValueExpression** | value supported by a system.     |
-+----------------------------------+----------------------------------+
-| *                                | Represents the smallest numeric  |
-| *NumericMinimumValueExpression** | value supported by a system.     |
-+----------------------------------+----------------------------------+
-| **StringConstantExpression**     | A text string.                   |
-+----------------------------------+----------------------------------+
-| **StringRangeExpression**        | Defines a range of string        |
-|                                  | values.                          |
-+----------------------------------+----------------------------------+
-| **UnhandledValuesExpression**    | Represents any values not        |
-|                                  | previously handled (for example, |
-|                                  | in a set of recode rules).       |
-+----------------------------------+----------------------------------+
-| **ValueListExpression**          | Wraps a list of other            |
-|                                  | expressions.                     |
-+----------------------------------+----------------------------------+
-| **VariableReferenceBase**        | SDTL types used to describe      |
-|                                  | variables. See Table 3.          |
-+----------------------------------+----------------------------------+
++--------------------------------------+----------------------------------+
+| **Table 3.**                                                            |
+|   **ExpressionBase: SDTL Types Used in Expressions**                    |
++--------------------------------------+----------------------------------+
+| **BooleanConstantExpression**        | BooleanConstantExpression takes  |
+|                                      | values of TRUE and FALSE.        |
++--------------------------------------+----------------------------------+
+| **FunctionCallExpression**           | An expression evaluated by       |
+|                                      | reference to the Function        |
+|                                      | Library.                         |
++--------------------------------------+----------------------------------+
+| **GroupedExpression**                | A group of expressions to be     |
+|                                      | evaluated before expressions     |
+|                                      | outside of the group. Used to    |
+|                                      | control the order of operations  |
+|                                      | in a formula.                    |
++--------------------------------------+----------------------------------+
+| **IteratorSymbolExpression**         | The name of an iterator symbol   |
+|                                      | used as an index in describing   |
+|                                      | the actions of a loop.           |
++--------------------------------------+----------------------------------+
+| **MissingValueConstantExpression**   | A missing value constant. Some   |
+|                                      | languages allow multiple missing |
+|                                      | value constants.                 |
++--------------------------------------+----------------------------------+
+| **NumberRangeExpression**            | Defines a range of numeric       |
+|                                      | values.                          |
++--------------------------------------+----------------------------------+
+| **NumericConstantExpression**        | A numeric constant.              |
++--------------------------------------+----------------------------------+
+| **NumericMaximumValueExpression**    | Represents the largest numeric   |
+|                                      | value supported by a system.     |
++--------------------------------------+----------------------------------+
+| **NumericMinimumValueExpression**    | Represents the smallest numeric  |
+|                                      | value supported by a system.     |
++--------------------------------------+----------------------------------+
+| **StringConstantExpression**         | A text string.                   |
++--------------------------------------+----------------------------------+
+| **StringRangeExpression**            | Defines a range of string        |
+|                                      | values.                          |
++--------------------------------------+----------------------------------+
+| **UnhandledValuesExpression**        | Represents any values not        |
+|                                      | previously handled (for example, |
+|                                      | in a set of recode rules).       |
++--------------------------------------+----------------------------------+
+| **ValueListExpression**              | Wraps a list of other            |
+|                                      | expressions.                     |
++--------------------------------------+----------------------------------+
+| **VariableReferenceBase**            | SDTL types used to describe      |
+|                                      | variables. See Table 3.          |
++--------------------------------------+----------------------------------+
+
++-------------------------------------+----------------------------------+
+| **Table 4.**                                                           |
+|   **VariableReferenceBase: SDTL Types Used to Describe Variables**     |
+|   **in Expressions**                                                   |
++-------------------------------------+----------------------------------+
+| **AllNumericVariablesExpression**   | An expression that represents    |
+|                                     | all numeric variables in the     |
+|                                     | dataset, similar to \`_all\` in  |
+|                                     | SPSS or Stata.                   |
++-------------------------------------+----------------------------------+
+| **AllTextVariablesExpression**      | An expression that represents    |
+|                                     | all text variables in the        |
+|                                     | dataset, similar to \`_all\` in  |
+|                                     | SPSS or Stata.                   |
++-------------------------------------+----------------------------------+
+| **AllVariablesExpression**          | An expression that represents    |
+|                                     | all variables in the dataset,    |
+|                                     | similar to \_all in SPSS or      |
+|                                     | Stata.                           |
++-------------------------------------+----------------------------------+
+| **CompositeVariableNameExpression** | A composite variable name is     |
+|                                     | used to describe a variable name |
+|                                     | that is computed.                |
++-------------------------------------+----------------------------------+
+| **VariableListExpression**          | A list of variables which may    |
+|                                     | include variable names           |
+|                                     | (VariableSymbolExpression) and   |
+|                                     | variable ranges                  |
+|                                     | (VariableRangeExpression).       |
++-------------------------------------+----------------------------------+
+| **VariableRangeExpression**         | A list of variables in adjacent  |
+|                                     | columns defined by the variable  |
+|                                     | names of first and last columns. |
++-------------------------------------+----------------------------------+
+| **VariableSymbolExpression**        | A reference to a variable.       |
++-------------------------------------+----------------------------------+
 
 +----------------------------------+----------------------------------+
-| **Table 4.**                     |                                  |
-|                                  |                                  |
-| **VariableReferenceBase: SDTL    |                                  |
-| Types Used to Describe Variables |                                  |
-| in Expressions**                 |                                  |
-+----------------------------------+----------------------------------+
-|                                  | An expression that represents    |
-| **AllNumericVariablesExpression** | all numeric variables in the     |
-|                                  | dataset, similar to \`_all\` in  |
-|                                  | SPSS or Stata.                   |
-+----------------------------------+----------------------------------+
-| **AllTextVariablesExpression**   | An expression that represents    |
-|                                  | all text variables in the        |
-|                                  | dataset, similar to \`_all\` in  |
-|                                  | SPSS or Stata.                   |
-+----------------------------------+----------------------------------+
-| **AllVariablesExpression**       | An expression that represents    |
-|                                  | all variables in the dataset,    |
-|                                  | similar to \_all in SPSS or      |
-|                                  | Stata.                           |
-+----------------------------------+----------------------------------+
-| **C                              | A composite variable name is     |
-| ompositeVariableNameExpression** | used to describe a variable name |
-|                                  | that is computed.                |
-+----------------------------------+----------------------------------+
-| **VariableListExpression**       | A list of variables which may    |
-|                                  | include variable names           |
-|                                  | (VariableSymbolExpression) and   |
-|                                  | variable ranges                  |
-|                                  | (VariableRangeExpression).       |
-+----------------------------------+----------------------------------+
-| **VariableRangeExpression**      | A list of variables in adjacent  |
-|                                  | columns defined by the variable  |
-|                                  | names of first and last columns. |
-+----------------------------------+----------------------------------+
-| **VariableSymbolExpression**     | A reference to a variable.       |
-+----------------------------------+----------------------------------+
-
-+----------------------------------+----------------------------------+
-| **Table 5.**                     |                                  |
-|                                  |                                  |
-| **Types for Complex Properties   |                                  |
-| in SDTL Commands**               |                                  |
+| **Table 5.**                                                        |
+|   **Types for Complex Properties in SDTL Commands**                 |
 +----------------------------------+----------------------------------+
 | **AppendFileDescription**        | Describes files used in an       |
 |                                  | AppendDatasets command.          |
@@ -618,11 +607,7 @@ clarification.
 two or more files or dataframes into a new dataframe. **AppendDatasets**
 (Figure 4) combines rows from dataframes that share common variables.
 **MergeDatasets** (Figure 5) combines columns from dataframes that share
-rows referring to the same subjects or entities. **MergeDatasets** is a
-particularly complex operation, because there are different ways to
-determine which rows should be matched. The “SDTL Merge Gallery”
-includes more than thirty examples of merge commands in source languages
-with corresponding SDTL.
+rows referring to the same subjects or entities. 
 
 .. image:: append-datasets.png
 
@@ -631,6 +616,37 @@ Figure 4. **AppendDatasets**
 .. image:: merge-datasets.png
 
 Figure 5. **MergeDatasets**
+
+**MergeDatasets** is a particularly complex operation with different 
+options in every source language.  Older languages, like SPSS and SAS, 
+approach file merging as a process of drawing rows from two files that 
+have been pre-sorted.  R and Python use concepts like “right” and “left” 
+joins, which are familiar to SQL programmers but opaque to most others.  
+SDTL covers old and new source languages by identifying three properties 
+defining a wide range of merge procedures.  First, SDTL has a controlled 
+vocabulary for the **mergeType**.  A “Sequential” merge matches rows in the 
+order that they appear in each file.  A “OneToOne” merge expects each file 
+to have one or more identifying variables that uniquely link each row in 
+one file to the corresponding row in the other file.  
+
+Second, the **update** property determines the outcome when a variable 
+appears in more than one input file.   Some languages use file merging as 
+a way of updating data in an existing file.  For example, the merge may be 
+designed to supply values for rows with missing values.  In this case, the 
+SDTL **update** property of the primary file is set to “Master”, and the 
+**update** property of the secondary file is set to “UpdateMissing.”
+  
+Third, the **newRow** property describes the outcome when a row in one file 
+cannot be matched to any of the rows in the other file.  When **newRow** is 
+TRUE, a row is added to the output file even if it is not matched.  When 
+**newRow** is FALSE, unmatched rows are not included in the output file.  
+For “inner” and “outer” joins we set the **newRow** of every file to TRUE or 
+FALSE respectively.  “Left” and “right” joins involve one file set to TRUE 
+and another file set to FALSE.
+
+The “SDTL Merge Gallery” includes more than thirty examples of merge 
+commands in source languages with corresponding SDTL.
+
 
 **Aggregate** and **Collapse** involve computations across multiple
 rows. For example, consider a dataframe consisting of a row for each
@@ -664,6 +680,15 @@ the condition is evaluated once for the entire dataframe. Both
 include an **elseCommands** property for commands to be performed if the
 condition is false.
 
+Links to related documents
+--------------------------
+
+For data cubes and multi-indexes in SDTL see: 
+    :doc:`/Articles/command-language/Hierarchical_Indexing_in_SDTL.rst`
+
+
+Notes
+-----
 .. [1]
    In this section SDTL the names of types and properties are given in
    **boldface**. SDTL types begin with uppercase, and properties begin
@@ -672,3 +697,6 @@ condition is false.
 .. [2]
    As explained in SDTL Best Practices and Conventions #1, the “$type”
    property may be omitted when only one type is allowed.
+   
+   
+   

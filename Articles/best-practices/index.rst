@@ -93,12 +93,13 @@ This section provides information on best practices for using SDTL.
       Else block describe only one command.
 
 8. **MergeDatasets**
-
-   a. Examples of MergeDatasets can be found at:
-
-   https://docs.google.com/spreadsheets/d/1qpofZDygSTUeb0go7DUwsx-Y6gAr2C2WnAXHYbzYU9s/edit?usp=sharing
+   Examples of MergeDatasets can be found in the SDTL Merge Gallery:
+       .. _Spreadsheet:   :doc:`/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.xlsx'
+	   .. _PDF:   :doc:`/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.pdf'
 
 9.  **MergeFileDescription**
+
+    Options for **MergeFileDescription** are also in this :: _document:  :doc:`/CompositeTypes/MergeDatasets/Merge_options.markdown` 
 
     a. **mergeType**
 
@@ -182,13 +183,12 @@ This section provides information on best practices for using SDTL.
     parameter for a list of variables.
 
 11. **Character strings in statistical packages.**
-
-    a. There are two different ways that statistical packages handle
-       variables consisting of text. SPSS and SAS operate primarily on
-       fixed length character variables. If the user assigns a string
-       shorter than the declared length of the variable, it is padded
-       with blanks on the right side. Stata, R, and Python were designed
-       to work with string variables that vary in length.
+    There are two different ways that statistical packages handle
+    variables consisting of text. SPSS and SAS operate primarily on
+    fixed length character variables. If the user assigns a string
+    shorter than the declared length of the variable, it is padded
+    with blanks on the right side. Stata, R, and Python were designed
+    to work with string variables that vary in length.
 
 12. **FunctionCallExpression**.
 
@@ -202,8 +202,50 @@ This section provides information on best practices for using SDTL.
        references by position may not follow references by ArgumentName.
 
 13. **Commands versus Functions**
+    Some source language commands may be translated as functions in
+    SDTL and vice versa. For example, the Python function
+    “df.rename()” renames variables. In SDTL Rename is a command not
+    a function.
+	   
+14. **Parsing Comments**
+	Comments in the source languages are delimited by certain special 
+	characters which may differ depending on the language; some languages 
+	also differentiate between single-line and multi-line comments with a 
+	different set of delimiting characters (for example, in Python, a 
+	single-line comment starts with a # symbol and ends with a new line, 
+	but a multi-line comment starts and ends with three quotation marks). 
+	Parsers should take care not to include comment delimiting characters 
+	in the commentText property of the corresponding SDTL Comment command 
+	because not all source languages use the same characters for that 
+	purpose and a comment delimiting character in one language may have 
+	an unintended side effect if the SDTL is used to translate the comment 
+	into another source language.
+	
+15. **variableInventory**
 
-    a. Some source language commands may be translated as functions in
-       SDTL and vice versa. For example, the Python function
-       “df.rename()” renames variables. In SDTL Rename is a command not
-       a function.
+   a. **variableInventory**, a property of **DataframeDescription**, is
+      used to provide an ordered list of the variables in a dataframe.
+      All SDTL commands include **variableInventory**, because it is a
+      sub-property of both **consumesDataframe** and 
+      **producesDataframe**, which are inherited from **CommandBase**.
+		
+   b. Parsers are encouraged to use **variableInventory** after any
+      command that changes the number or order of variables in a dataframe.
+      Most source languages allow variable ranges (SDTL 
+      **VariableRangeExpression**) in various commands. Since a variable
+      range depends upon the order of variables in a dataframe, the parser
+      should include that information in the SDTL script for use by
+      updaters and other applications. 
+
+16. **Collapse** and **Aggregate**
+
+   Some aggregation functions (e.g. mean) cannot be performed on text variables. 
+   However, users may apply these functions to a range of variables that 
+   includes text variables.  Our tests in several source languages suggest that 
+   parsers can transfer the variable range in the user-supplied script to SDTL 
+   even when it includes text variables.  When this happens, the statistical 
+   packages will either ignore text variables and aggregate only the numeric 
+   variables, or it will halt with an error message.  
+	
+   See :doc:`Collapse: Handling of Non-numeric Variables </CompositeTypes/Collapse/Collapse_Nonnumeric_Variables.rst>`
+	
