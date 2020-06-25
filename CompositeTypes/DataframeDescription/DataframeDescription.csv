@@ -1,3 +1,5 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
 DataframeName,string,1,1,Name of the dataframe.,,,,,,,,,,,,,
 VariableInventory,string,0,n,Variables in the dataframe in order,,TRUE,,,,,,,,,,,
+RowDimensions,VariableReferenceBase,0,n,An ordered list of variables used as hierarchical dimensions in a data cube or multi-index,,,,,,,,,,,,,
+ColumnDimensions,VariableReferenceBase,0,n,An ordered list of variables used as colum indexes in a multi-index,,,,,,,,,,,,,

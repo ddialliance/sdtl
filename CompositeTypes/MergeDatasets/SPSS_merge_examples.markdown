@@ -8,14 +8,17 @@ MATCH FILES
 
 
 {"command": "MergeDatasets",
+	"$type": "MergeDatasets",
     "MergeFiles": [
-    "MergeFileDescription":
-        {"FileName": "merge_1.sav",
-        "MergeType": "sequential"
+    "mergeFileDescription":
+        {"fileName": "merge_1.sav",
+        "mergeType": "Sequential",
+		"newRow": TRUE
         },
     "MergeFileDescription":
-        {"FileName": "merge_2.sav",
-        "MergeType": "sequential"
+        {"fileName": "merge_2.sav",
+        "mergeType": "Sequential"
+		"newRow": TRUE
         }
         ]
     }
@@ -26,7 +29,7 @@ MATCH FILES
 MATCH FILES  
     /FILE='merge_1.sav'
    /in=from_f1
-   /file='merge_4.sav'
+   /file='merge_3.sav'
    /in=from_f3
    /RENAME= (VAR3=VARx)
    /KEEP= id VAR2 VARx
@@ -39,33 +42,39 @@ MATCH FILES
 ```
   
 {"command": "MergeDatasets",
-    "MergeFiles": [
-    "MergeFileDescription":
-        {"FileName": "merge_1.sav",
-        "MergeType": "1:1 duplicates unmatched",
-        "MergeFlagVariable":"from_f1",
-        {"RenamePair":
-            {"OldVariable":"VAR3","NewVariable":"VARx"}
-            }
+	"$type": "MergeDatasets",
+    "mergeByVariables": [ {"$type": "VariableSymbolExpression",
+                            "VariableName":"id"}      ],
+    "firstVariable": "firstvar",
+    "lastVariable": "lastvar",
+	"mergeFiles": [
+	   "mergeFileDescription":
+			{"fileName": "merge_1.sav",
+			"mergeType": "OneToOne",
+			"mergeFlagVariable":"from_f1",
+			"renameVariable":["RenamePair":
+				{"OldVariable":"VAR3","NewVariable":"VARx"}  ],
+			"newRow": TRUE		
+			},
+		"mergeFileDescription":
+			{"fileName": "merge_3.sav",
+			"mergeType": "OneToOne",
+			"mergeFlagVariable":"from_f3",
+			"newRow": FALSE
+			}
         },
-    "MergeFileDescription":
-        {"FileName": "merge_2.sav",
-        "MergeType": "1:1 duplicates unmatched",
-        "MergeFlagVariable":"from_f3",
-        },
-    "MergeByVariables": {"$type": "VariableSymbolExpression",
-                            "VariableName":"id"}
-        ],
-    "FirstVariable": "firstvar",
-    "LastVariable": "lastvar",
-    "KeepVariables": {"$type": "VariableListExpression",
-                        "Variables":
-                        [ {"$type": "VariableSymbolExpression",
-                            "VariableName":"id"},
-                            {"$type": "VariableSymbolExpression",
-                            "VariableName":"VAR2"},
-                            {"$type": "VariableSymbolExpression",
-                            "VariableName":"VARx"}
-                            ] }
-        }
+{"command": "KeepVariables",
+		"$type": "KeepVariables",
+		"variables": {"$type": "VariableListExpression",
+				"variables":
+					[ {"$type": "VariableSymbolExpression",
+						"VariableName":"id"},
+						{"$type": "VariableSymbolExpression",
+						"VariableName":"VAR2"},
+						{"$type": "VariableSymbolExpression",
+						"VariableName":"VARx"}
+						]
+					},
+		"messageText": "NOTE: This KeepVariables command is after the MergeDatasets command, because it applies to the output dataframe."
+		}
   ```

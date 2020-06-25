@@ -15,8 +15,7 @@ END LOOP.
 								END LOOP."
 							},
 "Iterators": [
-    {"IteratorType": "Numeric",
-	"IteratorSymbolName": "",
+    {"IteratorSymbolName": "",
 	"IteratorValues":
     {"$type":"NumberRangeExpression",
         "From": "1",

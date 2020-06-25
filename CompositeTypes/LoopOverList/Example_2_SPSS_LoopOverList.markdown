@@ -13,8 +13,7 @@ END LOOP.
 								END LOOP."
 							},
 "Iterators": [
-    {"IteratorType": "Numeric",
-	"IteratorSymbolName": "#I",
+    {"IteratorSymbolName": "#I",
 	"IteratorValues":
     {"$type": "NumberListExpression",
     "Values": [

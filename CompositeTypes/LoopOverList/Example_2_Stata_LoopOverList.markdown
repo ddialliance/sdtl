@@ -12,8 +12,7 @@ forvalues k = 0/9  {
 								replace idealfam=`k' if `k'==chldidel }"
 							},
 "Iterators": [
-    {"IteratorType": "Numeric",
-		"IteratorSymbolName": "k",
+		{"IteratorSymbolName": "k",
 		"IteratorValues":
 			{"$type": "NumberRangeExpression",
 				"From": "0",
