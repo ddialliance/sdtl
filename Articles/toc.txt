@@ -5,3 +5,4 @@ command-language/index
 function-library/index
 pseudocode-library/index
 best-practices/index
+credits/index

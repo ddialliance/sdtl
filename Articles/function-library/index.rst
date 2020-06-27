@@ -411,4 +411,4 @@ Example: Random Number Functions in SDTL, SPSS, and Python
 Links to related documents
 --------------------------
 
-:doc:`Notes on the cut() function:  </Articles/function-library/Cut_Function.rst>`
+:doc:`Notes on the cut() function:  </function-library/Cut_Function.rst>`

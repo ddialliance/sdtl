@@ -684,7 +684,7 @@ Links to related documents
 --------------------------
 
 For data cubes and multi-indexes in SDTL see: 
-    :doc:`/Articles/command-language/Hierarchical_Indexing_in_SDTL.rst`
+    :doc:`/command-language/Hierarchical_Indexing_in_SDTL.rst`
 
 
 Notes
