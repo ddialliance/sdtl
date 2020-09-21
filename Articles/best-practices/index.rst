@@ -13,9 +13,12 @@ This section provides information on best practices for using SDTL.
       is also given in the “$type” property, both “$type” and “command”
       are required. This redundancy is due to a limitation in JSON, and
       it is needed to be sure that SDTL JSON is rendered correctly in
-      other formats, such as XML.
+      other formats, such as XML.     
 
-   b. “$type” can be omitted when only one SDTL type is allowed. A
+   b. Command names should be spelled the same way in both "$type" 
+      and "command" properties, including capitalization.  
+   
+   c. “$type” can be omitted when only one SDTL type is allowed. A
       number of SDTL types are used to specify complex properties of
       commands. If only one SDTL type can be used in a property, “$type”
       may be omitted. For example, the Rename command has a property
@@ -248,4 +251,30 @@ This section provides information on best practices for using SDTL.
    variables, or it will halt with an error message.  
 	
    See :doc:`Collapse: Handling of Non-numeric Variables </CompositeTypes/Collapse/Collapse_Nonnumeric_Variables.rst>`
+
+17. **Variable names in case-insensitive languages**
+
+   a. If the source language is case insensitive, the parser will change all 
+   variable names to either all caps or all lower case.  The 
+   originalSourceText property of the SourceInformation element will 
+   show capitalization as it appears in the original script.  
+   
+   b. A Message command at the beginning of the SDTL script should say 
+   that variable names have been standardized.
+
+   c. Standardization of variable names is necessary for compatibility 
+   between case sensitive and insensitive languages.
+
+18. **Omitting optional properties in SDTL JSON**
+
+   There are three acceptable ways of omitting an optional property
+   from an SDTL JSON file:
+
+      i. The property is omitted -- used for single objects or arrays  
+
+      ii. "property":null  -- used for single objects or arrays   
+
+      iii. "property":[]  -- only used for arrays   
+
+
 	

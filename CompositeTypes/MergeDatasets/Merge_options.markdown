@@ -99,3 +99,12 @@ Properties and Options of MergeFileDescription
 +----------------------+----------------------------------------------+
 | DropCasesCondition   | Logical condition for dropping rows.         |
 +----------------------+----------------------------------------------+
+| MergeByNames         | > An ordered list of variables used as keys  |
+|                      | > in this file to be matched to the          |
+|                      | > variables in the mergeByVariables property |
+|                      | > of the MergeDatasets command. This         |
+|                      | > property is only used when the key         |
+|                      | > variables in this file have different      |
+|                      | > names than the variable names listed in    |
+|                      | > the MergeDatasets command.                 |
++----------------------+----------------------------------------------+
