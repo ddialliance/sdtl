@@ -3,7 +3,7 @@ Title,Structured Data Transform Language
 ShortTitle,SDTL
 Slug,sdtl
 Description,A model for describing data transformations
-Version,0.2
+Version,0.3
 Author,C2Metadata Contributors
 Copyright,Copyright (c) 2020 C2Metadata Contributors
 NamespaceUrl,https://rdf-vocabulary.ddialliance.org/sdtl
