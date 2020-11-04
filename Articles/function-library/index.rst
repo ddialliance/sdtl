@@ -1,5 +1,7 @@
 SDTL Function Library
 =====================
+**SDTL version 0.4;      
+Revised Nov. 4, 2020**
 
 The function library is stored in a JSON file that describes how to
 translate functions in various source languages into their SDTL
@@ -109,26 +111,25 @@ Table 2. SDTL properties in the Function Library
 |                      | param                | parameter name:      |
 |                      |                      | EXP1, EXP2, ...      |
 +----------------------+----------------------+----------------------+
-|                      | required             | Whether this         |
+|                      | isRequired           | Whether this         |
 |                      |                      | parameter must be    |
-|                      |                      | present (“yes”,      |
-|                      |                      | “no”) or a default   |
-|                      |                      | value. The default   |
-|                      |                      | value is used when a |
+|                      |                      | present (true) or    |
+|                      |                      | is optional (false). |
++----------------------+----------------------+----------------------+
+|                      | defaultValue         | The default value    |
+|                      |                      | is used when a       |
 |                      |                      | value of this        |
 |                      |                      | parameter is null.   |
 +----------------------+----------------------+----------------------+
-|                      | type                 | The type may be a    |
-|                      |                      | data type (numeric,  |
-|                      |                      | string, boolean) or  |
-|                      |                      | a class of $types in |
-|                      |                      | SDTL                 |
-|                      |                      | (ExpressionBase,     |
-|                      |                      | Va                   |
-|                      |                      | riableReferenceBase, |
-|                      |                      | Var                  |
-|                      |                      | iableListExpression, |
-|                      |                      | ValueListExpression) |
+|                      | type                 | This field is used   |
+|                      |                      | when a specific      |
+|                      |                      | SDTL $type must be   |
+|                      |                      | used.  For example,  |
+|                      |                      | if the parameter is  |
+|                      |                      | a list of variable   |
+|                      |                      | names, the type      |
+|                      |                      | must be              |
+|                      |                      | ValueListExpression. |
 +----------------------+----------------------+----------------------+
 
 The SDTL properties of a function are followed by arrays of source
@@ -162,15 +163,19 @@ language function are shown in Table 3.
 |                      | following            |                      |
 |                      | properties:          |                      |
 +----------------------+----------------------+----------------------+
-|                      | required             | This parameter is    |
+|                      | isRequired           | This parameter is    |
 |                      |                      | required in the      |
 |                      |                      | source language:     |
-|                      |                      | “yes”, “no”, or      |
-|                      |                      | default value. Note  |
-|                      |                      | that “true” and      |
-|                      |                      | “false” are default  |
-|                      |                      | values used for      |
-|                      |                      | boolean variables.   |
+|                      |                      | true or false.       |
++----------------------+----------------------+----------------------+
+|                      | defaultValue         | Value to use when    |
+|                      |                      | no value is given.   |
+|                      |                      | Note that the        |
+|                      |                      | default value for    |
+|                      |                      | a source language    |
+|                      |                      | may be different     |
+|                      |                      | from the default     |
+|                      |                      | in SDTL.             |
 +----------------------+----------------------+----------------------+
 |                      | param                | Name of the          |
 |                      |                      | parameter in SDTL:   |
@@ -192,7 +197,13 @@ language function are shown in Table 3.
 |                      |                      | be omitted or set to |
 |                      |                      | null for parameters  |
 |                      |                      | identified by name   |
-|                      |                      | only.                |
+|                      |                      | only.   When a       |
+|                      |                      | parameter is given   | 
+|                      |                      | before the function  |
+|                      |                      | name, eg.,           |
+|                      |                      | "param.function()",  |
+|                      |                      | it is assigned       |
+|                      |                      | position 0.          |
 +----------------------+----------------------+----------------------+
 |                      | index_offset         | Used with Python to  |
 |                      |                      | indicate when the    |
@@ -267,30 +278,29 @@ function.
 
 Table 4. Example Source Language function definitions
 
-+-----------+-----------+--------+--------+-----------+---------+
-| "funct    | “sub”     |        |        |           |         |
-| ion_name" |           |        |        |           |         |
-+-----------+-----------+--------+--------+-----------+---------+
-| "syntax"  | “sub(EXP2, EXP3, EXP1, ignore.case = EXP4,        |
-|           | perl = FALSE, fixed = EXP5, useBytes = FALSE)”    |
-+-----------+-----------+--------+--------+-----------+---------+
-| "URL"     |“https://www.rdocumentation.org/packages/base/     |  
-|           |versions/3.6.2/topics/grep”                        |
-+-----------+-----------+--------+--------+-----------+---------+
-| "pa       |           |        |        |           |         |
-| rameters" |           |        |        |           |         |
-+-----------+-----------+--------+--------+-----------+---------+
-| “         | “yes”     | “yes”  | “yes”  | “false”   | “true”  |
-| required” |           |        |        |           |         |
-+-----------+-----------+--------+--------+-----------+---------+
-| “param”   | “EXP1”    | “EXP2” | “EXP3” | “EXP4”    | “EXP5”  |
-+-----------+-----------+--------+--------+-----------+---------+
-| “name”    | null      | null   | null   | “ign      | “fixed” |
-|           |           |        |        | ore.case” |         |
-+-----------+-----------+--------+--------+-----------+---------+
-| “         | 3         | 1      | 2      | 4         | 6       |
-| position” |           |        |        |           |         |
-+-----------+-----------+--------+--------+-----------+---------+
++----------------+-----------+--------+--------+-----------+---------+
+| "function      | “sub”     |        |        |           |         |
+| _name"         |           |        |        |           |         |
++----------------+-----------+--------+--------+-----------+---------+
+| "syntax"       | “sub(EXP2, EXP3, EXP1, ignore.case = EXP4,        |
+|                | perl = FALSE, fixed = EXP5, useBytes = FALSE)”    |
++----------------+-----------+--------+--------+-----------+---------+
+| "URL"          |“https://www.rdocumentation.org/packages/base/     |  
+|                |versions/3.6.2/topics/grep”                        |
++----------------+-----------+--------+--------+-----------+---------+
+| "parameters"   |                                                   |
++----------------+-----------+--------+--------+-----------+---------+
+| “isRequired”   | “true”    | “true” | “true” | "false”   | “false” |
++----------------+-----------+--------+--------+-----------+---------+
+| "defaultValue" |           |        |        | "false"   | "true"  |
++----------------+-----------+--------+--------+-----------+---------+
+| “param”        | “EXP1”    | “EXP2” | “EXP3” | “EXP4”    | “EXP5”  |
++----------------+-----------+--------+--------+-----------+---------+
+| “name”         | null      | null   | null   | “ignore.  | “fixed” |
+|                |           |        |        |     case” |         |
++----------------+-----------+--------+--------+-----------+---------+
+| “position”     | 3         | 1      | 2      | 4         | 6       |
++----------------+-----------+--------+--------+-----------+---------+
 
 Python differs from the other languages in the way that it refers to
 elements in sequences. Python is “0 indexed,” which means that the index
@@ -324,12 +334,14 @@ Example: Random Number Functions in SDTL, SPSS, and Python
                 "parameters": [
                     {
                         "param": "EXP1",
-                        "required": "YES",
+                        "isRequired": "true",
+                        "defaultValue": 0.0,
                         "type": "num"
                     },
                     {
                         "param": "EXP2",
-                        "required": "YES",
+                        "isRequired": "true",
+                        "defaultValue": 1.0,
                         "type": "num"
                     }
                 ],
@@ -340,13 +352,15 @@ Example: Random Number Functions in SDTL, SPSS, and Python
                         "URL": null,
                         "parameters": [
                             {
-                                "required": "YES",
+                                "isRequired": true,
+                                "defaultValue": null,
                                 "param": "EXP1",
                                 "name": null,
                                 "position": "1"
                             },
                             {
-                                "required": "YES",
+                                "isRequired": true,
+                                "defaultValue": null,
                                 "param": "EXP2",
                                 "name": null,
                                 "position": "2"
@@ -359,13 +373,15 @@ Example: Random Number Functions in SDTL, SPSS, and Python
                         "URL": null,
                         "parameters": [
                             {
-                                "required": "YES",
+                                "isRequired": true,
+                                "defaultValue": null,
                                 "param": "EXP1",
                                 "name": null,
                                 "position": "1"
                             },
                             {
-                                "required": "YES",
+                                "isRequired": true,
+                                "defaultValue": null,
                                 "param": "EXP2",
                                 "name": null,
                                 "position": "2"
@@ -380,13 +396,15 @@ Example: Random Number Functions in SDTL, SPSS, and Python
                         "URL": "https://numpy.org/devdocs/reference/random/generated/numpy.random.uniform.html#numpy.random.uniform",
                         "parameters": [
                             {
-                                "required": "0",
+                                "isRequired": false,
+                                "defaultValue": 0.0,
                                 "param": "EXP1",
                                 "name": "low",
                                 "position": "1"
                             },
                             {
-                                "required": "1",
+                                "isRequired": false,
+                                "defaultValue": 1.0,
                                 "param": "EXP2",
                                 "name": "high",
                                 "position": "2"
