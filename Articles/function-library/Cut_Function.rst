@@ -1,7 +1,7 @@
 SDTL Cut Functions
 ==================
 
-May 19, 2020
+November 13, 2020
 
 George Alter
 
@@ -12,41 +12,42 @@ are actually three different modes. For this reason, SDTL has three
 different cut functions. The Python Pandas qcut function provides one
 mode overlapping with Stata as well as an additional mode.
 
-cut_list( ) -- uses a list of break-points to divide cases into groups
+cut_list( ) -- uses a list of break-points to divide cases into groups 
+(Stata egen, R, Python)
 
 cut_range( ) -- divides rows into k groups by dividing the range of the
 reference variable into groups of equal widths (R, Python)
 
 cut_freq ( ) -- divides rows into k groups with equal numbers of rows in
-each (Stata, Python qcut)
+each (Stata egen, Python qcut)
 
 cut_quant( ) -- divides rows into groups based on a list of quantile
 boundaries (Python qcut)
 
-+-----------------+---------------------------------------------------+
-| **cut_list( )** |                                                   |
-+-----------------+---------------------------------------------------+
-| EXP1            | VariableSymbolExpression for variable used in     |
-|                 | assigning rows to groups                          |
-+-----------------+---------------------------------------------------+
-| EXP2            | ValueListExpression -- list of break-points       |
-+-----------------+---------------------------------------------------+
-| EXP3            | “Right” if intervals are closed on the right;     |
-|                 | “Left” if intervals are closed on the left        |
-+-----------------+---------------------------------------------------+
-| EXP4            | Boolean “True” if EXP3=”Right” and lowest group   |
-|                 | is inclusive on the left                          |
-+-----------------+---------------------------------------------------+
-| EXP5            | Type of coding:                                   |
-|                 |                                                   |
-|                 | “Left” -- Minimum value of group                  |
-|                 |                                                   |
-|                 | “Int_code” -- Integer codes are assigned to each  |
-|                 | group                                             |
-|                 |                                                   |
-|                 | Note: Labels assigned to groups are defined in a  |
-|                 | separate SDTL SetValueLabels command              |
-+-----------------+---------------------------------------------------+
++-----------------+---------------------------------------------------+--------------+-----------------+
+| **cut_list( )** |                                                   |  isRequired  |  defaultValue   |
++-----------------+---------------------------------------------------+--------------+-----------------+
+| EXP1            | VariableSymbolExpression for variable used in     |     true     |                 +
+|                 | assigning rows to groups                          |              |                 +
++-----------------+---------------------------------------------------+--------------+-----------------+
+| EXP2            | ValueListExpression -- list of break-points       |     true     |                 +
++-----------------+---------------------------------------------------+--------------+-----------------+
+| EXP3            | “Right” if intervals are closed on the right;     |     false    |   "Right"       +
+|                 | “Left” if intervals are closed on the left        |              |                 +
++-----------------+---------------------------------------------------+--------------+-----------------+
+| EXP4            | Boolean “True” if EXP3=”Right” and lowest group   |     false    |                 +
+|                 | is inclusive on the left.  See R example          |              |                 +
++-----------------+---------------------------------------------------+--------------+-----------------+
+| EXP5            | Type of coding:                                   |     false    |   "Left"        +
+|                 |                                                   |              |                 +
+|                 | “Left” -- Minimum value of group                  |              |                 +
+|                 |                                                   |              |                 +
+|                 | “Int_code” -- Integer codes are assigned to each  |              |                 +
+|                 | group                                             |              |                 +
+|                 |                                                   |              |                 +
+|                 | Note: Labels assigned to groups are defined in a  |              |                 +
+|                 | separate SDTL SetValueLabels command              |              |                 +
++-----------------+---------------------------------------------------+--------------+-----------------+
 
 ================================================== ==== ===============
 Stata: egen cut1 = cut(varX), at( -999, 3, 9, 999)      
@@ -255,21 +256,21 @@ Stata: egen cut1 = cut(varX), at( -999, 3, 9, 999)
 | },                                        |      |                 |
 +-------------------------------------------+------+-----------------+
 
-+------------------+--------------------------------------------------+
-| **cut_range( )** |                                                  |
-+------------------+--------------------------------------------------+
-| EXP1             | VariableSymbolExpression for variable used in    |
-|                  | assigning rows to groups                         |
-+------------------+--------------------------------------------------+
-| EXP2             | Number of groups to create by dividing the range |
-|                  | of EXP1 into equal segments                      |
-+------------------+--------------------------------------------------+
-| EXP3             | “Right” if intervals are closed on the right;    |
-|                  | “Left” if intervals are closed on the left       |
-+------------------+--------------------------------------------------+
-| EXP4             | Boolean “True” if EXP3=”Right” and lowest group  |
-|                  | is inclusive on the left                         |
-+------------------+--------------------------------------------------+
++------------------+--------------------------------------------------+--------------+-----------------+
+| **cut_range( )** |                                                  |  isRequired  |  defaultValue   |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP1             | VariableSymbolExpression for variable used in    |  true        |                 |
+|                  | assigning rows to groups                         |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP2             | Number of groups to create by dividing the range |  true        |                 |
+|                  | of EXP1 into equal segments                      |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP3             | “Right” if intervals are closed on the right;    |  false       +   "Right"       |
+|                  | “Left” if intervals are closed on the left       |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP4             | Boolean “True” if EXP3=”Right” and lowest group  |  false       |    False        | 
+|                  | is inclusive on the left                         |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
 
 +---------------------------------------------------+------+---------+
 | R: cut(cdata$varX, 3, include.lowest = TRUE,      |      |         |
@@ -292,7 +293,7 @@ Stata: egen cut1 = cut(varX), at( -999, 3, 9, 999)
 +---------------------------------------------------+------+---------+
 |                                                   | EXP3 | “Right” |
 +---------------------------------------------------+------+---------+
-|                                                   | EXP4 | “TRUE”  |
+|                                                   | EXP4 |  True   |
 +---------------------------------------------------+------+---------+
 
 +----------------------------------------------------+------+--------+
@@ -372,22 +373,22 @@ Stata: egen cut1 = cut(varX), at( -999, 3, 9, 999)
 |                                                   | EXP4 | null    |
 +---------------------------------------------------+------+---------+
 
-+------------------+--------------------------------------------------+
-| **cut_freq ( )** |                                                  |
-+------------------+--------------------------------------------------+
-| EXP1             | VariableSymbolExpression for variable used in    |
-|                  | assigning rows to groups                         |
-+------------------+--------------------------------------------------+
-| EXP2             | Number of groups with equal numbers of rows in   |
-|                  | each group. Rows are assigned to groups by       |
-|                  | sorting on EXP1                                  |
-+------------------+--------------------------------------------------+
-| EXP3             | “Right” if intervals are closed on the right;    |
-|                  | “Left” if intervals are closed on the left       |
-+------------------+--------------------------------------------------+
-| EXP4             | Boolean “True” if EXP3=”Right” and lowest group  |
-|                  | is inclusive on the left                         |
-+------------------+--------------------------------------------------+
++------------------+--------------------------------------------------+--------------+-----------------+
+| **cut_freq ( )** |                                                  |  isRequired  |  defaultValue   |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP1             | VariableSymbolExpression for variable used in    |  true        |                 |
+|                  | assigning rows to groups                         |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP2             | Number of groups with equal numbers of rows in   |  true        |                 |
+|                  | each group. Rows are assigned to groups by       |              |                 |
+|                  | sorting on EXP1                                  |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP3             | “Right” if intervals are closed on the right;    |  false       |   "Right"       |
+|                  | “Left” if intervals are closed on the left       |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP4             | Boolean “True” if EXP3=”Right” and lowest group  |  false       |   False         |
+|                  | is inclusive on the left                         |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
 
 ====================================== ==== ======
 Stata: egen cut2 = cut(varX), group(3)      
@@ -427,18 +428,18 @@ Note: The values of cut points depend upon the data.
 \                                                    EXP4 null
 ==================================================== ==== =======
 
-+------------------+--------------------------------------------------+
-| **cut_quant( )** |                                                  |
-+------------------+--------------------------------------------------+
-| EXP1             | VariableSymbolExpression for variable used in    |
-|                  | assigning rows to groups                         |
-+------------------+--------------------------------------------------+
-| EXP2             | ValueListExpression with boundaries of groups    |
-|                  | defined by quantiles, e.g. [0, .25, .75, 1]      |
-+------------------+--------------------------------------------------+
-| EXP3             | “Right” if intervals are closed on the right;    |
-|                  | “Left” if intervals are closed on the left       |
-+------------------+--------------------------------------------------+
++------------------+--------------------------------------------------+--------------+-----------------+
+| **cut_quant( )** |                                                  |  isRequired  |  defaultValue   |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP1             | VariableSymbolExpression for variable used in    |  true        |                 |
+|                  | assigning rows to groups                         |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP2             | ValueListExpression with boundaries of groups    |  true        |                 |
+|                  | defined by quantiles, e.g. [0, .25, .75, 1]      |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
+| EXP3             | “Right” if intervals are closed on the right;    |  false       |   "Right"       |
+|                  | “Left” if intervals are closed on the left       |              |                 |
++------------------+--------------------------------------------------+--------------+-----------------+
 
 ======================================= ==== ==============
 Python (pandas): pd.qcut(cdata.varX, 3)      
