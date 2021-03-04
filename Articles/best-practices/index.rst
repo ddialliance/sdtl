@@ -193,16 +193,10 @@ This section provides information on best practices for using SDTL.
     with blanks on the right side. Stata, R, and Python were designed
     to work with string variables that vary in length.
 
-12. **FunctionCallExpression**.
+12. **FunctionCallExpression: argumentName property required**.
 
-    a. Parameters in a FunctionCallExpression may be identified by
-       position or by the ArgumentName property of FunctionArgument
-
-    b. If ArgumentName is omitted, parameters must be in the correct
-       order.
-
-    c. References by ArgumentName may follow references by position, but
-       references by position may not follow references by ArgumentName.
+    a. The **argumentName property** in a **FunctionCallExpression** 
+    must be present.
 
 13. **Commands versus Functions**
     Some source language commands may be translated as functions in
@@ -274,7 +268,13 @@ This section provides information on best practices for using SDTL.
 
       ii. "property":null  -- used for single objects or arrays   
 
-      iii. "property":[]  -- only used for arrays   
+      iii. "property":[]  -- only used for arrays  
+
+19. **sourceInformation is an array**
+   The **sourceInformation** property in **CommandBase** is an array, 
+   which can describe more than one command in the source script.  This 
+   supports cases where two or more commands in the source script  
+   contribute to a single SDTL command.
 
 
 	
