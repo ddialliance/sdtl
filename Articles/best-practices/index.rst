@@ -198,7 +198,7 @@ This section provides information on best practices for using SDTL.
     a. The **argumentName property** in a **FunctionCallExpression** 
     must be present.
 
-13. **Commands versus Functions**
+13. **Commands versus Functions**   
     Some source language commands may be translated as functions in
     SDTL and vice versa. For example, the Python function
     “df.rename()” renames variables. In SDTL Rename is a command not
@@ -235,7 +235,6 @@ This section provides information on best practices for using SDTL.
       updaters and other applications. 
 
 16. **Collapse** and **Aggregate**
-
    Some aggregation functions (e.g. mean) cannot be performed on text variables. 
    However, users may apply these functions to a range of variables that 
    includes text variables.  Our tests in several source languages suggest that 
@@ -260,7 +259,6 @@ This section provides information on best practices for using SDTL.
    between case sensitive and insensitive languages.
 
 18. **Omitting optional properties in SDTL JSON**
-
    There are three acceptable ways of omitting an optional property
    from an SDTL JSON file:
 
@@ -275,6 +273,42 @@ This section provides information on best practices for using SDTL.
    which can describe more than one command in the source script.  This 
    supports cases where two or more commands in the source script  
    contribute to a single SDTL command.
+
+20. **Selecting by row number**
+   The SDTL **row_number()** function returns the current row number in the 
+   dataframe.  This function can be used for selecting subsets by row 
+   number.  For example, in Python **dataFrame.iloc[2:4]** will select the 
+   3rd and 4th rows in the data frame.  (Ranges in Python are 0-indexed 
+   and open on the right.) The **row_number()** function can be used in 
+   an expression in the **DropCases** and **KeepCases** commands to select 
+   a subset, or in the **IfRows** command to control which rows a command 
+   or group of commands operate on.
+
+21. **Factor subtypes**
+   R and Python both include a categorical data type, which is called Factor 
+   in R and Categorical in Python.  SDTL calls the type **Factor**.  Both R 
+   and Python allow Factor/Categorical variables to be either ordered or 
+   unordered.  Only ordered factor variables can be used in greater/less than 
+   logical conditions, but unordered factor variables can be used in equal/not 
+   equal expressions.  However, there are several differences in the ways that 
+   factors are implemented in R and Python. For example, factors in R are 
+   always string values, but factors in Python can be string or numeric. 
+   Unordered factors can be used for sorting in R but not in Python. 
+   
+   Because of these differences between languages, Factor variables should 
+   be described using the **subTypeSchema** and **subType** properties in the 
+   SetDataType command. These can be implemented like this::
+
+      Python factors
+      subTypeSchema: https://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html
+      subType: ordered, unordered
+
+      R factors
+      subTypeSchema: https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Factors
+      subType: ordered, unordered
+
+
+
 
 
 	
