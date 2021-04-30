@@ -1,2 +1,2 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-Value,boolean,1,1,Values of TRUE and FALSE are used in logical expressions.,,,,,,,,,,,,,
+BooleanValue,boolean,1,1,Values of TRUE and FALSE are used in logical expressions.,,,,,,,,,,,,,
