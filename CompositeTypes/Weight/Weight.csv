@@ -1,0 +1,3 @@
+Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
+WeightVariable,VariableSymbolExpression,0,1,The variable used as a weight in the operation.,,,,,,,,,,,,,
+WeightType,string,0,1,Type of weight to use,,,,,"frequency, probability, Stata_aweight, Stata_iweight",,,,,,,,
