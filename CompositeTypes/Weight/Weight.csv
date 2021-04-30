@@ -1,2 +1,3 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-BooleanValue,boolean,1,1,Values of TRUE and FALSE are used in logical expressions.,,,,,,,,,,,,,
+WeightVariable,VariableSymbolExpression,0,1,The variable used as a weight in the operation.,,,,,,,,,,,,,
+WeightType,string,0,1,Type of weight to use,,,,,"frequency, probability, Stata_aweight, Stata_iweight",,,,,,,,

@@ -577,6 +577,9 @@ information.
 | **ValueLabel**                   | Associates a label with a value  |
 |                                  | in a categorical variable.       |
 +----------------------------------+----------------------------------+
+| **Weight**                       | Describes weights to apply       |
+|                                  | to computations and statistics.  |
++----------------------------------+----------------------------------+
 
 A command in a source language may result in several SDTL commands. For
 example, in some languages the cut() function, which divides a numeric
@@ -646,7 +649,7 @@ and another file set to FALSE.
 
 The “SDTL Merge Gallery” includes more than thirty examples of merge 
 commands in source languages with corresponding SDTL.
-
+:doc:`See SDTL Merge Gallery: </CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.pdf>`
 
 **Aggregate** and **Collapse** involve computations across multiple
 rows. For example, consider a dataframe consisting of a row for each
@@ -683,8 +686,7 @@ condition is false.
 Links to related documents
 --------------------------
 
-For data cubes and multi-indexes in SDTL see: 
-    :doc:`/command-language/Hierarchical_Indexing_in_SDTL.rst`
+:doc:`For data cubes and multi-indexes in SDTL see: </command-language/Hierarchical_Indexing_in_SDTL.rst>`
 
 
 Notes
