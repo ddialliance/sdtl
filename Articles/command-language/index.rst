@@ -648,8 +648,9 @@ FALSE respectively.  “Left” and “right” joins involve one file set to TR
 and another file set to FALSE.
 
 The “SDTL Merge Gallery” includes more than thirty examples of merge 
-commands in source languages with corresponding SDTL.
-:doc:`See SDTL Merge Gallery: </CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.pdf>`
+commands in source languages with corresponding SDTL.   
+
+See SDTL Merge Gallery: https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.pdf
 
 **Aggregate** and **Collapse** involve computations across multiple
 rows. For example, consider a dataframe consisting of a row for each
@@ -686,7 +687,7 @@ condition is false.
 Links to related documents
 --------------------------
 
-:doc:`For data cubes and multi-indexes in SDTL see: </command-language/Hierarchical_Indexing_in_SDTL.rst>`
+:doc:`Hierarchical Indexing in SDTL -- data cubes and multi-indexes </command-language/Hierarchical_Indexing_in_SDTL>`
 
 
 Notes

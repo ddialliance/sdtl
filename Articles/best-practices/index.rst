@@ -97,12 +97,13 @@ This section provides information on best practices for using SDTL.
 
 8. **MergeDatasets**
    Examples of MergeDatasets can be found in the SDTL Merge Gallery:
-       .. _Spreadsheet:   :doc:`/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.xlsx'
-	   .. _PDF:   :doc:`/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.pdf'
+
+   * Spreadsheet version: https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.xlsx   
+   * PDF version: https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.pdf
 
 9.  **MergeFileDescription**
 
-    Options for **MergeFileDescription** are also in this :: _document:  :doc:`/CompositeTypes/MergeDatasets/Merge_options.markdown` 
+    Options for **MergeFileDescription** are also in this  :doc:`document </CompositeTypes/MergeDatasets/Merge_options>` 
 
     a. **mergeType**
 
@@ -235,6 +236,7 @@ This section provides information on best practices for using SDTL.
       updaters and other applications. 
 
 16. **Collapse** and **Aggregate**
+   
    Some aggregation functions (e.g. mean) cannot be performed on text variables. 
    However, users may apply these functions to a range of variables that 
    includes text variables.  Our tests in several source languages suggest that 
@@ -243,7 +245,7 @@ This section provides information on best practices for using SDTL.
    packages will either ignore text variables and aggregate only the numeric 
    variables, or it will halt with an error message.  
 	
-   See :doc:`Collapse: Handling of Non-numeric Variables </CompositeTypes/Collapse/Collapse_Nonnumeric_Variables.rst>`
+   See :doc:`Collapse: Handling of Non-numeric Variables </CompositeTypes/Collapse/Collapse_Nonnumeric_Variables>`
 
 17. **Variable names in case-insensitive languages**
 
