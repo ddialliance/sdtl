@@ -30,9 +30,25 @@ This section provides information on best practices for using SDTL.
    “execute” or “run” a group of commands. Execute is included in SDTL
    for information, but it has no functions at this time.
 
-3. **Data Types and Formats.** SDTL does not have a feature for setting
-   default data types and display formats. The SetDataType and Set
-   DisplayFormat should be used whenever the type or format are known.
+3. **Data Types and Formats.**
+   
+   a. SDTL does not have a feature for setting 
+      default data types and display formats. The **SetDataType** and 
+      **SetDisplayFormat** should be used whenever the type or format 
+      are known.
+
+   b. The **SetDataType** command accepts only a short list of
+      general data types (Text, Numeric, Boolean, Date-Time, Factor).  
+      These types can be extended by using the **subTypeSchema** 
+      to point to a controlled vocabulary with a more specific **subType**.
+      The **subTypeSchema** may refer to a software vendor or to
+      a standrd list, such as a DDI Alliance controlled vocabulary
+      See https://ddialliance.org/controlled-vocabularies/all .  
+
+   c. Since display formats are often specific to each software
+      package, the **SetDisplayFormat** uses the **displayFormatSchema**
+      and **displayFormatName** properties to point to controlled 
+      a controlled vocabulary.
 
 4. **Lists and Ranges**
 
@@ -103,7 +119,8 @@ This section provides information on best practices for using SDTL.
 
 9.  **MergeFileDescription**
 
-    Options for **MergeFileDescription** are also in this  :doc:`document </CompositeTypes/MergeDatasets/Merge_options>` 
+   Options for **MergeFileDescription** are also in this document 
+   :doc:`Properties and Options of MergeFileDescription </CompositeTypes/MergeDatasets/Merge_options>` 
 
     a. **mergeType**
 
@@ -245,7 +262,8 @@ This section provides information on best practices for using SDTL.
    packages will either ignore text variables and aggregate only the numeric 
    variables, or it will halt with an error message.  
 	
-   See :doc:`Collapse: Handling of Non-numeric Variables </CompositeTypes/Collapse/Collapse_Nonnumeric_Variables>`
+   See 
+   :doc:`Collapse: Handling of Non-numeric Variables </CompositeTypes/Collapse/Collapse_Nonnumeric_Variables>`
 
 17. **Variable names in case-insensitive languages**
 
