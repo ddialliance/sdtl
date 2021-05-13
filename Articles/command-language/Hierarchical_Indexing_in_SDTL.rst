@@ -1,3 +1,6 @@
+Hierarchical Indexing, Data Cubes, and Multi-indexes in SDTL
+=============================================================
+
 Revised: 5 June 2020
 
 This document shows how data with hierarchical indexes (aka data cubes
