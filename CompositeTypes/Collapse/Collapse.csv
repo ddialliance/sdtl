@@ -3,3 +3,5 @@ OutputDatasetName,string,0,1,"The name of a new, aggregated dataset to be create
 GroupByVariables,VariableReferenceBase,0,n,Variables used as keys to identify groups.,,TRUE,,,,,,,,,,,
 AggregateVariables,Compute,1,n,The expressions that compute the aggregations. An aggregation function should be used.,,,,,,,,,,,,,
 Weighting,Weight,0,1,Description of the weights to be used,,,,,,,,,,,,,
+CaseWise,string,0,1,Observations are not included if any variable  is missing,,,,,Stata,,,,,,,,
+ColumnWise,string,0,1,Variables are not included if any value in a column is missing,,,,,SPSS,,,,,,,,
