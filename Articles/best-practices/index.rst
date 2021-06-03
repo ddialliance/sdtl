@@ -119,8 +119,7 @@ This section provides information on best practices for using SDTL.
 
 9.  **MergeFileDescription**
 
-   Options for **MergeFileDescription** are also in this document 
-   :doc:`Properties and Options of MergeFileDescription </CompositeTypes/MergeDatasets/Merge_options>` 
+   Options for **MergeFileDescription** are also in this document *Properties and Options of MergeFileDescription*. See https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/MergeFileDescription/MergeFileDescription_options.markdown 
 
     a. **mergeType**
 
@@ -262,8 +261,8 @@ This section provides information on best practices for using SDTL.
    packages will either ignore text variables and aggregate only the numeric 
    variables, or it will halt with an error message.  
 	
-   See 
-   :doc:`Collapse: Handling of Non-numeric Variables </CompositeTypes/Collapse/Collapse_Nonnumeric_Variables>`
+   See *Collapse: Handling of Non-numeric Variables*
+   https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/Collapse/Collapse_Nonnumeric_Variables.rst
 
 17. **Variable names in case-insensitive languages**
 
