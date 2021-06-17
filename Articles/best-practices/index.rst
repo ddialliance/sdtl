@@ -324,7 +324,17 @@ This section provides information on best practices for using SDTL.
 
       R factors
       subTypeSchema: https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Factors
-      subType: ordered, unordered
+      subType: ordered, unordered    
+         
+22. Deep copy of a dataframe
+    
+   Python and R distinguish between a deep copy and shallow (Python) or copy by reference (R).  
+   A deep copy creates a duplicate of a dataframe that is independent of the original.  
+   A shallow copy has a new name, but it points to the storage locations of the original 
+   dataframe.  This acts as an alias for the original dataframe.  If a deep copy is changed, 
+   the contents of the original dataframe are not affected.  However, changing a shallow copy 
+   also changes the contents of the original dataframe.  In SDTL, the NewDataframe command 
+   can be used to create deep copies.  SDTL does not support shallow copies at this time.
 
 
 
