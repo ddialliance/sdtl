@@ -326,7 +326,7 @@ This section provides information on best practices for using SDTL.
       subTypeSchema: https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Factors
       subType: ordered, unordered    
          
-22. Deep copy of a dataframe
+22. **Deep copy of a dataframe**
     
    Python and R distinguish between a deep copy and shallow (Python) or copy by reference (R).  
    A deep copy creates a duplicate of a dataframe that is independent of the original.  
@@ -336,7 +336,21 @@ This section provides information on best practices for using SDTL.
    also changes the contents of the original dataframe.  In SDTL, the NewDataframe command 
    can be used to create deep copies.  SDTL does not support shallow copies at this time.
 
+23. **Representing indexed arrays and lists in SDTL using VariableArrayDereference() and ValueArrayDereference()
+    SDTL does not include a data type for indexed arrays or lists, but the same functionality can sometimes be achieved using SDTL functions VariableArrayDereference() and ValueArrayDereference().**
+    
+    VariableArrayDereference() and ValueArrayDereference() both take two arguments. EXP1 is a number pointing to the location of the desired item in the list given as EXP2. EXP2 is an SDTL list expression (VariableListExpression or ValueListExpression), which may consist of a range expression (VariableRangeExpression, NumberRangeExpression, StringRangeExpression). The list expression must be repeated every time that the array dereference function is used.
+    
+    For example, the following SAS code uses a SAS array of variables in a loop.
+   ::    
 
+      array musicArray {18} BIGBAND --  HVYMETAL ;  
+      do i= 1 to 18  ;
+         if (musicArray[i] EQ 1 OR musicArray[i] EQ 2) then musicLike2=musicLike2 +1 ; 
+      end;
+
+
+    In SDTL, we would replace musicArray[i] with a VariableArrayDereference(EXP1, EXP2) in which EXP1 is an SDTL IteratorSymbolExpression for i and EXP2 is a VariableRangeExpression for variables BIGBAND to HVYMETAL.
 
 
 
