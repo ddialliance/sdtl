@@ -1,39 +1,56 @@
 set cogs=cogs
-mkdir sdtl\
+set szip="C:\Program Files\7-Zip\7z.exe"
+mkdir sdtl-outputs\
 
 echo Validate
 %cogs% validate .
+if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo JSON
-%cogs% publish-json . sdtl\json --overwrite
+%cogs% publish-json . sdtl-outputs\json --overwrite
 
 echo GraphQL
-%cogs% publish-graphql . sdtl\graphql --overwrite
+%cogs% publish-graphql . sdtl-outputs\graphql --overwrite
 
 echo XSD
-%cogs% publish-xsd . sdtl\xsd --overwrite --namespace "http://example.org/sdtl" --namespacePrefix sdtl
+%cogs% publish-xsd . sdtl-outputs\xsd --overwrite --namespace "https://rdf-vocabulary.ddialliance.org/sdtl#" --namespacePrefix sdtl
 
 echo UML
-%cogs% publish-uml . sdtl\uml --location graphviz\release\bin --overwrite
+%cogs% publish-uml . sdtl-outputs\uml --location graphviz\release\bin\dot.exe --overwrite
 
 echo OWL
-%cogs% publish-owl . sdtl\owl --overwrite
+%cogs% publish-owl . sdtl-outputs\owl --overwrite
 
-REM %cogs% publish-dot . --location sdtl\dot graphviz\release\bin --overwrite --single
-REM %cogs% publish-dot . --location sdtl\dot graphviz\release\bin --overwrite --all --inheritance
+
+echo OWL
+cogs publish-owl . sdtl-outputs\owl --namespace "https://rdf-vocabulary.ddialliance.org/sdtl#" --namespacePrefix "sdtl" --overwrite
+
+echo LinkML
+cogs publish-linkml . sdtl-outputs\linkml --namespace "https://rdf-vocabulary.ddialliance.org/sdtl#" --namespacePrefix "sdtl" --overwrite
+
+echo Build LinkML
+PUSHD sdtl-outputs\linkml
+CALL gen-owl --metadata-profile rdfs -f ttl linkml.yml > ..\owl\sdtl.owl.ttl
+CALL gen-shacl linkml.yml > ..\owl\sdtl.shacl
+CALL gen-shex linkml.yml > ..\owl\sdtl.shex
+POPD
+
+REM %cogs% publish-dot . --location sdtl\dot graphviz\release\bin\dot.exe --overwrite --single
+REM %cogs% publish-dot . --location sdtl\dot graphviz\release\bin\dot.exe --overwrite --all --inheritance
 
 echo Sphinx
-%cogs% publish-sphinx . sdtl\sphinx --location graphviz\release\bin --overwrite
+%cogs% publish-sphinx . sdtl-outputs\sphinx --location graphviz\release\bin\dot.exe --overwrite
 
 echo C#
-%cogs% publish-cs . sdtl\csharp --overwrite
+%cogs% publish-cs . sdtl-outputs\csharp --overwrite
 
 echo Build Sphinx
 REM Generate documentation with Sphinx.
-cd sdtl\sphinx
+PUSHD sdtl-outputs\sphinx
 CALL make dirhtml
-cd \projects\sdtl-cogs
+POPD
+POPD
 
 echo Zipping artifacts
-7z a -tzip sdtl.zip sdtl\*
+%szip% a -tzip _artifacts\sdtl.zip sdtl-outputs\*
 
