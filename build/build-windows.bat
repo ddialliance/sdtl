@@ -47,7 +47,7 @@ REM Generate documentation with Sphinx.
 PUSHD sdtl-outputs\sphinx
 CALL make dirhtml
 POPD
-POPD
+
 
 
 
