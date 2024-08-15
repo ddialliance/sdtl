@@ -1,0 +1,65 @@
+name: Pull request CI
+
+on: pull_request
+
+jobs:
+  build:
+    if: github.repository == 'ddialliance/sdtl'
+    runs-on: windows-latest
+
+    steps:
+    - name: Get short SHA
+      run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install .NET 6
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Install cogs dotnet tool
+      run: dotnet tool install --global --add-source https://ci.appveyor.com/nuget/cogs/ cogs
+
+    - name: Set up python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+    
+    - name: Install python dependencies
+      run: pip install -r build/requirements.txt
+
+
+    - name: Install other dependencies
+      run: .\build\install-dependencies.ps1
+      shell: pwsh
+
+    - name: Run build-windows.bat
+      run: .\build\build-windows.bat
+      shell: cmd
+
+    - name: Copy and rename outputs
+      shell: pwsh
+      run: |
+        mkdir sdtl
+        xcopy sdtl-outputs\xsd sdtl\xsd /E /I
+        xcopy sdtl-outputs\json sdtl\json /E /I
+        xcopy sdtl-outputs\owl sdtl\rdf /E /I
+        xcopy sdtl-outputs\uml sdtl\uml /E /I
+        ren sdtl sdtl-${{env.SHORT_SHA}}
+        ren sdtl-outputs sdtl-outputs-${{env.SHORT_SHA}}
+        7z a -tzip "sdtl-outputs-${{env.SHORT_SHA}}.zip" "sdtl-outputs-${{ENV.SHORT_SHA}}\*"
+
+    - name: Make all outputs artifact
+      uses: actions/upload-artifact@v4
+      with:
+          name: sdtl-outputs-${{env.SHORT_SHA}}
+          path: sdtl-outputs-${{env.SHORT_SHA}}.zip
+
+    - name: Make package artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: sdtl-${{env.SHORT_SHA}}
+        path: sdtl-${{env.SHORT_SHA}}
