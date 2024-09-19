@@ -2,8 +2,8 @@
 
 A model for describing data transformations.
 
-[SDTL 1.0 Documentation](http://docs.ddialliance.org.s3-website-us-east-1.amazonaws.com/SDTL/1.0/model/)
-[SDTL Development Version Documentation](http://docs.ddialliance.org.s3-website-us-east-1.amazonaws.com/SDTL/dev/model/)
+[SDTL 1.0 Documentation](https://docs.ddialliance.org/SDTL/1.0/model/)
+[SDTL Development Version Documentation](https://docs.ddialliance.org/SDTL/dev/model/)
 
 ### Example JSON Instances
 
