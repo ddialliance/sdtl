@@ -77,3 +77,4 @@ jobs:
     - name: Sync S3 dev bucket
       run: |
         aws s3 sync sdtl-outputs-${{env.SHORT_SHA}}\sphinx\build\dirhtml s3://docs.ddialliance.org/SDTL/dev/model
+        aws s3 sync SDTH\doc\ s3://docs.ddialliance.org/SDTL/dev/SDTH

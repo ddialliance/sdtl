@@ -1,0 +1,51 @@
+
+classDiagram
+  
+  class Program["sdth:Program"] {
+    rdfs:label
+  }
+  class ProgramStep["sdth:ProgramStep"] {
+    rdfs:label
+    sdth:hasSourceCode
+    sdth:hasSDTL
+  }
+  class VariableInstance["sdth:VariableInstance"] {
+    rdfs:label
+    sdth:hasName    
+  }
+  class DataframeInstance["sdth:DataframeInstance"] {
+    rdfs:label
+    sdth:hasName
+  }
+
+class FileInstance["sdth:FileInstance"] {
+    rdfs:label
+    sdth:hasName
+  }
+
+  
+  ProgramStep <-- Program : sdthhasProgramStep
+  ProgramStep <-- ProgramStep : sdth_hasProgramStep
+
+  ProgramStep --> VariableInstance : sdth_usesVariable
+  ProgramStep --> VariableInstance : sdth_assignsVariable
+  ProgramStep --> DataframeInstance : sdth_consumesDataframe
+  ProgramStep --> DataframeInstance : sdth_producesDataframe
+
+  ProgramStep --> FileInstance : sdth_loadsFile
+  ProgramStep --> FileInstance : sdth_savesFile
+
+
+  DataframeInstance --> VariableInstance : sdth_hasVariableInstance
+  FileInstance --> VariableInstance : sdth_hasVariableInstance
+
+
+  DataframeInstance --> DataframeInstance : sdth_derivedFrom
+  DataframeInstance --> DataframeInstance : sdth_elaborationOf
+
+  FileInstance --> FileInstance : sdth_derivedFrom
+  FileInstance --> FileInstance : sdth_elaborationOf
+  VariableInstance --> VariableInstance : sdth_derivedFrom
+  VariableInstance --> VariableInstance : sdth_elaborationOf
+
+```
