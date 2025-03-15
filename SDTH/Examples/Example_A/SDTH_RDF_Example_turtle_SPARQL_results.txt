@@ -1,0 +1,85 @@
+
+
+*********  Object Names    *******************
+http://test/#FileIns003 has name SmallTestMerged.csv 
+http://test/#FileIns001 has name SmallTestPolitical.csv 
+http://test/#FileIns002 has name SmallTestPersonal.csv 
+http://test/#DFIns001 has name PoliticalData 
+http://test/#DFIns002 has name PersonalData 
+http://test/#DFIns003 has name PersonalData 
+http://test/#DFIns004a has name PersonalData 
+http://test/#DFIns004b has name PersonalData 
+http://test/#DFIns004c has name PersonalData 
+http://test/#DFIns005 has name MergedData 
+http://test/#VarIns014a has name HHcateg 
+http://test/#VarIns014b has name HHcateg 
+http://test/#VarIns014c has name HHcateg 
+http://test/#VarIns001 has name Q3 
+http://test/#VarIns002 has name Q244_NEW 
+http://test/#VarIns003 has name Q356 
+http://test/#VarIns004 has name Q330A 
+http://test/#VarIns005 has name Q330C 
+http://test/#VarIns006 has name Q27 
+http://test/#VarIns007 has name Q1010 
+http://test/#VarIns008 has name ID 
+http://test/#VarIns012 has name ID 
+http://test/#VarIns009 has name PPEDUCAT 
+http://test/#VarIns011 has name PPRENT 
+http://test/#VarIns013 has name HHsize 
+http://test/#VarIns010 has name PPHHSIZE 
+
+
+*********  5.1 What variables affected the values of variable HHcateg?   *******************
+HHcateg is derived from HHsize 
+HHcateg is derived from PPHHSIZE 
+
+
+*********  5.2 What variables were affected by variable PPHHSIZE?  *******************
+PPHHSIZE has an impact on HHcateg 
+PPHHSIZE has an impact on HHsize 
+
+
+*********  5.3 What commands affected the values of variable HHcateg?  *******************
+HHcateg is affected by PPHHSIZE in command [PersonalData = pd.read_csv("SmallTestPersonal.csv")]  
+HHcateg is affected by HHsize in command [PersonalData  = PersonalData.assign(HHsize=PersonalData['PPHHSIZE'] )]  
+HHcateg is affected by HHsize in command [PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )]  
+HHcateg is affected by PPHHSIZE in command [PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )]  
+HHcateg is affected by HHcateg in command [PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )]  
+HHcateg is affected by HHcateg in command [MergedData = PersonalData.merge(PoliticalData, on="ID", how="inner")]  
+
+
+*********  Variables indirectly affected by ProgramStep ProgStep004*******************
+HHcateg is affected by HHsize, which is modified in command [PersonalData  = PersonalData.assign(HHsize=PersonalData['PPHHSIZE'] )]
+
+
+********* Find a File containing variable PPHHSIZE that is Loaded in the Program      *******************
+Command [PersonalData = pd.read_csv("SmallTestPersonal.csv")] loads SmallTestPersonal.csv containing variable 'PPHHSIZE' 
+
+
+*********  elaborationOf query for variable name HHcateg   *******************
+http://test/#VarIns014b named HHcateg was Based On http://test/#VarIns014a named HHcateg  in command "command": "SetDataType..." 
+http://test/#VarIns014c named HHcateg was Based On http://test/#VarIns014a named HHcateg  in command "command": "SetDataType..." 
+http://test/#VarIns014c named HHcateg was Based On http://test/#VarIns014b named HHcateg  in command "command": "SetValueLabels..." 
+
+
+*********  usesVariable query for variable name PPHHSIZE   *******************
+Command [PersonalData  = PersonalData.assign(HHsize=PersonalData['PPHHSIZE'] )] is affected by PPHHSIZE 
+Command [MergedData = PersonalData.merge(PoliticalData, on="ID", how="inner")] is affected by PPHHSIZE 
+Command [MergedData.to_csv("SmallTestMerged.csv")] is affected by PPHHSIZE 
+
+
+*********  usesVariable query for indirect effects of variable name PPHHSIZE  *******************
+Command [MergedData = PersonalData.merge(PoliticalData, on="ID", how="inner")] is affected by HHsize which is affected by PPHHSIZE 
+Command [MergedData.to_csv("SmallTestMerged.csv")] is affected by HHsize which is affected by PPHHSIZE 
+
+
+*********  5.4 What commands were affected by variable PPHHSIZE?   *******************
+Variable PPHHSIZE affects command [PersonalData  = PersonalData.assign(HHsize=PersonalData['PPHHSIZE'] )] through variable PPHHSIZE 
+Variable PPHHSIZE affects command [PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )] through variable HHcateg 
+Variable PPHHSIZE affects command [PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )] through variable HHsize 
+Variable PPHHSIZE affects command [MergedData = PersonalData.merge(PoliticalData, on="ID", how="inner")] through variable PPHHSIZE 
+Variable PPHHSIZE affects command [MergedData = PersonalData.merge(PoliticalData, on="ID", how="inner")] through variable HHsize 
+Variable PPHHSIZE affects command [MergedData = PersonalData.merge(PoliticalData, on="ID", how="inner")] through variable HHcateg 
+Variable PPHHSIZE affects command [MergedData.to_csv("SmallTestMerged.csv")] through variable PPHHSIZE 
+Variable PPHHSIZE affects command [MergedData.to_csv("SmallTestMerged.csv")] through variable HHsize 
+Variable PPHHSIZE affects command [MergedData.to_csv("SmallTestMerged.csv")] through variable HHcateg 

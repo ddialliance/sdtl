@@ -19,75 +19,74 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in the table
 <tbody>
 <tr>
 <td id="Program">SDTH:Program</td>
-<td>[[[#model-programs]]]</td>
+<td>[[[#model-program]]]</td>
 </tr>
 <tr>
 <td id="ProgramStep">SDTH:ProgramStep</td>
-<td>[[[#model-programs]]]</a></td>
+<td>[[[#model-programstep]]]</a></td>
 </tr>
-<tr>
-<td id="FileInstance">SDTH:FileInstance</td>
-<td>[[[#model-data-entities]]]</a></td>
-</tr>
-<tr>
-<td id="DataframeInstance">SDTH:DataframeInstance</td>
-<td>[[[#model-data-entities]]]</a></td>
-</tr>
-<tr>
-<td id="VariableInstance">SDTH:VariableInstance</td>
-<td>[[[#model-data-entities]]]</td>
-</tr>
-<tr>
-<td id="loadsFile">SDTH:loadsFile</td>
-<td>[[[#model-usage]]]</td>
-</tr>
-<tr>
-<td id="savesFile">SDTH:savesFile</td>
-<td>[[[#model-usage]]]</td>
-</tr>
-<tr>
-<td id="consumesDataframe">SDTH:consumesDataframe</td>
-<td><[[[#model-usage]]]</td>
-</tr>
-<tr>
-<td id="producesDataframe">SDTH:producesDataframe</td>
-<td>[[[#model-usage]]]</td>
-</tr>
-<tr>
-<td id="usesVariable">SDTH:usesVariable</td>
-<td>[[[#model-usage]]]</td>
-</tr>
-<tr>
-<td id="assignsVariable">SDTH:assignsVariable</td>
-<td>[[[#model-usage]]]</td>
-</tr>
-<tr>
-<td id="wasDerivedFrom">SDTH:wasDerivedFrom</td>
-<td>[[[#model-derivation]]]</td>
-</tr>
-<tr>
-<td id="elaborationOf">SDTH:elaborationOf</td>
-<td>[[[#model-derivation]]]</td>
-</tr>
-<tr>
 <tr>
 <td id="hasProgramStep">SDTH:hasProgramStep</td>
-<td>[[[#model-names]]]</td>
+<td>[[[#model-hasprogramstep]]]</td>
 </tr>
 <tr>
 <td id="hasSourceCode">SDTH:hasSourceCode</td>
-<td>[[[#model-names]]]</td>
+<td>[[[#model-hassourcecode]]]</td>
 </tr>
 <tr>
 <td id="hasSDTL">SDTH:hasSDTL</td>
-<td>[[[#model-names]]]</td>
-</tr>
-<td id="hasName">SDTH:hasName</td>
-<td>[[[#model-names]]]</td>
+<td>[[[#model-hassdtl]]]</td>
 </tr>
 <tr>
+<td id="FileInstance">SDTH:FileInstance</td>
+<td>[[[#model-fileinstance]]]</a></td>
+</tr>
+<tr>
+<td id="DataframeInstance">SDTH:DataframeInstance</td>
+<td>[[[#model-dataframeinstance]]]</a></td>
+</tr>
+<tr>
+<td id="VariableInstance">SDTH:VariableInstance</td>
+<td>[[[#model-variableinstance]]]</td>
+</tr>
+<tr>
+<td id="hasName">SDTH:hasName</td>
+<td>[[[#model-hasname]]]</td>
+</tr>
+<tr>
+<td id="loadsFile">SDTH:loadsFile</td>
+<td>[[[#model-loadsfile]]]</td>
+</tr>
+<tr>
+<td id="savesFile">SDTH:savesFile</td>
+<td>[[[#model-savesfile]]]</td>
+</tr>
+<tr>
+<td id="producesDataframe">SDTH:producesDataframe</td>
+<td>[[[#model-producesdataframe]]]</td>
+</tr>
+<tr>
+<td id="consumesDataframe">SDTH:consumesDataframe</td>
+<td>[[[#model-consumesdataframe]]]</td>
+</tr>
 <td id="hasVarInstance">SDTH:hasVarInstance</td>
-<td>[[[#model-names]]]</td>
+<td>[[[#model-hasvarinstance]]]</td>
+</tr>
+<tr>
+<td id="usesVariable">SDTH:usesVariable</td>
+<td>[[[#model-usesvariable]]]</td>
+</tr>
+<tr>
+<td id="assignsVariable">SDTH:assignsVariable</td>
+<td>[[[#model-assignsvariable]]]</td>
+</tr>
+<tr>
+<td id="wasDerivedFrom">SDTH:wasDerivedFrom</td>
+<td>[[[#model-wasderivedfrom]]]</td>
+</tr>
+<tr>
+<td id="elaborationOf">SDTH:elaborationOf</td>
+<td>[[[#model-elaborationof]]]</td>
 </tr>
 </tbody>
 </table>
@@ -110,13 +109,24 @@ Other vocabularies used in this document are listed in the table below, with the
         </tr>
     </thead>
     <tbody>
-        <tr>
+  <!--       <tr>
             <td>dcterms</td>
-            <td>http://purl.org/dc/terms/</td>
+            <td><a href="http://purl.org/dc/terms/">http://purl.org/dc/terms/</a></td>
             <td>Dublin Core Metadata Initiative Metadata Terms ([[DC-TERMS]])</td>
-        </tr>        
+        </tr> 
+ -->        <tr>
+            <td>prov</td>
+            <td><a href="http://www.w3.org/ns/prov#">http://www.w3.org/ns/prov#</a></td>
+            <td>The PROV namespace ([[prov-o]]) </td>   
+        </tr> 
+        <tr>
+            <td>provone</td>
+            <td><a href="http://purl.dataone.org/provone/2015/01/15/ontology#">http://purl.dataone.org/provone/2015/01/15/ontology#</a></td>
+            <td>The ProvONE namespace ([[ProvONE]])</td>   
+        </tr>    
     </tbody>
 </table>
+
 
 RDF, RDFS and OWL vocabularies are also used, with their usual URIs and prefixes. Information on these standards can be found on the W3C web site.
 

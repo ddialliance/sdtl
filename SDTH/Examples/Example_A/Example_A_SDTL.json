@@ -1,0 +1,232 @@
+{"commands": [
+{"$type": "NoTransformOp", "command": "NoTransformOp", 
+	"sourceInformation": [{"$type": "SourceInformation", "lineNumberStart": 1, "lineNumberEnd": 1, 
+		"sourceStartIndex": 1, "sourceStopIndex": 19, 
+		"originalSourceText": "import pandas as pd"}]
+	}, 
+
+{"$type": "Load", "command": "Load", 
+		"fileName": "SmallTestPolitical.csv",
+		"fileFormat": "csv",
+		"producesDataframe": [{"dataframeName": "PoliticalData", "variableInventory": [ "Q3", "Q244_NEW", "Q356", "Q330A", "Q330C", "Q27", "Q1010", "ID"]}],
+	"sourceInformation": [{"$type": "SourceInformation", "lineNumberStart": 3, "lineNumberEnd": 3, 
+		"sourceStartIndex": 22, "sourceStopIndex": 74, 
+		"originalSourceText": "PoliticalData = pd.read_csv(\"SmallTestPolitical.csv\")"}]	
+	}, 
+	
+{"$type": "Load", "command": "Load", 
+		"fileName": "SmallTestPersonal.csv",
+		"fileFormat": "csv",
+		"producesDataframe": [{"dataframeName": "PersonalData", "variableInventory": [ "PPEDUCAT", "PPHHSIZE", "PPRENT", "ID"]}],
+	"sourceInformation": [{"$type": "SourceInformation", "lineNumberStart": 5, "lineNumberEnd": 5, 
+		"sourceStartIndex": 77, "sourceStopIndex": 127, 
+		"originalSourceText": "PersonalData = pd.read_csv(\"SmallTestPersonal.csv\")"}]
+	}, 
+	
+{"$type": "Compute", "command": "Compute",
+        "variable": {
+            "$type": "VariableSymbolExpression",
+            "variableName": "HHsize" },
+        "expression": {
+            "$type": "VariableSymbolExpression",
+            "variableName": "PPHHSIZE" },
+        "consumesDataframe": [ { 
+			"dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID"]
+            } ],
+        "producesDataframe": [ {
+            "dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize" ]
+            } ],
+        "sourceInformation": [{
+			"$type": "SourceInformation", "lineNumberStart": 7, "lineNumberEnd": 7, 
+			"sourceStartIndex": 130, "sourceStopIndex": 199, 
+            "originalSourceText": "PersonalData   = PersonalData.assign(HHsize=PersonalData['PPHHSIZE'] )"
+			}]
+    }, 
+	
+{"$type": "Compute",
+		"command": "Compute",
+		"consumesDataframe": [ {
+            "dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize" ]
+            } ],
+		"variable": {
+			"$type": "VariableSymbolExpression",
+			"variableName": "HHcateg" },
+		"expression": {
+			"$type": "FunctionCallExpression",
+			"function": "cut_list",
+			"isSdtlName": true,
+			"arguments":[
+				{	"$type": "FunctionArgument",
+					"argumentName": "EXP1",
+					"argumentValue": 
+					{	"$type": "VariableSymbolExpression",
+						"variableName": "HHsize"	}
+				},
+				{	"$type": "FunctionArgument",
+					"argumentName": "EXP2",
+					"argumentValue": 
+					{	"$type": "ValueListExpression",
+						"values": [
+							{	"$type": "NumericConstantExpression",
+								"numericType": "Integer",
+								"value": "1" },
+							{	"$type": "NumericConstantExpression",
+								"numericType": "Integer",
+								"value": "2" },
+							{	"$type": "NumericConstantExpression",
+								"numericType": "Integer",
+								"value": "3" },
+							{	"$type": "NumericConstantExpression",
+								"numericType": "Integer",
+								"value": "5" },
+							{	"$type": "NumericConstantExpression",
+								"numericType": "Integer",
+								"value": "7" },
+							{	"$type": "NumericConstantExpression",
+								"numericType": "Integer",
+								"value": "10" },
+							{	"$type": "NumericConstantExpression",
+								"numericType": "Integer",
+								"value": "999" }
+						]
+					}
+				},
+				{	"$type": "FunctionArgument",
+					"argumentName": "EXP3",
+					"argumentValue": {
+						"$type": "StringConstantExpression",
+						"value": "Left" }
+					},
+				{	"$type": "FunctionArgument",
+					"argumentName": "EXP4",
+					"argumentValue": {
+						"$type": "BooleanConstantExpression",
+						"booleanValue": false }
+					},
+				{	"$type": "FunctionArgument",
+					"argumentName": "EXP5",
+					"argumentValue": {
+						"$type": "StringConstantExpression",
+						"value": "Int_code" }
+					}
+			]
+		},
+		"producesDataframe": [ {
+            "dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize", "HHcateg" ]
+            } ],
+		"sourceInformation": [{
+			"$type": "SourceInformation", "lineNumberStart": 9, "lineNumberEnd": 9, 
+			"sourceStartIndex": 202, "sourceStopIndex": 365, 
+			"originalSourceText": "PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )"}]
+	},
+{"$type": "SetDataType",
+		"command": "SetDataType",
+		"dataType": "Factor",
+		"consumesDataframe": [  {
+            "dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize", "HHcateg" ]
+            } ],
+		"producesDataframe": [ {
+            "dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize", "HHcateg" ]
+            } ],
+		"subType": "ordered",
+		"subTypeSchema": "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Categorical.html",
+		"variables": [
+			{	"$type": "VariableSymbolExpression",
+				"variableName": "HHcateg"}
+			],
+		"sourceInformation": [{
+			"$type": "SourceInformation", "lineNumberStart": 9, "lineNumberEnd": 9, 
+			"sourceStartIndex": 202, "sourceStopIndex": 365, 
+			"originalSourceText": "PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )"}]
+	},
+{"$type": "SetValueLabels",
+		"command": "SetValueLabels",
+		"consumesDataframe": [ {
+            "dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize", "HHcateg" ]
+            } ],
+		"labels": [
+			{ "$type": "ValueLabel", "value": "0", "label": "1" },
+			{ "$type": "ValueLabel", "value": "1", "label": "2" },
+			{ "$type": "ValueLabel", "value": "2", "label": "3-7" },
+			{ "$type": "ValueLabel", "value": "2", "label": "5-6" },
+			{ "$type": "ValueLabel", "value": "2", "label": "7-9" },
+			{ "$type": "ValueLabel", "value": "2", "label": "10+" }
+		],
+		"producesDataframe": [ {
+            "dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize", "HHcateg" ]
+            } ],
+		"variables": [
+			{	"$type": "VariableSymbolExpression",
+				"variableName": "HHcateg"	}
+		],
+		"sourceInformation": [{
+			"$type": "SourceInformation", "lineNumberStart": 9, "lineNumberEnd": 9, 
+			"sourceStartIndex": 202, "sourceStopIndex": 365, 
+			"originalSourceText": "PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )"}]
+	},
+
+
+{"$type": "MergeDatasets",
+		"command": "MergeDatasets",
+		"consumesDataframe": [ 
+			{ "dataframeName": "PersonalData", 
+            "variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize", "HHcateg" ]
+				} ,
+			{ "dataframeName": "PoliticalData", 
+			"variableInventory": [ "Q3", "Q244_NEW", "Q356", "Q330A", "Q330C", "Q27", "Q1010", "ID"]
+				}
+			],
+		"mergeByVariables": { 
+			"$type": "VariableSymbolExpression", 
+			"variableName": "ID"},
+		"mergeFiles": 	[
+			{	"$type": "MergeFileDescription",
+				"fileName": "PersonalData",
+				"mergeType": "Cartesian",
+				"update": "Master",
+				"newRow": true
+				},
+			{	"$type": "MergeFileDescription",
+				"fileName": "PoliticalData",
+				"mergeType": "Cartesian",
+				"update": "FillNew",
+				"newRow": false
+				}
+			],
+		"producesDataframe": [
+			{	"dataframeName": "MergedData ",
+				"variableInventory": 
+				["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize", "HHcateg", "Q3", "Q244_NEW", "Q356", "Q330A", "Q330C", "Q27", "Q1010" ]
+				}
+			],
+		"sourceInformation": [{
+			"$type": "SourceInformation", "lineNumberStart": 11, "lineNumberEnd": 11, 
+			"sourceStartIndex": 368, "sourceStopIndex": 435, 
+			"originalSourceText": "MergedData = PersonalData.merge(PoliticalData, on=\"ID\", how=\"inner\")"}]
+	},
+
+{"$type": "Save",
+		"command": "Save",
+		"fileName": "SmallTestMerged.csv",
+		"fileFormat": "CSV",
+		"consumesDataframe": [
+			{	"dataframeName": "MergedData ",
+				"variableInventory": ["PPEDUCAT", "PPHHSIZE", "PPRENT", "ID", "HHsize", "HHcateg", "Q3", "Q244_NEW", "Q356", "Q330A", "Q330C", "Q27", "Q1010" ]
+				}
+			],
+	"sourceInformation": [{
+		"$type": "SourceInformation", "lineNumberStart": 13, "lineNumberEnd": 13, 
+		"sourceStartIndex": 438, "sourceStopIndex": 477, 
+		"originalSourceText": "MergedData.to_csv(\"SmallTestMerged.csv\")"
+		}]
+	}
+	
+]}
