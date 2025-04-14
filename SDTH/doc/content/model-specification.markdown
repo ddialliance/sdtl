@@ -113,7 +113,7 @@ An sdth:VariableInstance is an instantiation of the ddi-cdi:InstanceVariable and
 - prov:Entity, provone:Data
 
 **is in domain of**
--- sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf
+- sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf
 
 **is in range of**
 - sdth:hasVarInstance, sdth:wasDerivedFrom, sdth:elaborationOf
