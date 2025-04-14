@@ -10,7 +10,7 @@ openly available, they are often long, complex, and difficult to understand. SDT
 4. What commands were affected by variable X?
 SDTH offers a simple way to answer these questions.  
 
-SDTH also provides a bridge between computer programs and PROV [prov-dm], a W3C standard for storing and querying provenance metadata.  SDTH applies the PROV approach to computer programs that modify data.  Most previous applications of PROV have been designed to describe workflows.  Programs are treated as black boxes. Their inputs and outputs are described, but the operations within a program are not examined.  SDTH traces data modifications to program steps within programs.   
+SDTH also provides a bridge between computer programs and PROV [[prov-dm]], a W3C standard for storing and querying provenance metadata.  SDTH applies the PROV approach to computer programs that modify data.  Most previous applications of PROV have been designed to describe workflows.  Programs are treated as black boxes. Their inputs and outputs are described, but the operations within a program are not examined.  SDTH traces data modifications to program steps within programs.   
 
 ## SDTH and SDTL
 
@@ -24,7 +24,7 @@ SDTH and SDTL work very well together. SDTL commands can be included in SDTH usi
 
 ## SDTH and PROV
 
-SDTH is an extension of the PROV data model [prov-dm], a World Wide Web Consortium (W3C) standard for provenance metadata.  PROV is a very sparse model that was meant to be extended for specific applications.  SDTH adds data structures (files, dataframes, and variables) and command-level descriptions of operations within programs. 
+SDTH is an extension of the PROV data model [[prov-dm]], a World Wide Web Consortium (W3C) standard for provenance metadata.  PROV is a very sparse model that was meant to be extended for specific applications.  SDTH adds data structures (files, dataframes, and variables) and command-level descriptions of operations within programs. 
 
 PROV is based upon three central concepts: entities, activities, and agents.  Entities are things, which may be physical, digital, or conceptual. Activities are processes that generate entities. Agents play a role in the generation of an entity.  Agents may be persons, organizations, computer software, or inanimate objects.  Entities may have attributes that are described in PROV.
 
