@@ -1,4 +1,4 @@
-# Overview of SDTH
+## Overview of SDTH
 
 In the spirit of PROV, SDTH has a small number of elements.  SDTH includes only five entities: two entities to describe programs (Program and ProgramStep) and three entities to describe data (FileInstance, DataframeInstance, and VariableInstance).  FileInstances and DataframeInstances are composed of VariableInstances, which are the most granular data entities in SDTH.  FileInstances are persistent data objects that reside on external media.  DataframeInstances exist only in computer memory, and they disappear at the end of a Program.  FileInstances are loaded into DataframeInstances to be acted on by a Program, and DataframeInstances are saved to FileInstances for persistent storage.   
 
