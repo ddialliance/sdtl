@@ -105,9 +105,9 @@ An sdth:VariableInstance may appear in more than one sdth:DataframeInstance or s
 
 The sdth:VariableInstance is a specialization of the PROV entity. Although PROV does not require all aspects of a prov:entity to be fixed, the purposes of SDTH require complete immutability.
 
-The SDTH definition of an sdth:VariableInstance is synonymous with the definition of an “Instance Variable” in GSIM (United Nations Economic Commission for Europe (UNECE), 2024) and a “Variable” in DDI Life Cycle (DDI Alliance, 2024). 
+The SDTH definition of an sdth:VariableInstance is synonymous with the definition of an “Instance Variable” in GSIM [[gsim]] and a “Variable” in DDI Life Cycle [[ddiLifecycle]]. 
 
-An sdth:VariableInstance is an instantiation of the ddi-cdi:InstanceVariable and is associated with a specific set of DDI-CDI “datums” (ref DDI-CDI).  A ddi-cdi:InstanceVariable specifies attributes of the values of a variable, such as a data type and value schema, but it is not limited to a specific set of values.  
+An sdth:VariableInstance is an instantiation of the ddi-cdi:InstanceVariable and is associated with a specific set of DDI-CDI “datums” [[ddicdi]].  A ddi-cdi:InstanceVariable specifies attributes of the values of a variable, such as a data type and value schema, but it is not limited to a specific set of values.  
 
 **has super-class**
 - prov:Entity, provone:Data
