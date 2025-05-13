@@ -1,1 +1,9 @@
 # Overview of SDTH
+
+In the spirit of PROV, SDTH has a small number of elements.  SDTH includes only five entities: two entities to describe programs (Program and ProgramStep) and three entities to describe data (FileInstance, DataframeInstance, and VariableInstance).  FileInstances and DataframeInstances are composed of VariableInstances, which are the most granular data entities in SDTH.  FileInstances are persistent data objects that reside on external media.  DataframeInstances exist only in computer memory, and they disappear at the end of a Program.  FileInstances are loaded into DataframeInstances to be acted on by a Program, and DataframeInstances are saved to FileInstances for persistent storage.   
+
+ProgramSteps act upon data entities, and a ProgramStep has both input and output data entities.  Each type of data entity has a pair of predicates describing its role in a ProgramStep: loadsFile/savesFile, consumesDataframe/producesDataframe, usesVariable/assignsVariable. 
+
+Every SDTH entity is connected to the original source code by an object property.  We use hasSourceCode and hasSDTL to link a Program or ProgramStep to the source code in its original language or in SDTL.  Data entities are linked to data objects in the source code by the hasName property.
+
+SDTH was designed to trace the lineages of data entities. There are two ways that a new instance of a data entity may be related to an earlier instance.  When any of the data values in the new instance are different from the previous instance, they are related by the wasDerivedFrom predicate.  If the data values are exactly the same but metadata, such as a data format or label, has changed, we use the elaborationOf predicate.  As noted above, SDTH does not capture the order of ProgramSteps, but the order of program steps is implicit in the derivation and elaboration relationships between data instances.   
