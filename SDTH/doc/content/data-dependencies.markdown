@@ -11,17 +11,17 @@ Iterative operations may be described in SDTH by making an iterative loop an sdt
 Programs may create variables during execution that depend upon the content of the data.  A common example is the transformation of a dataset from 'long' to 'wide'.  In a 'long' format, such as the Entity-Attribute-Value model, every row in a dataframe contains only one value per row.  The value in a row is associated with a characteristic of a specific entity (i.e., a person, nation, year, experiment, etc.) by identifier columns (e.g., 'EntityID', 'AttributeID').  In 'long' format each entity has a row for every attribute and multiple rows for every entity.  A 'wide' format dataframe has only one row for each entity and the values of attributes are in separate columns. Thus, when a 'long' format dataframe is transposed to 'wide' format, the identifiers for attributes become variable (column) names. The number of variables in the 'wide' format dataframe depends upon the data values in the 'long' format dataframe.
 
 Example 'long' format dataframe:
-| Name       | Attribute   | Value     |
-| ---------- | ----------- | --------- |
-| Abraham    | Age         | 151       |
-| Abraham    | Occupation  | Shepherd  |
-| Abraham    | Birthplace  | Ur        |
-| Solomon    | Age         | 76        |
-| Solomon    | Occupation  | King      |
-| Solomon    | Birthplace  | Jerusalem |
+| Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;         | Attribute &nbsp; &nbsp; &nbsp; &nbsp;    | Value     |
+| ------------ | ------------- | --------- |
+| Abraham      | Age           | 151       |
+| Abraham      | Occupation    | Shepherd  |
+| Abraham      | Birthplace    | Ur        |
+| Solomon      | Age           | 76        |
+| Solomon      | Occupation    | King      |
+| Solomon      | Birthplace    | Jerusalem |
 
 Example 'wide' format dataframe:
-| Name       | Age    | Occupation  | Birthplace |
+| Name  &nbsp; &nbsp; &nbsp; &nbsp;      | Age  &nbsp; &nbsp;   | Occupation &nbsp; &nbsp;  | Birthplace |
 | ---------- | ------ | ----------- | ---------- |
 | Abraham    | 151    | Shepherd    | Ur         |
 | Solomon    | 76     | King        | Jerusalem  |
