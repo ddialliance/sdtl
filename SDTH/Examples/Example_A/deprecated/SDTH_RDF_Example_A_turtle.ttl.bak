@@ -3,6 +3,42 @@
 @prefix sdth: <http://DDI/SDTH/> .
 
 sdtest:ProgramEx5 a sdth:Program ;
+    sdth:DataframeInstance sdtest:DFIns001,
+        sdtest:DFIns002,
+        sdtest:DFIns003,
+        sdtest:DFIns004a,
+        sdtest:DFIns004b,
+        sdtest:DFIns004c,
+        sdtest:DFIns005 ;
+    sdth:FileInstance sdtest:FileIns001,
+        sdtest:FileIns002,
+        sdtest:FileIns003 ;
+    sdth:ProgramStep sdtest:ProgStep001,
+        sdtest:ProgStep002,
+        sdtest:ProgStep003,
+        sdtest:ProgStep004,
+        sdtest:ProgStep005,
+        sdtest:ProgStep005a,
+        sdtest:ProgStep005b,
+        sdtest:ProgStep005c,
+        sdtest:ProgStep006,
+        sdtest:ProgStep007 ;
+    sdth:VariableInstance sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008,
+        sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014a,
+        sdtest:VarIns014b,
+        sdtest:VarIns014c ;
     sdth:hasProgramStep sdtest:ProgStep001,
         sdtest:ProgStep002,
         sdtest:ProgStep003,
@@ -295,42 +331,4 @@ sdtest:VarIns013 a sdth:VariableInstance ;
 
 sdtest:VarIns010 a sdth:VariableInstance ;
     sdth:hasName "PPHHSIZE" .
-
-[] sdth:DataframeInstance sdtest:DFIns001,
-        sdtest:DFIns002,
-        sdtest:DFIns003,
-        sdtest:DFIns004a,
-        sdtest:DFIns004b,
-        sdtest:DFIns004c,
-        sdtest:DFIns005 ;
-    sdth:FileInstance sdtest:FileIns001,
-        sdtest:FileIns002,
-        sdtest:FileIns003 ;
-    sdth:Program sdtest:ProgramEx5 ;
-    sdth:ProgramStep sdtest:ProgStep001,
-        sdtest:ProgStep002,
-        sdtest:ProgStep003,
-        sdtest:ProgStep004,
-        sdtest:ProgStep005,
-        sdtest:ProgStep005a,
-        sdtest:ProgStep005b,
-        sdtest:ProgStep005c,
-        sdtest:ProgStep006,
-        sdtest:ProgStep007 ;
-    sdth:VariableInstance sdtest:VarIns001,
-        sdtest:VarIns002,
-        sdtest:VarIns003,
-        sdtest:VarIns004,
-        sdtest:VarIns005,
-        sdtest:VarIns006,
-        sdtest:VarIns007,
-        sdtest:VarIns008,
-        sdtest:VarIns009,
-        sdtest:VarIns010,
-        sdtest:VarIns011,
-        sdtest:VarIns012,
-        sdtest:VarIns013,
-        sdtest:VarIns014a,
-        sdtest:VarIns014b,
-        sdtest:VarIns014c .
 

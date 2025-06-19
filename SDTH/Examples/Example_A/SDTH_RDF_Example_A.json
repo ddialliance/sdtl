@@ -5,7 +5,8 @@
 		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"		
 		},	
 
-"@id" : "sdtest:ProgramEx5",
+"sdth:Program": [
+	{"@id" : "sdtest:ProgramEx5",
 	"rdf:type" : {"@id": "sdth:Program"},
 	"sdth:hasProgramStep": [ {"@id": "sdtest:ProgStep001"}, 
 	 {"@id": "sdtest:ProgStep002"},  
@@ -13,7 +14,8 @@
 	 {"@id": "sdtest:ProgStep004"}, 
 	 {"@id": "sdtest:ProgStep005"}, 
 	 {"@id": "sdtest:ProgStep006"}, 
-	 {"@id": "sdtest:ProgStep007" } ],
+	{"@id": "sdtest:ProgStep007" } ] }
+	 ],
 	
 "sdth:ProgramStep": [
 
