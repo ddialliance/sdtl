@@ -1,0 +1,331 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sdtest: <http://test/#> .
+@prefix sdth: <http://DDI/SDTH/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix sdo: <https://schema.org/> .
+
+<http://DDI/SDTH/validation>
+	a owl:Ontology ;
+  	skos:prefLabel "SDTH SHACL validation shapes"@en ;
+	skos:definition """This file is contains SHACL shapes for validating graph data that conforms to the SDTH standard"""@en ;
+	dcterms:publisher [
+		a sdo:Organization ;
+		sdo:name "DDI Alliance"@en ;
+		sdo:url "https://ddialliance.org/"^^xsd:anyURI ;
+	] ;
+	dcterms:creator "Meng Li"@en ;
+	dcterms:created "2025-05-29"^^xsd:date ;
+    dcterms:license "LICENSE URL HERE"^^xsd:anyURI ;
+	dcterms:rights "(c) 2023 DDI Alliance"@en ; 	
+	owl:versionInfo "version of these shapes" .
+
+###############################################################
+## Shapes for SDTH classes  ###############################
+###############################################################
+
+## Shape for sdth:Program #################################
+sdtest:ProgramShape
+	a sh:NodeShape ;
+	sh:targetClass sdth:Program ;
+	sh:sparql [
+		a sh:SPARQLConstraint ;
+		sh:message "A Program cannot be used with {$predicate}" ;
+		sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+			SELECT $this ?predicate ?object
+			WHERE {
+				$this ?predicate ?object .
+				FILTER(STRSTARTS(STR(?predicate), STR(sdth:)) && 
+					(?predicate != sdth:hasProgramStep))
+			}
+			""" ;
+	] ;
+	sh:property [ # One Program has at LEAST ONE hasProgramStep
+		sh:path sdth:hasProgramStep ;
+		sh:minCount 1 ;
+	] .
+
+## Shape for sdth:ProgramStep ############
+sdtest:ProgramStepShape
+	a sh:NodeShape;
+	sh:targetClass sdth:ProgramStep ;
+	sh:sparql [
+		a sh:SPARQLConstraint ;
+		sh:message "A ProgramStep cannot be used with {$predicate}" ;
+		sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+			SELECT $this ?predicate ?object
+			WHERE {
+				$this ?predicate ?object .
+				FILTER(STRSTARTS(STR(?predicate), STR(sdth:)) && 
+					?predicate NOT IN (sdth:hasProgramStep, sdth:hasSourceCode, sdth:hasSDTL, sdth:loadsFile, sdth:savesFile, sdth:consumesDataframe, sdth:producesDataframe, sdth:usesVariable, sdth:assignsVariable))
+			}
+			""" ;
+	] ;
+	sh:property [ # One ProgramStep must belong to EXACTLY ONE Program or ProgramStep
+		sh:path [ sh:inversePath sdth:hasProgramStep ] ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:or (
+			[sh:class sdth:Program ]
+			[sh:class sdth:ProgramStep ]
+		) ;
+	] ;
+	sh:property [ # One ProgramStep has EXACTLY ONE source code
+		sh:path sdth:hasSourceCode ;
+        sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:severity sh:Warning ;
+		sh:datatype xsd:string ;
+		sh:message "ProgramSteps have exactly a text string containing source code"@en ;
+	] ;
+	sh:property [ # One ProgramStep has AT MOST ONE SDTL
+		sh:path sdth:hasSDTL;
+		sh:maxCount 1 ;
+		sh:datatype xsd:string ;
+		sh:message "ProgramSteps can have a text string containing SDTL"@en ;
+	] .
+
+## Shape for sdth:FileInstance  ###########################
+sdtest:FileShape
+	a sh:NodeShape ;
+	sh:targetClass sdth:FileInstance ;
+	sh:sparql [
+		a sh:SPARQLConstraint ;
+		sh:message "A FileInstance cannot be used with {$predicate}" ;
+		sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+			SELECT $this ?predicate ?object
+			WHERE {
+				$this ?predicate ?object .
+				FILTER(STRSTARTS(STR(?predicate), STR(sdth:)) && 
+					?predicate NOT IN (sdth:wasDerivedFrom, sdth:elaborationOf, sdth:hasVarInstance, sdth:hasName))
+			}
+			""" ;
+	] ;
+	sh:property [ # One FileInstance was derived from ANY number of dataframes
+		sh:path sdth:wasDerivedFrom ;
+		sh:class sdth:DataframeInstance ;
+	] ;
+	sh:property [ # One FileInstance elaborates ANY number of files
+		sh:path sdth:elaborationOf ;
+		sh:class sdth:FileInstance ;
+	] ;
+	sh:property <s1-hasVarInstance> , <s5-hasName> .
+
+## Shape for sdth:DataframeInstance  ###########################
+sdtest:DataframeShape
+	a sh:NodeShape ;
+	sh:targetClass sdth:DataframeInstance ;
+	sh:sparql [
+		a sh:SPARQLConstraint ;
+		sh:message "A DataframeInstance cannot be used with {$predicate}" ;
+		sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+			SELECT $this ?predicate ?object
+			WHERE {
+				$this ?predicate ?object .
+				FILTER(STRSTARTS(STR(?predicate), STR(sdth:)) && 
+					?predicate NOT IN (sdth:wasDerivedFrom, sdth:elaborationOf, sdth:hasVarInstance, sdth:hasName))
+			}
+			""" ;
+	] ;
+	sh:or ( # One DataframeInstance was derived from or was an elaboration of AT LEAST ONE dataframe or file
+	[
+		sh:path sdth:wasDerivedFrom ;
+		sh:minCount 1 ;
+		sh:or (
+			[sh:class sdth:DataframeInstance ]
+			[sh:class sdth:FileInstance ]
+		) ;
+		sh:severity sh:Warning ;
+	]
+	[
+		sh:path sdth:elaborationOf ;
+		sh:minCount 1 ;
+		sh:class sdth:DataframeInstance ;
+		sh:severity sh:Warning ;
+	]) ;
+	sh:property  <s1-hasVarInstance> , <s5-hasName> .
+
+## Shape for sdth:VariableInstance  ###########################
+sdtest:VariableShape
+	a sh:NodeShape ;
+	sh:targetClass sdth:VariableInstance ;
+	sh:sparql [
+		a sh:SPARQLConstraint ;
+		sh:message "A VariableInstance cannot be used with {$predicate}" ;
+		sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+			SELECT $this ?predicate ?object
+			WHERE {
+				$this ?predicate ?object .
+				FILTER(STRSTARTS(STR(?predicate), STR(sdth:)) && 
+					?predicate NOT IN (sdth:wasDerivedFrom, sdth:elaborationOf, sdth:hasName))
+			}
+			""" ;
+	] ;
+	sh:property [ # One VariableInstance was derived from ANY number of variables
+		sh:path sdth:wasDerivedFrom ;
+		sh:class sdth:VariableInstance;
+	] ;
+	sh:property [ # One VariableInstance elaborates ANY number of variables
+		sh:path sdth:elaborationOf ;
+		sh:class sdth:VariableInstance;
+	] ;
+	sh:property <s5-hasName> .
+
+###############################################################
+## Shapes for SDTH properties  ################################
+###############################################################
+
+sdth:hasProgramStepShape
+    a sh:PropertyShape ;
+	sh:targetSubjectsOf sdth:hasProgramStep ;
+    sh:path sdth:hasProgramStep ;
+    sh:sparql [
+		a sh:SPARQLConstraint ;
+        sh:message "Object ({$value}) of the hasProgramStep predicate must be a ProgramStep" ;
+        sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+            SELECT $this ?value WHERE {
+                $this sdth:hasProgramStep ?value .
+                FILTER NOT EXISTS { ?value a sdth:ProgramStep }
+            }
+            """ ;
+    ] .
+
+sdth:loadsFileShape
+    a sh:PropertyShape ;
+    sh:targetSubjectsOf sdth:loadsFile ;
+    sh:path sdth:loadsFile ;
+    sh:sparql [
+		a sh:SPARQLConstraint ;
+        sh:message "Object ({$value}) of the loadsFile predicate must be a FileInstance" ;
+        sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+            SELECT $this ?value WHERE {
+                $this sdth:loadsFile ?value .
+                FILTER NOT EXISTS { ?value a sdth:FileInstance }
+            }
+            """ ;
+    ] .
+
+sdth:savesFileShape
+    a sh:PropertyShape ;
+    sh:targetSubjectsOf sdth:savesFile ;
+    sh:path sdth:savesFile ;
+    sh:sparql [
+		a sh:SPARQLConstraint ;
+        sh:message "Object ({$value}) of the savesFile predicate must be a FileInstance" ;
+        sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+            SELECT $this ?value WHERE {
+                $this sdth:savesFile ?value .
+                FILTER NOT EXISTS { ?value a sdth:FileInstance }
+            }
+            """ ;
+    ] .
+
+sdth:consumesDataframeShape
+    a sh:PropertyShape ;
+    sh:targetSubjectsOf sdth:consumesDataframe ;
+    sh:path sdth:consumesDataframe ;
+    sh:sparql [
+		a sh:SPARQLConstraint ;
+        sh:message "Object ({$value}) of consumesDataframe must be a DataframeInstance" ;
+        sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+            SELECT $this ?value WHERE {
+                $this sdth:consumesDataframe ?value .
+                FILTER NOT EXISTS { ?value a sdth:DataframeInstance }
+            }
+            """ ;
+    ] .
+
+sdth:producesDataframeShape
+    a sh:PropertyShape ;
+    sh:targetSubjectsOf sdth:producesDataframe ;
+    sh:path sdth:producesDataframe ;
+    sh:sparql [
+		a sh:SPARQLConstraint ;
+        sh:message "Object ({$value}) of producesDataframe must be a DataframeInstance" ;
+        sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+            SELECT $this ?value WHERE {
+                $this sdth:producesDataframe ?value .
+                FILTER NOT EXISTS { ?value a sdth:DataframeInstance }
+            }
+            """ ;
+    ] .
+
+sdth:usesVariableShape
+    a sh:PropertyShape ;
+    sh:targetSubjectsOf sdth:usesVariable ;
+    sh:path sdth:usesVariable ;
+    sh:sparql [
+		a sh:SPARQLConstraint ;
+        sh:message "Object ({$value}) of usesVariable must be a VariableInstance" ;
+        sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+            SELECT $this ?value WHERE {
+                $this sdth:usesVariable ?value .
+                FILTER NOT EXISTS { ?value a sdth:VariableInstance }
+            }
+            """ ;
+    ] .
+
+sdth:assignsVariableShape
+    a sh:PropertyShape ;
+    sh:targetSubjectsOf sdth:assignsVariable ;
+    sh:path sdth:assignsVariable ;
+    sh:sparql [
+		a sh:SPARQLConstraint ;
+        sh:message "Object ({$value}) of assignsVariable must be a VariableInstance" ;
+        sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+            SELECT $this ?value WHERE {
+                $this sdth:assignsVariable ?value .
+                FILTER NOT EXISTS { ?value a sdth:VariableInstance }
+            }
+            """ ;
+    ] .
+
+##  Property:  sdth:hasVarInstance ############################
+<s1-hasVarInstance>
+	a sh:PropertyShape ;
+	sh:path sdth:hasVarInstance ;
+	sh:sparql [
+		a sh:SPARQLConstraint ;
+		sh:severity sh:Warning ;
+		sh:message "A FileInstance or a DataframeInstance usually has at least one variable instance"@en ;
+		sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+			SELECT $this WHERE {
+				FILTER NOT EXISTS { $this sdth:hasVarInstance ?any }
+			}
+			""" ;
+	] ;
+	sh:sparql [
+		a sh:SPARQLConstraint ;
+		sh:message "Object ({$value}) of the hasVarInstance predicate must be a VariableInstance" ;
+		sh:select """
+			PREFIX sdth: <http://DDI/SDTH/>
+			SELECT $this ?value WHERE {
+				$this sdth:hasVarInstance ?value .
+				FILTER NOT EXISTS { ?value a sdth:VariableInstance }
+			}
+			""" ;
+	] .
+
+##  Property:  sdth:hasName ############################
+<s5-hasName>
+	a sh:PropertyShape ;
+	sh:path sdth:hasName ;
+	sh:datatype xsd:string ;
+	sh:minCount 1 ;
+	sh:maxCount 1 ;
+	sh:message "A FileInstance, DataframeInstance, or a VariableInstance should have a name"@en .

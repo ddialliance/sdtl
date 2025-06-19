@@ -1,0 +1,5 @@
+SDTH ttl file: C:/Users/altergc/Documents/ICPSR/Project development/metadata_capture/SDTL_git/sdtl/SDTH/sdth-shacl/SDTH_RDF_Example_A1_turtle.ttl
+SHACL schema: C:/Users/altergc/Documents/ICPSR/Project development/metadata_capture/SDTL V2/SHACL/sdth.schema.Meng8.ttl
+---------------------------
+Validation Report
+Conforms: True

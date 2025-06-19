@@ -1,0 +1,228 @@
+{	"@context": {
+		"sdth": "http://DDI/SDTH/",
+		"sdtest": "http://test/#",
+		"ddi-l": "http://ddi-l/",
+		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"		
+		},	
+
+"sdth:Program": [
+	{"@id" : "sdtest:ProgramEx5",
+	"rdf:type" : {"@id": "sdth:Program"},
+	"sdth:hasProgramStep": [ {"@id": "sdtest:ProgStep001"}, 
+	 {"@id": "sdtest:ProgStep002"},  
+	 {"@id": "sdtest:ProgStep003"}, 
+	 {"@id": "sdtest:ProgStep004"}, 
+	 {"@id": "sdtest:ProgStep005"}, 
+	 {"@id": "sdtest:ProgStep006"}, 
+	{"@id": "sdtest:ProgStep007" } ] }
+	 ],
+	
+"sdth:ProgramStep": [
+
+	{"@id" : "sdtest:ProgStep001",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSourceCode": "import pandas as pd" ,
+		"sdth:hasSDTL": "\"command\": \"NoTransformOp...\"" }	,
+		
+	{"@id": "sdtest:ProgStep002",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSourceCode": "PoliticalData = pd.read_csv(\"SmallTestPolitical.csv\")",
+		"sdth:hasSDTL": "\"command\": \"Load...\"",
+		"sdth:loadsFile": [{"@id": "sdtest:FileIns001"}], 
+		"sdth:producesDataframe": {"@id": "sdtest:DFIns001"},
+		"sdth:assignsVariable": [ {"@id": "sdtest:VarIns001"}, {"@id": "sdtest:VarIns002"}, {"@id": "sdtest:VarIns003"}, {"@id": "sdtest:VarIns004"}, {"@id": "sdtest:VarIns005"}, {"@id": "sdtest:VarIns006"}, {"@id": "sdtest:VarIns007"}, {"@id": "sdtest:VarIns008"} ] },
+		
+	{"@id": "sdtest:ProgStep003",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSourceCode": "PersonalData = pd.read_csv(\"SmallTestPersonal.csv\")", 
+		"sdth:hasSDTL": "\"command\": \"Load...\"",
+		"sdth:loadsFile": [{"@id": "sdtest:FileIns002"}], 
+		"sdth:producesDataframe": {"@id": "sdtest:DFIns002"},
+		"sdth:assignsVariable": [ {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012"} ] },
+		
+	{"@id": "sdtest:ProgStep004",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSourceCode": "PersonalData  = PersonalData.assign(HHsize=PersonalData['PPHHSIZE'] )",  
+		"sdth:hasSDTL": "\"command\": \"Compute...\"",
+		"sdth:consumesDataframe": [{"@id": "sdtest:DFIns002"}],
+		"sdth:producesDataframe": {"@id": "sdtest:DFIns003"},
+		"sdth:assignsVariable": [{"@id": "sdtest:VarIns013"}],
+		"sdth:usesVariable": [ {"@id": "sdtest:VarIns010" } ] },
+
+
+	{"@id": "sdtest:ProgStep005",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSourceCode": "PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )", 
+		"sdth:hasProgramStep": [
+			{"@id": "sdtest:ProgStep005a"}, {"@id": "sdtest:ProgStep005b"}, {"@id": "sdtest:ProgStep005c" }
+			] },
+
+	{"@id": "sdtest:ProgStep005a",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSDTL": "\"command\": \"Compute...\"",
+		"sdth:consumesDataframe": [{"@id": "sdtest:DFIns003"} ],
+		"sdth:producesDataframe": {"@id": "sdtest:DFIns004a"},
+		"sdth:assignsVariable": [{"@id": "sdtest:VarIns014a"} ],
+		"sdth:usesVariable": [ {"@id": "sdtest:VarIns013" } ] },
+
+
+	{"@id": "sdtest:ProgStep005b",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSDTL": "\"command\": \"SetDataType...\"",		
+		"sdth:consumesDataframe": [{"@id": "sdtest:DFIns004a"} ],
+		"sdth:producesDataframe": {"@id": "sdtest:DFIns004b"},
+		"sdth:assignsVariable": [{"@id": "sdtest:VarIns014b"} ],
+		"sdth:usesVariable": [ {"@id": "sdtest:VarIns014a" } ] },
+
+
+	{"@id": "sdtest:ProgStep005c",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSDTL": "\"command\": \"SetValueLabels...\"",
+		"sdth:consumesDataframe": [{"@id": "sdtest:DFIns004b"} ],
+		"sdth:producesDataframe": {"@id": "sdtest:DFIns004c"},
+		"sdth:assignsVariable": [{"@id": "sdtest:VarIns014c"} ],
+		"sdth:usesVariable": [ {"@id": "sdtest:VarIns014b" } ] },
+
+	{"@id": "sdtest:ProgStep006",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSourceCode": "MergedData = PersonalData.merge(PoliticalData, on=\"ID\", how=\"inner\")", 
+		"sdth:consumesDataframe": [{"@id": "sdtest:DFIns001"}, {"@id": "sdtest:DFIns004c"}],
+		"sdth:producesDataframe": {"@id": "sdtest:DFIns005"},
+		"sdth:assignsVariable": [ {"@id": "sdtest:VarIns001"}, {"@id": "sdtest:VarIns002"}, {"@id": "sdtest:VarIns003"}, {"@id": "sdtest:VarIns004"}, {"@id": "sdtest:VarIns005"}, {"@id": "sdtest:VarIns006"}, {"@id": "sdtest:VarIns007"}, {"@id": "sdtest:VarIns008"}, {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012"}, {"@id": "sdtest:VarIns013"}, {"@id": "sdtest:VarIns014c"} ]		,
+		"sdth:usesVariable": [ {"@id": "sdtest:VarIns001"}, {"@id": "sdtest:VarIns002"}, {"@id": "sdtest:VarIns003"}, {"@id": "sdtest:VarIns004"}, {"@id": "sdtest:VarIns005"}, {"@id": "sdtest:VarIns006"}, {"@id": "sdtest:VarIns007"}, {"@id": "sdtest:VarIns008"}, {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012"}, {"@id": "sdtest:VarIns013"}, {"@id": "sdtest:VarIns014c"} ]	 },
+
+	{"@id": "sdtest:ProgStep007",
+		"rdf:type" : {"@id": "sdth:ProgramStep"},
+		"sdth:hasSourceCode": "MergedData.to_csv(\"SmallTestMerged.csv\")", 
+		"sdth:consumesDataframe": {"@id": "sdtest:DFIns005"},
+		"sdth:savesFile": {"@id": "sdtest:FileIns003"},
+		"sdth:usesVariable": [ {"@id": "sdtest:VarIns001"}, {"@id": "sdtest:VarIns002"}, {"@id": "sdtest:VarIns003"}, {"@id": "sdtest:VarIns004"}, {"@id": "sdtest:VarIns005"}, {"@id": "sdtest:VarIns006"}, {"@id": "sdtest:VarIns007"}, {"@id": "sdtest:VarIns008"}, {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012"}, {"@id": "sdtest:VarIns013"}, {"@id": "sdtest:VarIns014c"} ]	
+			 }
+	] ,		
+		
+"sdth:FileInstance": [
+		{"@id": "sdtest:FileIns001",
+		"rdf:type" : {"@id": "sdth:FileInstance" },
+		"sdth:hasName": "SmallTestPolitical.csv",
+		"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns001"}, {"@id": "sdtest:VarIns002"}, {"@id": "sdtest:VarIns003"}, {"@id": "sdtest:VarIns004"}, {"@id": "sdtest:VarIns005"}, {"@id": "sdtest:VarIns006"}, {"@id": "sdtest:VarIns007"}, {"@id": "sdtest:VarIns008"} ]		},	
+		
+		{"@id": "sdtest:FileIns002",
+		"rdf:type" : {"@id": "sdth:FileInstance"},
+		"sdth:hasName": "SmallTestPersonal.csv",
+		"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012" } ]
+		},
+		
+		{"@id": "sdtest:FileIns003",
+		"rdf:type" : {"@id": "sdth:FileInstance"},
+		"sdth:hasName": "SmallTestMerged.csv",
+		"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns001"}, {"@id": "sdtest:VarIns002"}, {"@id": "sdtest:VarIns003"}, {"@id": "sdtest:VarIns004"}, {"@id": "sdtest:VarIns005"}, {"@id": "sdtest:VarIns006"}, {"@id": "sdtest:VarIns007"}, {"@id": "sdtest:VarIns008"}, {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012"}, {"@id": "sdtest:VarIns013"}, {"@id": "sdtest:VarIns014c"} ]	,
+		"sdth:wasDerivedFrom": {"@id": "sdtest:DFIns005"}		
+		}
+		],
+		
+"sdth:DataframeInstance": [
+	{"@id": "sdtest:DFIns001",
+	"rdf:type" : {"@id": "sdth:DataframeInstance"},
+	"sdth:hasName": "PoliticalData" ,
+	"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns001"}, {"@id": "sdtest:VarIns002"}, {"@id": "sdtest:VarIns003"}, {"@id": "sdtest:VarIns004"}, {"@id": "sdtest:VarIns005"}, {"@id": "sdtest:VarIns006"}, {"@id": "sdtest:VarIns007"}, {"@id": "sdtest:VarIns008"}] ,	
+	"sdth:wasDerivedFrom": {"@id": "sdtest:FileIns001"}	},	
+	
+	{"@id": "sdtest:DFIns002",
+	"rdf:type" : {"@id": "sdth:DataframeInstance"},
+	"sdth:hasName": "PersonalData" ,
+	"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012" } ] ,	
+	"sdth:wasDerivedFrom": {"@id": "sdtest:FileIns002"}	},	
+	
+	{"@id": "sdtest:DFIns003",
+	"rdf:type" : {"@id": "sdth:DataframeInstance"},
+	"sdth:hasName": "PersonalData" ,
+	"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012" }, {"@id": "sdtest:VarIns013"} ],
+	"sdth:wasDerivedFrom": {"@id": "sdtest:DFIns002"}	},
+	
+	{"@id": "sdtest:DFIns004a",
+	"rdf:type" : {"@id": "sdth:DataframeInstance"},
+	"sdth:hasName": "PersonalData" ,
+	"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id":"sdtest:VarIns012" }, {"@id": "sdtest:VarIns013"}, {"@id": "sdtest:VarIns014a"} ],
+	"sdth:wasDerivedFrom": {"@id": "sdtest:DFIns003"}	},
+
+	{"@id": "sdtest:DFIns004b",
+	"rdf:type" : {"@id": "sdth:DataframeInstance"},
+	"sdth:hasName": "PersonalData" ,
+	"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id":"sdtest:VarIns012" }, {"@id": "sdtest:VarIns013"}, {"@id": "sdtest:VarIns014b"} ],
+	"sdth:elaborationOf": {"@id": "sdtest:DFIns004a"}	},
+
+	{"@id": "sdtest:DFIns004c",
+	"rdf:type" : {"@id": "sdth:DataframeInstance"},
+	"sdth:hasName": "PersonalData" ,
+	"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id":"sdtest:VarIns012" }, {"@id": "sdtest:VarIns013"}, {"@id": "sdtest:VarIns014c"} ],
+	"sdth:elaborationOf": {"@id": "sdtest:DFIns004b"}	},
+	
+	{"@id": "sdtest:DFIns005",
+	"rdf:type" : {"@id": "sdth:DataframeInstance"},
+	"sdth:hasName": "MergedData" ,
+	"sdth:hasVarInstance": [ {"@id": "sdtest:VarIns001"}, {"@id": "sdtest:VarIns002"}, {"@id": "sdtest:VarIns003"}, {"@id": "sdtest:VarIns004"}, {"@id": "sdtest:VarIns005"}, {"@id": "sdtest:VarIns006"}, {"@id": "sdtest:VarIns007"}, {"@id": "sdtest:VarIns008"}, {"@id": "sdtest:VarIns009"}, {"@id": "sdtest:VarIns010"}, {"@id": "sdtest:VarIns011"}, {"@id": "sdtest:VarIns012"}, {"@id": "sdtest:VarIns013"}, {"@id": "sdtest:VarIns014c"} ]	,
+	"sdth:wasDerivedFrom": [{"@id": "sdtest:DFIns001"}, {"@id": "sdtest:DFIns004c"} ]  }
+	],
+
+"sdth:VariableInstance" : [
+	{"@id": "sdtest:VarIns001",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "Q3" },
+	{"@id": "sdtest:VarIns002",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "Q244_NEW" },
+	{"@id": "sdtest:VarIns003",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "Q356" },	
+	{"@id": "sdtest:VarIns004",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "Q330A" },
+	{"@id": "sdtest:VarIns005",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "Q330C" },
+	{"@id": "sdtest:VarIns006",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "Q27" },
+	{"@id": "sdtest:VarIns007",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "Q1010" },
+	{"@id": "sdtest:VarIns008",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "ID" },
+	{"@id": "sdtest:VarIns009",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "PPEDUCAT" },
+	{"@id": "sdtest:VarIns010",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "PPHHSIZE" },
+	{"@id": "sdtest:VarIns011",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "PPRENT" },
+	{"@id": "sdtest:VarIns012",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "ID" },
+	{"@id": "sdtest:VarIns013",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "HHsize",
+	"sdth:wasDerivedFrom": [{"@id": "sdtest:VarIns010"}] },	
+	{"@id": "sdtest:VarIns014a",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "HHcateg",
+	"sdth:wasDerivedFrom": [{"@id": "sdtest:VarIns013"}] },
+	{"@id": "sdtest:VarIns014b",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "HHcateg",
+	"sdth:elaborationOf": [{"@id": "sdtest:VarIns014a"}],
+	"ddi-l:NumericDomain":"<NumericDomain> <classificationLevel>\"Ordinal\"</classificationLevel> <type>\"Integer\"</type> </NumericDomain>"},
+	{"@id": "sdtest:VarIns014c",
+	"rdf:type" : {"@id": "sdth:VariableInstance"},
+	"sdth:hasName": "HHcateg",
+	"sdth:elaborationOf": [{"@id": "sdtest:VarIns014b"}],
+	"ddi-l:NumericDomain":"<NumericDomain> <classificationLevel>\"Ordinal\"</classificationLevel> <type>\"Integer\"</type> </NumericDomain>",
+	"ddi-l:CodeList":"<CodeList> <Code> <Value>1</Value> <Label>\"1\"</Label> </Code> <Code> <Value>2</Value> <Label>\"2\"</Label> </Code> <Code> <Value>3</Value> <Label>\"3-4\"</Label> </Code> <Code> <Value>5</Value> <Label>\"5-6\"</Label> </Code> <Code> <Value>7</Value> <Label>\"7-9\"</Label> </Code> <Code> <Value>10</Value> <Label>\"10+\"</Label> </Code> </CodeScheme>"}
+	]
+
+
+
+
+}

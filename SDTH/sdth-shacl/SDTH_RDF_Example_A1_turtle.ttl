@@ -1,0 +1,336 @@
+@prefix ddi-l: <http://ddi-l/> .
+@prefix sdtest: <http://test/#> .
+@prefix sdth: <http://DDI/SDTH/> .
+
+sdtest:ProgramEx5 a sdth:Program ;
+    sdth:hasProgramStep sdtest:ProgStep001,
+        sdtest:ProgStep002,
+        sdtest:ProgStep003,
+        sdtest:ProgStep004,
+        sdtest:ProgStep005,
+        sdtest:ProgStep006,
+        sdtest:ProgStep007 .
+
+sdtest:FileIns003 a sdth:FileInstance ;
+    sdth:hasName "SmallTestMerged.csv" ;
+    sdth:hasVarInstance sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008,
+        sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014c ;
+    sdth:wasDerivedFrom sdtest:DFIns005 .
+
+sdtest:ProgStep001 a sdth:ProgramStep ;
+    sdth:hasSDTL "\"command\": \"NoTransformOp...\"" ;
+    sdth:hasSourceCode "import pandas as pd" .
+
+sdtest:ProgStep002 a sdth:ProgramStep ;
+    sdth:assignsVariable sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008 ;
+    sdth:hasSDTL "\"command\": \"Load...\"" ;
+    sdth:hasSourceCode "PoliticalData = pd.read_csv(\"SmallTestPolitical.csv\")" ;
+    sdth:loadsFile sdtest:FileIns001 ;
+    sdth:producesDataframe sdtest:DFIns001 .
+
+sdtest:ProgStep003 a sdth:ProgramStep ;
+    sdth:assignsVariable sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012 ;
+    sdth:hasSDTL "\"command\": \"Load...\"" ;
+    sdth:hasSourceCode "PersonalData = pd.read_csv(\"SmallTestPersonal.csv\")" ;
+    sdth:loadsFile sdtest:FileIns002 ;
+    sdth:producesDataframe sdtest:DFIns002 .
+
+sdtest:ProgStep004 a sdth:ProgramStep ;
+    sdth:assignsVariable sdtest:VarIns013 ;
+    sdth:consumesDataframe sdtest:DFIns002 ;
+    sdth:hasSDTL "\"command\": \"Compute...\"" ;
+    sdth:hasSourceCode "PersonalData  = PersonalData.assign(HHsize=PersonalData['PPHHSIZE'] )" ;
+    sdth:producesDataframe sdtest:DFIns003 ;
+    sdth:usesVariable sdtest:VarIns010 .
+
+sdtest:ProgStep005 a sdth:ProgramStep ;
+    sdth:hasProgramStep sdtest:ProgStep005a,
+        sdtest:ProgStep005b,
+        sdtest:ProgStep005c ;
+    sdth:hasSourceCode "PersonalData['HHcateg'] = pd.cut(PersonalData['HHsize'], [1, 2, 3, 5, 7, 10, 999], include_lowest=True, right=False, labels=['1', '2', '3-4', '5-6', '7-9', '10+'] )" .
+
+sdtest:ProgStep005a a sdth:ProgramStep ;
+    sdth:assignsVariable sdtest:VarIns014a ;
+    sdth:consumesDataframe sdtest:DFIns003 ;
+    sdth:hasSDTL "\"command\": \"Compute...\"" ;
+    sdth:producesDataframe sdtest:DFIns004a ;
+    sdth:usesVariable sdtest:VarIns013 .
+
+sdtest:ProgStep005b a sdth:ProgramStep ;
+    sdth:assignsVariable sdtest:VarIns014b ;
+    sdth:consumesDataframe sdtest:DFIns004a ;
+    sdth:hasSDTL "\"command\": \"SetDataType...\"" ;
+    sdth:producesDataframe sdtest:DFIns004b ;
+    sdth:usesVariable sdtest:VarIns014a .
+
+sdtest:ProgStep005c a sdth:ProgramStep ;
+    sdth:assignsVariable sdtest:VarIns014c ;
+    sdth:consumesDataframe sdtest:DFIns004b ;
+    sdth:hasSDTL "\"command\": \"SetValueLabels...\"" ;
+    sdth:producesDataframe sdtest:DFIns004c ;
+    sdth:usesVariable sdtest:VarIns014b .
+
+sdtest:ProgStep006 a sdth:ProgramStep ;
+    sdth:assignsVariable sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008,
+        sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014c ;
+    sdth:consumesDataframe sdtest:DFIns001,
+        sdtest:DFIns004c ;
+    sdth:hasSourceCode "MergedData = PersonalData.merge(PoliticalData, on=\"ID\", how=\"inner\")" ;
+    sdth:producesDataframe sdtest:DFIns005 ;
+    sdth:usesVariable sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008,
+        sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014c .
+
+sdtest:ProgStep007 a sdth:ProgramStep ;
+    sdth:consumesDataframe sdtest:DFIns005 ;
+    sdth:hasSourceCode "MergedData.to_csv(\"SmallTestMerged.csv\")" ;
+    sdth:savesFile sdtest:FileIns003 ;
+    sdth:usesVariable sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008,
+        sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014c .
+
+sdtest:FileIns001 a sdth:FileInstance ;
+    sdth:hasName "SmallTestPolitical.csv" ;
+    sdth:hasVarInstance sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008 .
+
+sdtest:FileIns002 a sdth:FileInstance ;
+    sdth:hasName "SmallTestPersonal.csv" ;
+    sdth:hasVarInstance sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012 .
+
+sdtest:DFIns001 a sdth:DataframeInstance ;
+    sdth:hasName "PoliticalData" ;
+    sdth:hasVarInstance sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008 ;
+    sdth:wasDerivedFrom sdtest:FileIns001 .
+
+sdtest:DFIns002 a sdth:DataframeInstance ;
+    sdth:hasName "PersonalData" ;
+    sdth:hasVarInstance sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012 ;
+    sdth:wasDerivedFrom sdtest:FileIns002 .
+
+sdtest:DFIns003 a sdth:DataframeInstance ;
+    sdth:hasName "PersonalData" ;
+    sdth:hasVarInstance sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013 ;
+    sdth:wasDerivedFrom sdtest:DFIns002 .
+
+sdtest:DFIns004a a sdth:DataframeInstance ;
+    sdth:hasName "PersonalData" ;
+    sdth:hasVarInstance sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014a ;
+    sdth:wasDerivedFrom sdtest:DFIns003 .
+
+sdtest:DFIns004b a sdth:DataframeInstance ;
+    sdth:elaborationOf sdtest:DFIns004a ;
+    sdth:hasName "PersonalData" ;
+    sdth:hasVarInstance sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014b .
+
+sdtest:DFIns004c a sdth:DataframeInstance ;
+    sdth:elaborationOf sdtest:DFIns004b ;
+    sdth:hasName "PersonalData" ;
+    sdth:hasVarInstance sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014c .
+
+sdtest:DFIns005 a sdth:DataframeInstance ;
+    sdth:hasName "MergedData" ;
+    sdth:hasVarInstance sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008,
+        sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014c ;
+    sdth:wasDerivedFrom sdtest:DFIns001,
+        sdtest:DFIns004c .
+
+sdtest:VarIns014a a sdth:VariableInstance ;
+    sdth:hasName "HHcateg" ;
+    sdth:wasDerivedFrom sdtest:VarIns013 .
+
+sdtest:VarIns014b a sdth:VariableInstance ;
+    sdth:elaborationOf sdtest:VarIns014a ;
+    sdth:hasName "HHcateg" ;
+    ddi-l:NumericDomain "<NumericDomain> <classificationLevel>\"Ordinal\"</classificationLevel> <type>\"Integer\"</type> </NumericDomain>" .
+
+sdtest:VarIns014c a sdth:VariableInstance ;
+    sdth:elaborationOf sdtest:VarIns014b ;
+    sdth:hasName "HHcateg" ;
+    ddi-l:CodeList "<CodeList> <Code> <Value>1</Value> <Label>\"1\"</Label> </Code> <Code> <Value>2</Value> <Label>\"2\"</Label> </Code> <Code> <Value>3</Value> <Label>\"3-4\"</Label> </Code> <Code> <Value>5</Value> <Label>\"5-6\"</Label> </Code> <Code> <Value>7</Value> <Label>\"7-9\"</Label> </Code> <Code> <Value>10</Value> <Label>\"10+\"</Label> </Code> </CodeScheme>" ;
+    ddi-l:NumericDomain "<NumericDomain> <classificationLevel>\"Ordinal\"</classificationLevel> <type>\"Integer\"</type> </NumericDomain>" .
+
+sdtest:VarIns001 a sdth:VariableInstance ;
+    sdth:hasName "Q3" .
+
+sdtest:VarIns002 a sdth:VariableInstance ;
+    sdth:hasName "Q244_NEW" .
+
+sdtest:VarIns003 a sdth:VariableInstance ;
+    sdth:hasName "Q356" .
+
+sdtest:VarIns004 a sdth:VariableInstance ;
+    sdth:hasName "Q330A" .
+
+sdtest:VarIns005 a sdth:VariableInstance ;
+    sdth:hasName "Q330C" .
+
+sdtest:VarIns006 a sdth:VariableInstance ;
+    sdth:hasName "Q27" .
+
+sdtest:VarIns007 a sdth:VariableInstance ;
+    sdth:hasName "Q1010" .
+
+sdtest:VarIns008 a sdth:VariableInstance ;
+    sdth:hasName "ID" .
+
+sdtest:VarIns009 a sdth:VariableInstance ;
+    sdth:hasName "PPEDUCAT" .
+
+sdtest:VarIns011 a sdth:VariableInstance ;
+    sdth:hasName "PPRENT" .
+
+sdtest:VarIns012 a sdth:VariableInstance ;
+    sdth:hasName "ID" .
+
+sdtest:VarIns013 a sdth:VariableInstance ;
+    sdth:hasName "HHsize" ;
+    sdth:wasDerivedFrom sdtest:VarIns010 .
+
+sdtest:VarIns010 a sdth:VariableInstance ;
+    sdth:hasName "PPHHSIZE" .
+
+[] sdth:DataframeInstance sdtest:DFIns001,
+        sdtest:DFIns002,
+        sdtest:DFIns003,
+        sdtest:DFIns004a,
+        sdtest:DFIns004b,
+        sdtest:DFIns004c,
+        sdtest:DFIns005 ;
+    sdth:FileInstance sdtest:FileIns001,
+        sdtest:FileIns002,
+        sdtest:FileIns003 ;
+    sdth:Program sdtest:ProgramEx5 ;
+    sdth:ProgramStep sdtest:ProgStep001,
+        sdtest:ProgStep002,
+        sdtest:ProgStep003,
+        sdtest:ProgStep004,
+        sdtest:ProgStep005,
+        sdtest:ProgStep005a,
+        sdtest:ProgStep005b,
+        sdtest:ProgStep005c,
+        sdtest:ProgStep006,
+        sdtest:ProgStep007 ;
+    sdth:VariableInstance sdtest:VarIns001,
+        sdtest:VarIns002,
+        sdtest:VarIns003,
+        sdtest:VarIns004,
+        sdtest:VarIns005,
+        sdtest:VarIns006,
+        sdtest:VarIns007,
+        sdtest:VarIns008,
+        sdtest:VarIns009,
+        sdtest:VarIns010,
+        sdtest:VarIns011,
+        sdtest:VarIns012,
+        sdtest:VarIns013,
+        sdtest:VarIns014a,
+        sdtest:VarIns014b,
+        sdtest:VarIns014c .
+
