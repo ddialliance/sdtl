@@ -19,7 +19,7 @@ sdth:ProgramStep is a subclass of prov:Activity
 - prov:Entity, prov:Plan, provone:Program
 
 **is in domain of**
-- sdth:hasProgramStep, sdth:loadsFile, sdth:savesFile, sdth:producesDatframe, sdth:consumesDataframe, sdth:hasVarInstance, dth:usesVariable, sdth:assignsVariable
+- sdth:hasProgramStep, sdth:loadsFile, sdth:savesFile, sdth:producesDataframe, sdth:consumesDataframe, sdth:hasVarInstance, dth:usesVariable, sdth:assignsVariable
 
 **is in range of**
 - sdth:hasProgramStep
@@ -92,7 +92,7 @@ The sdth:VariableInstances in an sdth:DataframeInstance are enumerated using sdt
 - sdth:hasName, sdth:hasVarInstance, sdth:wasDerivedFrom, sdth:elaborationOf
 
 **is in range of**
-- sdth:producesDatframe, sdth:consumesDataframe, sdth:wasDerivedFrom, sdth:elaborationOf
+- sdth:producesDataframe, sdth:consumesDataframe, sdth:wasDerivedFrom, sdth:elaborationOf
 
 
  
@@ -151,7 +151,7 @@ When a sdth:ProgramStep executes an sdth:savesFile operation, an external sdth:F
 
 
  
-### sdth:producesDatframe {#model-producesdataframe}
+### sdth:producesDataframe {#model-producesdataframe}
 An sdth:producesDataframe is used when an sdth:ProgramStep results in a new sdth:DataframeInstance.  This occurs when data are read from an external file or when data in an existing sdth:DataframeInstance is modified.  
 
 **has domain**
