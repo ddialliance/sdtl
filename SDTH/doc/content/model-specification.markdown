@@ -100,7 +100,7 @@ The sdth:VariableInstances in an sdth:DataframeInstance are enumerated using sdt
 
 
 **has super-class**
-- prov:Entity, provone:Data
+- prov:Entity, provone:Data, sdth:DataInstance
 
 **is in domain of**
 - sdth:hasName, sdth:hasVarInstance, sdth:wasDerivedFrom, sdth:elaborationOf
@@ -124,7 +124,7 @@ The SDTH definition of an sdth:VariableInstance is synonymous with the definitio
 An sdth:VariableInstance is an instantiation of the ddi-cdi:InstanceVariable and is associated with a specific set of DDI-CDI “datums” [[ddicdi]].  A ddi-cdi:InstanceVariable specifies attributes of the values of a variable, such as a data type and value schema, but it is not limited to a specific set of values.  
 
 **has super-class**
-- prov:Entity, provone:Data
+- prov:Entity, provone:Data, sdth:DataInstance
 
 **is in domain of**
 - sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf
@@ -162,6 +162,25 @@ When a sdth:ProgramStep executes an sdth:savesFile operation, an external sdth:F
 
 **has range**
 - sdth:FileInstance
+
+### sdth:producesDataInstance {#model-producesdata}
+An sdth:producesData is used when an sdth:ProgramStep results in a new sdth:DataInstance.  This occurs when data are read from an external file or when data in an existing sdth:DataInstance is modified.  
+
+**has domain**
+- sdth:ProgramStep
+
+**has range**
+- sdth:DataInstance
+
+ 
+### sdth:consumesData {#model-consumesdata}
+An sdth:consumesData is used when an sdth:ProgramStep uses data from an existing sdth:DataInstance.  This occurs when data are saved to an external file or when data in an existing sdth:DataInstance is modified.  
+
+**has domain**
+- sdth:ProgramStep
+
+**has range**
+- sdth:DataInstance
 
 
  
