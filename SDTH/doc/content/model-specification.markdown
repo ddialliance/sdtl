@@ -56,8 +56,22 @@ sdth:hasSDTL provides a version of program code represented by an sdth:Program o
 
  
 ## Data Entities {#model-data-entities}
+
+### sdth:DataInstance {#model-datainstance}
+An sdth:DataInstance is a collection of values created in a computer memory during the execution of an sdth:Program.  An sdth:DataInstance may be any kind of data collection, including arrays, matrices, lists, and datacubes.  SDTH pays special attention to instances of dataframes and variables, which are the data collections most often used in statistical analysis.  The sdth:DataframeInstance and sdth:VariableInstance described below are sub-classes of sdth:DataInstance.
+
+**has super-class**
+- prov:Entity, provone:Data
+
+**is in domain of**
+- sdth:hasName, sdth:wasDerivedFrom
+
+**is in range of**
+- sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom
+
+
 ###  sdth:FileInstance {#model-fileinstance}
-An sdth:FileInstance is a persistent version of an sdth:DataframeInstance stored on a medium, such as a disk, tape, CD-ROM, or non-volatile memory storage device.  The data in an sdth:FileInstance is stored in columns (variables) and rows.  sdth:FileInstances may be in a variety of formats.  File formats used by statistical analysis programs usually store some metadata about variables, such as data type and label.  Simple formats, like comma-separated values (CSV), which contain very little metadata describing the meaning and attributes of values, may be accompanied by a separate metadata file. 
+An sdth:FileInstance is a persistent object stored on a medium, such as a disk, tape, CD-ROM, or non-volatile memory storage device.  sdth:FileInstances may be in any format.  File formats used by statistical analysis programs to store dataframes usually include some metadata about variables, such as data type and label.  Simple formats, like comma-separated values (CSV), which contain very little metadata describing the meaning and attributes of values, may be accompanied by a separate metadata file. 
 
 An sdth:FileInstance is created by an sdth:ProgramStep that executes an operation represented as an sdth:savesFile. 
 
@@ -65,7 +79,7 @@ When an sdth:loadsFile is executed, the contents of sdth:FileInstance becomes an
 The sdth:VariableInstances in an sdth:FileInstance are enumerated using sdth:hasVarInstance.
 
 **has super-class**
-- prov:Entity, provone:Data
+- prov:Entity, provone:Data, sdth:DataInstance
 
 **is in domain of**
 - sdth:hasName, sdth:hasVarInstance, sdth:wasDerivedFrom, sdth:elaborationOf
