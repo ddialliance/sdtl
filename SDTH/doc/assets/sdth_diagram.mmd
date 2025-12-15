@@ -1,51 +1,77 @@
 
+%%{init: {'theme': 'default', 'themeCSS': 'svg { background-color: white; }'}}%%
+
 classDiagram
   
-  class Program["sdth:Program"] {
-    rdfs:label
+  class DataInstance["sdth:DataInstance"] {
+    sdth:hasName
+    sdth:derivedFrom()
+    sdth:elaborationOf()
   }
+  class Program["sdth:Program"] {
+    sdth:hasName
+     }
+
   class ProgramStep["sdth:ProgramStep"] {
-    rdfs:label
     sdth:hasSourceCode
     sdth:hasSDTL
-  }
-  class VariableInstance["sdth:VariableInstance"] {
-    rdfs:label
-    sdth:hasName    
+    sdth:hasProgramStep()
+  } 
+ class FileInstance["sdth:FileInstance"] {
+    sdth:hasName
+    sdth:derivedFrom()
+    sdth:elaborationOf()
   }
   class DataframeInstance["sdth:DataframeInstance"] {
-    rdfs:label
     sdth:hasName
+    sdth:derivedFrom()
+    sdth:elaborationOf()
   }
 
-class FileInstance["sdth:FileInstance"] {
-    rdfs:label
-    sdth:hasName
+  class VariableInstance["sdth:VariableInstance"] {
+    sdth:hasName 
+    sdth:derivedFrom()
+    sdth:elaborationOf()   
   }
 
-  
-  ProgramStep <-- Program : sdthhasProgramStep
-  ProgramStep <-- ProgramStep : sdth_hasProgramStep
-
-  ProgramStep --> VariableInstance : sdth_usesVariable
-  ProgramStep --> VariableInstance : sdth_assignsVariable
-  ProgramStep --> DataframeInstance : sdth_consumesDataframe
-  ProgramStep --> DataframeInstance : sdth_producesDataframe
-
-  ProgramStep --> FileInstance : sdth_loadsFile
-  ProgramStep --> FileInstance : sdth_savesFile
+  class TextInstance["sdth:TextInstance"] {
+    sdth:hasName
+    sdth:derivedFrom()
+  }
+  class ImageInstance["sdth:ImageInstance"] {
+    sdth:hasName
+    sdth:derivedFrom()
+  }
 
 
-  DataframeInstance --> VariableInstance : sdth_hasVariableInstance
-  FileInstance --> VariableInstance : sdth_hasVariableInstance
+ 
+
+ DataInstance --> VariableInstance  : subclass
+ DataInstance --> DataframeInstance : subclass  
+  DataInstance --> TextInstance : subclass
+ DataInstance --> ImageInstance : subclass
 
 
-  DataframeInstance --> DataframeInstance : sdth_derivedFrom
-  DataframeInstance --> DataframeInstance : sdth_elaborationOf
+ Program --> ProgramStep : hasProgramStep
 
-  FileInstance --> FileInstance : sdth_derivedFrom
-  FileInstance --> FileInstance : sdth_elaborationOf
-  VariableInstance --> VariableInstance : sdth_derivedFrom
-  VariableInstance --> VariableInstance : sdth_elaborationOf
+ ProgramStep --> VariableInstance : usesVariable
+ ProgramStep --> VariableInstance : ssignsVariable
+ ProgramStep --> DataInstance : consumesData
+ ProgramStep --> DataInstance : producesData
+ ProgramStep --> FileInstance : loadsFile
+ ProgramStep --> FileInstance : savesFile
 
-```
+
+ DataframeInstance --> VariableInstance : hasVariableInstance
+
+ FileInstance --> VariableInstance : hasVariableInstance
+%% DataInstance --> DataInstance : sdth_derivedFrom
+
+%%   DataframeInstance --> DataframeInstance : sdth_derivedFrom
+%%   DataframeInstance --> DataframeInstance : sdth_elaborationOf
+
+%%   FileInstance --> FileInstance : sdth_derivedFrom
+%%   FileInstance --> FileInstance : sdth_elaborationOf
+%%  VariableInstance --> VariableInstance : sdth_derivedFrom
+%% VariableInstance --> VariableInstance : sdth_elaborationOf
+

@@ -4,5 +4,5 @@ Programs and scripts used to manage data use for statistical analysis are often 
 
 SDTH was created to provide a simple way to describe the key features of a data transformation script.  SDTH answers questions such as: “Which variables affected variable X?” and “Which variables were affected by file Y?” SDTH focuses on how data entities (variables, dataframes, and files) are related to each other and to the steps in a program that change them.  
 
-For an introduction to SDTH see "Bridging the Gap between Process and Procedural Provenance for Statistical Data" [[SDTHbridging]].
+For an introduction to SDTH see "Bridging the Gap between Process and Procedural Provenance for Statistical Data" [[SDTHbridging]]. (Note: The SDTH schema has changed since this article was published.)
 

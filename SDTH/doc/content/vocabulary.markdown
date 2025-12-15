@@ -38,6 +38,10 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in the table
 <td>[[[#model-hassdtl]]]</td>
 </tr>
 <tr>
+<td id="DataInstance">SDTH:DataInstance</td>
+<td>[[[#model-dataframeinstance]]]</a></td>
+</tr>
+<tr>
 <td id="FileInstance">SDTH:FileInstance</td>
 <td>[[[#model-fileinstance]]]</a></td>
 </tr>
@@ -47,6 +51,12 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in the table
 </tr>
 <tr>
 <td id="VariableInstance">SDTH:VariableInstance</td>
+<td>[[[#model-variableinstance]]]</td>
+</tr>
+<td id="TextInstance">SDTH:TextInstance</td>
+<td>[[[#model-variableinstance]]]</td>
+</tr>
+<td id="ImageInstance">SDTH:ImageInstance</td>
 <td>[[[#model-variableinstance]]]</td>
 </tr>
 <tr>
@@ -61,14 +71,17 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in the table
 <td id="savesFile">SDTH:savesFile</td>
 <td>[[[#model-savesfile]]]</td>
 </tr>
+
 <tr>
-<td id="producesDataframe">SDTH:producesDataframe</td>
-<td>[[[#model-producesdataframe]]]</td>
+<td id="consumesData">SDTH:consumesData</td>
+<td>[[[#model-consumesdata]]]</td>
 </tr>
 <tr>
-<td id="consumesDataframe">SDTH:consumesDataframe</td>
-<td>[[[#model-consumesdataframe]]]</td>
+<td id="producesData">SDTH:producesData</td>
+<td>[[[#model-producesdata]]]</td>
 </tr>
+
+<tr>
 <td id="hasVarInstance">SDTH:hasVarInstance</td>
 <td>[[[#model-hasvarinstance]]]</td>
 </tr>

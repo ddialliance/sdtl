@@ -1,9 +1,6 @@
 # Introduction
 
-The principles of Open Science and FAIR (Findable, Accessible, Reusable, Interoperable) data imply that the management and analysis of data
-should be transparent. However, transparency is difficult to achieve when data are processed by programs and 
-scripts written for statistical software, databases, or other systems. Even when these scripts are
-openly available, they are often long, complex, and difficult to understand. SDTH offers a simple way to ask basic questions about a program, like:  
+The principles of Open Science and FAIR (Findable, Accessible, Reusable, Interoperable) data imply that the management and analysis of data should be transparent. However, transparency is difficult to achieve when data are processed by programs and scripts written for statistical software, databases, or other systems. Even when these scripts are openly available, they are often long, complex, and difficult to understand. SDTH offers a simple way to ask basic questions about a program, like:  
 1. What variables affected the values of variable X?
 2. What variables were affected by variable X?
 3. What commands affected the values of variable X?
@@ -16,7 +13,7 @@ SDTH also provides a bridge between computer programs and PROV [[prov-dm]], a W3
 
 SDTH came out of the same project team that created Structured Data Transformation Language (SDTL).  Both SDTH and SDTL describe the workings of data transformation programs written for statistical analysis software, but they serve very different purposes.  SDTH and Structured Data Transformation Language (SDTL) are different kinds of provenance, and SDTH is much more than a simplification of SDTL. 
 
-SDTL grew out of the need for a common language that could express commands in five widely used statistical analysis packages (SPSS, SAS, Stata, R, and Python).  These languages were developed independently, and each one has its own syntax and vocabulary.  Someone familiar with one SPSS will have great difficulty understanding R. SDTL serves as a common intermediate language, and the most common commands in all five source languages can be translated into SDTL without loss of information.  In addition, SDTL is in a 'structured' format (e.g., JSON, XML, RDF) that can be easily read by computer software.  All of the other languages require a 'parser' to extract information from a command according to its particular syntax. In contrast, SDTL has minimal syntax, because the parts of an SDTL command are unambiguously identified by tags and delimiters.
+SDTL grew out of the need for a common language that could express commands in five widely used statistical analysis packages (SPSS, SAS, Stata, R, and Python).  These languages were developed independently, and each one has its own syntax and vocabulary.  Someone familiar with SPSS may have difficulty understanding R. SDTL serves as a common intermediate language, and the most common commands in all five source languages can be translated into SDTL without loss of information.  In addition, SDTL is in a 'structured' format (e.g., JSON, XML, RDF) that can be easily read by computer software.  All of the other languages require a 'parser' to extract information from a command according to its particular syntax. In contrast, SDTL has minimal syntax, because the parts of an SDTL command are unambiguously identified by tags and delimiters.
 
 SDTH was developed to make it easier to answer simple questions about computer programs. The features that make SDTL precise and machine actionable also make it verbose and difficult to search. The details available in SDTL are not required to answer questions like those above. For example, Question 1 does not ask how variable X was affected by other variables.  It asks which variables affected variable X.  The detail in SDTL makes answering this question very complicated.  
 

@@ -7,7 +7,7 @@ An sdth:Program is a set of instructions that modify data.   An sdth:Program con
 - prov:Entity, prov:Plan, provone:Program
 
 **is in domain of**
-- sdth:hasProgramStep
+- sdth:hasProgramStep, sdth:hasName
 
 
 ###  sdth:ProgramStep {#model-programstep}
@@ -77,7 +77,7 @@ When an sdth:loadsFile is executed, the contents of sdth:FileInstance becomes an
 The sdth:VariableInstances in an sdth:FileInstance are enumerated using sdth:hasVarInstance.
 
 **has super-class**
-- prov:Entity, provone:Data, sdth:DataInstance
+- prov:Entity, provone:Data
 
 **is in domain of**
 - sdth:hasName, sdth:hasVarInstance, sdth:wasDerivedFrom, sdth:elaborationOf
@@ -92,10 +92,9 @@ sdth:DataframeInstances consist of columns and rows.  The columns in an sdth:Dat
 
 An sdth:DataframeInstance may be created by an sdth:ProgramStep that executes an sdth:loadsFile or an sdth:producesData.
 
-Any change in one of the sdth:VariableInstances in an sdth:DataframeInstance  procudes a new sdth:producesData.
+Any change in one of the sdth:VariableInstances in an sdth:DataframeInstance results in a new sdth:DataframeInstance.
 
 The sdth:VariableInstances in an sdth:DataframeInstance are enumerated using sdth:hasVarInstance.
-
 
 **has super-class**
 - prov:Entity, provone:Data, sdth:DataInstance
@@ -109,7 +108,7 @@ The sdth:VariableInstances in an sdth:DataframeInstance are enumerated using sdt
 
  
 ###  sdth:VariableInstance  {#model-variableinstance}
-An sdth:VariableInstance refers to a set of values and their associated metadata appearing in a column of an sdth:DataframeInstance or sdth:FileInstance.  Metadata associated with an sdth:VariableInstance can include data type (text, numeric, etc.), number of decimal places, or a value schema for a categorical variable.  The order of observations in an sdth:DataframeInstance or sdth:FileInstance is also an attribute of every sdth:VariableInstance.
+An sdth:VariableInstance refers to a set of values and their associated metadata appearing in a column of an sdth:DataframeInstance or sdth:FileInstance.  Metadata associated with an sdth:VariableInstance can include data type (text, numeric, etc.), number of decimal places, or a value schema for a categorical variable.  The order of observations (rows) in an sdth:DataframeInstance or sdth:FileInstance is also an attribute of every sdth:VariableInstance.
 
 An sdth:VariableInstance is immutable. When a data transformation command changes any aspect of an sdth:VariableInstance, it generates a new sdth:VariableInstance.  This includes changing any of the values in an sdth:DataframeInstance or any of the attributes of those values.  Sorting an sdth:DataframeInstance also results in a new set of sdth:VariableInstances.   This is necessary, because some data transformation commands use the order of rows in a dataframe in computations, such as the lag() function in statistical analysis programs like SAS and Stata.
 
@@ -163,13 +162,15 @@ An sdth:ImageInstance is a data object that can be rendered as an image. An sdth
 sdth:hasName specifies a name for a data entity.  All data entities in SDTH are expected to have names.  A name links an SDTH data entity to the object that it represents in a script or program code. 
 
 **has domain**
-- sdth:FileInstance, sdth:DataframeInstance, sdth:VariableInstance
+- sdth:Program, sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance
 
 **has range**
 - xsd:string
 
  
-## File and Dataframe Operations {#model-files}
+## Data Operations {#model-files}
+ 
+
 ### sdth:loadsFile {#model-loadsfile}
 When a sdth:ProgramStep executes an sdth:loadsFile operation, an external sdth:FileInstance is loaded into the active workspace as a DataframeInstance.  A sdth:ProgramStep that executes a sdth:loadsFile command also performs an sdth:producesData operation. 
 
@@ -189,10 +190,8 @@ When a sdth:ProgramStep executes an sdth:savesFile operation, an external sdth:F
 **has range**
 - sdth:FileInstance
 
-
- 
 ### sdth:consumesData {#model-consumesdata}
-An sdth:consumesData is used when an sdth:ProgramStep uses data from an existing sdth:DataInstance.  This occurs when data are saved to an external file or when data in an existing sdth:DataInstance is modified.  
+An sdth:consumesData is used when an sdth:ProgramStep uses data from an existing sdth:DataInstance.  This occurs when data in an existing sdth:DataInstance is modified or when data are saved to an external file.  For external files, we use sdth:loadsFile, which is a specialization of sdth:consumesData.  
 
 **has domain**
 - sdth:ProgramStep
@@ -202,26 +201,15 @@ An sdth:consumesData is used when an sdth:ProgramStep uses data from an existing
 
 
  
-### sdth:producesData {#model-producesData}
-An sdth:producesData is used when an sdth:ProgramStep results in a new sdth:DataframeInstance.  This occurs when data are read from an external file or when data in an existing sdth:DataframeInstance is modified.  
+### sdth:producesData {#model-producesdata}
+An sdth:producesData is used when an sdth:ProgramStep results in a new sdth:DataframeInstance.  This occurs when data in an existing sdth:DataInstance is modified or when data are saved to an external file.  For external files, we use sdth:savesFile, which is a specialization of sdth:producesData. 
+
 
 **has domain**
 - sdth:ProgramStep
 
 **has range**
 - sdth:DataframeInstance
-
-
- 
-### sdth:consumesData {#model-consumesData}
-An sdth:consumesData is used when an sdth:ProgramStep uses data from an existing sdth:DataframeInstance.  This occurs when data are saved to an external file or when data in an existing sdth:DataframeInstance is modified.  
-
-**has domain**
-- sdth:ProgramStep
-
-**has range**
-- sdth:DataframeInstance
-
 
  
 ### sdth:hasVarInstance {#model-hasvarinstance}
@@ -233,11 +221,11 @@ sdth:hasVarInstance is used to enumerate the sdth:VariableInstances in an sdth:D
 **has range**
 - sdth:VariableInstance
 
- 
 
 ## Usage and Assignment of a VariableInstance {#model-usage}
+Usage and Assignment describe the Variable Instances accessed in a Program Step and the new Variable Instances created by a Program Step. 
 
-###  sdth:usesVariable  {#model-usesvariable}
+### sdth:usesVariable  {#model-usesvariable}
 
 sdth:usesVariable specifies an sdth:VariableInstance that affects the outcome of an sdth:ProgramStep.  
 
@@ -260,7 +248,7 @@ sdth:assignsVariable specifies that an sdth:VariableInstance is an outcome of an
 
  
 ## Derivation and Elaboration {#model-derivation}
-Derivation and Elaboration describe the lineage of a data entity.  Derivation is used when values in a data entity were changed to derive a new data entity.  Elaboration is used when metadata about a data entity changed, but its values remained the same.  
+Derivation and Elaboration describe the lineage of a data entity.  Derivation is used when values in an existing data entity are changed to create a new data entity.  Elaboration is used when a new data entity is created by modifying metadata about an existing data entity, but the new data entity has the same values as its predecessor.  
 
 
 ###  sdth:wasDerivedFrom {#model-wasderivedfrom}
