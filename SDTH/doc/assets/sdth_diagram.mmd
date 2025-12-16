@@ -46,10 +46,10 @@ classDiagram
 
  
 
- DataInstance --> VariableInstance  : subclass
- DataInstance --> DataframeInstance : subclass  
-  DataInstance --> TextInstance : subclass
- DataInstance --> ImageInstance : subclass
+ DataInstance --> VariableInstance  : specialization
+ DataInstance --> DataframeInstance : specialization  
+  DataInstance --> TextInstance : specialization
+ DataInstance --> ImageInstance : specialization
 
 
  Program --> ProgramStep : hasProgramStep
