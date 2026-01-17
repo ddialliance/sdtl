@@ -11,7 +11,7 @@
     - @id 
     - hasName
     - wasDerivedFrom or elaborationOf
-5. Every DataframeInstance and FileInstance should have at least one hasVarInstance
+5. Every DataframeInstance and FileInstance should have at least one hasVariableInstance
 6. wasDerivedFrom is used for ProgramSteps that 
     - change values in a data object 
     - change the number of rows or columns in a data object

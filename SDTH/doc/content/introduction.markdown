@@ -1,13 +1,15 @@
 # Introduction
 
-The principles of Open Science and FAIR (Findable, Accessible, Reusable, Interoperable) data imply that the management and analysis of data should be transparent. However, transparency is difficult to achieve when data are processed by programs and scripts written for statistical software, databases, or other systems. Even when these scripts are openly available, they are often long, complex, and difficult to understand. SDTH offers a simple way to ask basic questions about a program, like:  
-1. What variables affected the values of variable X?
-2. What variables were affected by variable X?
-3. What commands affected the values of variable X?
-4. What commands were affected by variable X?
-SDTH offers a simple way to answer these questions.  
+The principles of Open Science and FAIR (Findable, Accessible, Reusable, Interoperable) data imply that the management and analysis of data should be transparent. However, transparency is difficult to achieve when data are processed by programs and scripts written for statistical software, databases, or other systems. Even when these scripts are openly available, they are often long, complex, and difficult to understand. SDTH offers a simple way to ask basic questions about a program, like:
 
-SDTH also provides a bridge between computer programs and PROV [[prov-dm]], a W3C standard for storing and querying provenance metadata.  SDTH applies the PROV approach to computer programs that modify data.  Most previous applications of PROV have been designed to describe workflows.  Programs are treated as black boxes. Their inputs and outputs are described, but the operations within a program are not examined.  SDTH traces data modifications to program steps within programs.   
+1. What variables affected the values of variable X?  
+2. What variables were affected by variable X?  
+3. What commands affected the values of variable X?  
+4. What commands were affected by variable X?  
+  
+SDTH is designed to answer these questions.  
+  
+SDTH also provides a bridge between computer programs and PROV [[prov-dm]], a W3C standard for storing and querying provenance metadata.  SDTH applies the PROV approach to computer programs that modify data.  Most previous applications of PROV have been designed to describe workflows.  Programs are treated as black boxes. Their inputs and outputs are described, but the operations within a program are not examined.  SDTH traces data modifications to program steps within programs.  
 
 ## SDTH and SDTL
 
@@ -15,9 +17,9 @@ SDTH came out of the same project team that created Structured Data Transformati
 
 SDTL grew out of the need for a common language that could express commands in five widely used statistical analysis packages (SPSS, SAS, Stata, R, and Python).  These languages were developed independently, and each one has its own syntax and vocabulary.  Someone familiar with SPSS may have difficulty understanding R. SDTL serves as a common intermediate language, and the most common commands in all five source languages can be translated into SDTL without loss of information.  In addition, SDTL is in a 'structured' format (e.g., JSON, XML, RDF) that can be easily read by computer software.  All of the other languages require a 'parser' to extract information from a command according to its particular syntax. In contrast, SDTL has minimal syntax, because the parts of an SDTL command are unambiguously identified by tags and delimiters.
 
-SDTH was developed to make it easier to answer simple questions about computer programs. The features that make SDTL precise and machine actionable also make it verbose and difficult to search. The details available in SDTL are not required to answer questions like those above. For example, Question 1 does not ask how variable X was affected by other variables.  It asks which variables affected variable X.  The detail in SDTL makes answering this question very complicated.  
+SDTH was developed to make it easier to answer simple questions about computer programs. The features that make SDTL precise and machine actionable also make it verbose and difficult to search. The details available in SDTL are not required to answer questions like those above. For example, Question 1 does not ask **how** variable X was affected by other variables.  It asks **which** variables affected variable X.  The detail in SDTL makes answering this question very complicated.  
 
-SDTH and SDTL work very well together. SDTL commands can be included in SDTH using the sdth:hasSDTL predicate, and there are two reasons to create SDTH from SDTL, rather than translating other languages directly into SDTH.  First, SDTL decomposes complex commands in other languages into simpler steps, which are easier to follow and understand.  Second, SDTL has the advantages of being a common intermediate language that does not require a parser, and prototype code for translating other languages into SDTL already exists.  
+SDTH and SDTL work very well together. SDTL commands can be included in SDTH using the sdth:hasSDTL predicate, and there are reasons to create SDTH from SDTL, rather than translating other languages directly into SDTH.  First, SDTL decomposes complex commands in other languages into simpler steps, which are easier to follow and understand.  Second, SDTL has the advantages of being a common intermediate language that does not require a parser, and prototype code for translating several languages into SDTL already exists.  
 
 ## SDTH and PROV
 

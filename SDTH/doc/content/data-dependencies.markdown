@@ -1,6 +1,6 @@
 # Programs modified by data content
 
-Data transformation programs may include program steps that depend upon the contents of a datafile in complex ways.  We propose ways of handling two common examples of data-dependent programs.
+Data transformation programs may include program steps that depend upon the contents of a datafile in complex ways.  This section proposes ways of handling two common examples of data-dependent programs.
 
 ## Iterative operations
 Data transformation programs may include iterative operations, where the number of iterations depends upon an aspect of the data such as the number of rows, columns (variables), or unique values of a variable.  
