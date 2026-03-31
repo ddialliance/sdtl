@@ -1,0 +1,58 @@
+%% ---
+%% config:
+%%   theme: redux
+%%   layout: fixed
+%% ---
+flowchart TB
+    DF01["DF01"] -- hasPart --> V011["V011"] & V012["V012"]
+    DF01 -- hasName --> Dataframe01(["SurveyDat"])
+    V011 -- hasName --> Variable01(["Year_survey"])
+    V012 -- hasName --> Variable02(["Age"])
+    V013["V013"] -- hasName --> Variable03(["Year_birth"])
+    V013 -- derivedFrom --> V011 & V012
+    DF02["DF02"] -- hasName --> Dataframe02(["SurveyDat"])
+    DF02 -- derivedFrom --> DF01
+    DF02 -- hasPart --> V011 & V012 & V013
+    PS01[/"PS01"/] -- hasSourceCode --> SC01(["Year_birth=Year_survey-Age"])
+    PS01 -- consumesData --> DF01 & V011 & V012
+    PS01 -- producesData --> DF02 & V013
+    DF01 -- hasStructure --> DFS01(["Dataframe"])
+    DF02 -- hasStructure --> DFS02(["Dataframe"])
+    V011 -- hasStructure --> Vs011(["Variable"])
+    V012 -- hasStructure --> Vs012(["Variable"])
+    V013 -- hasStructure --> Vs013(["Variable"])
+
+    style V011 stroke:#2962FF
+    style V012 stroke:#AA00FF
+    style Variable01  stroke:#2962FF
+    style Variable02  stroke:#AA00FF
+    style V013 stroke:#00C853
+    style Variable03  stroke:#00C853
+    style DF02 stroke:#D50000
+    style Dataframe02  stroke:#D50000
+    style PS01 stroke:#FFD600
+    style SC01 stroke:#FFD600
+    style DFS02  stroke:#D50000
+    style Vs011 stroke:#2962FF
+    style Vs012 stroke:#AA00FF
+    style Vs013 stroke:#00C853  
+    linkStyle 3 stroke:#2962FF,fill:none
+    linkStyle 4 stroke:#AA00FF,fill:none
+    linkStyle 5 stroke:#00C853,fill:none
+    linkStyle 6 stroke:#00C853,fill:none
+    linkStyle 7 stroke:#00C853,fill:none
+    linkStyle 8 stroke:#D50000,fill:none
+    linkStyle 9 stroke:#D50000,fill:none
+    linkStyle 10 stroke:#D50000,fill:none
+    linkStyle 11 stroke:#D50000,fill:none
+    linkStyle 12 stroke:#D50000,fill:none
+    linkStyle 13 stroke:#FFD600,fill:none
+    linkStyle 14 stroke:#FFD600,fill:none
+    linkStyle 15 stroke:#FFD600,fill:none
+    linkStyle 16 stroke:#FFD600,fill:none
+    linkStyle 17 stroke:#FFD600,fill:none
+    linkStyle 18 stroke:#FFD600,fill:none
+    linkStyle 20 stroke:#D50000,fill:none
+    linkStyle 21 stroke:#2962FF,fill:none
+    linkStyle 22 stroke:#AA00FF,fill:none
+    linkStyle 23 stroke:#00C853,fill:none

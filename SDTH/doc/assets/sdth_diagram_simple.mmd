@@ -1,0 +1,19 @@
+---
+config:
+  theme: redux
+  layout: fixed
+---
+flowchart TB
+    Program["Program"] -- hasProgramStep --> ProgramStep["ProgramStep"]
+    ProgramStep -- hasProgramStep --> ProgramStep
+    ProgramStep -- usesVariable / assignsVariable --> VariableInstance["VariableInstance"]
+    ProgramStep -- consumesData / producesData --> DataInstance["DataInstance"]
+    ProgramStep -- loadsFile / savesFile --> FileInstance["FileInstance"]
+    DataframeInstance["DataframeInstance"] -- hasVariableInstance --> VariableInstance
+    FileInstance -- hasDataInstance --> DataInstance
+    DataInstance -- derivedFrom / elaborationOf / hasDataInstance --> DataInstance
+    VariableInstance -- subclassOf --> DataInstance
+    DataframeInstance -- subclassOf --> DataInstance
+    TextInstance["TextInstance"] -- subclassOf --> DataInstance
+    ImageInstance["ImageInstance"] -- subclassOf --> DataInstance
+    FileInstance -- hasVariableInstance --> VariableInstance

@@ -1,14 +1,4 @@
-# SDTH Namespace and Vocabulary
-
-The SDTH namespace URI is:
-
-- http://rdf-vocabulary.ddialliance.org/SDTH#
-
-The prefix 'sdth' will be associated to this namespace in all this specification.
-
-The SDTH vocabulary is a set of URIs, given in the left-hand column in Tables 1 and 2. The right hand column indicates which section of this document explains the corresponding term in more detail.
-
-# SDTH Entities
+# SDTH Summary
 
 
 <table class="simple" border="1">
@@ -24,38 +14,38 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in Tables 1 
 <tbody>
 <tr>
 <td id="Program">[[[#model-program]]]</td>
-<td>sdth:hasName, sdth:hasProgramStep</td>
+<td>sdth:hasProgramStep, sdth:hasName</td>
 <td></td>
 <td>prov:Entity, prov:Plan, provone:Program</td>
 </tr>
 <tr>
 <td id="ProgramStep">[[[#model-programstep]]]</td>
-<td>sdth:hasProgramStep, sdth:loadsFile, sdth:savesFile, sdth:producesData, sdth:consumesData, sdth:usesVariableInstance, sdth:assignsVariableInstance </td>
+<td>sdth:hasProgramStep, sdth:loadsFile, sdth:savesFile, sdth:producesData, sdth:consumesData, dth:usesVariable, sdth:assignsVariable</td>
 <td>sdth:hasProgramStep</td>
 <td>prov:Activity, provone:Program</td>
 </tr>
 <tr>
-<td id="DataInstance">[[[#model-datainstance]]]</td>
-<td>sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf, sdth:hasDataInstance, sdth:hasVariableInstance </td>
-<td>sdth:hasDataInstance, sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom, sdth:elaborationOf</td>
+<td id="DataInstance">[[[#model-dataframeinstance]]]</td>
+<td>sdth:hasName, sdth:wasDerivedFrom</td>
+<td>sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom</td>
 <td>prov:Entity, provone:Data</td>
 </tr>
 <tr>
 <td id="FileInstance">[[[#model-fileinstance]]]</td>
-<td>sdth:hasName, sdth:hasDataInstance, sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf</td>
+<td>sdth:hasName, sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf</td>
 <td>sdth:loadsFile, sdth:savesFile, sdth:wasDerivedFrom, sdth:elaborationOf</td>
 <td>prov:Entity, provone:Data</td>
 </tr>
 <tr>
 <td id="DataframeInstance">[[[#model-dataframeinstance]]]</td>
 <td>sdth:hasName, sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf</td>
-<td>sdth:hasDataInstance, sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom, sdth:elaborationOf</td>
+<td>sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom, sdth:elaborationOf</td>
 <td>prov:Entity, provone:Data, sdth:DataInstance</td>
 </tr>
 <tr>
 <td id="VariableInstance">[[[#model-variableinstance]]]</td>
 <td>sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf</td>
-<td>sdth:hasVariableInstance, sdth:usesVariableInstance, sdth:assignsVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf</td>
+<td>sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf</td>
 <td>prov:Entity, provone:Data, sdth:DataInstance</td>
 </tr>
 <td id="TextInstance">[[[#model-textinstance]]]</td>
@@ -72,40 +62,39 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in Tables 1 
 </table>
 
 
-# SDTH Properties
 
 <table class="simple" border="1">
-  <caption>Table 2. SDTH Properties</caption>
+  <caption>Table 1. SDTH Properties</caption>
   <thead>
     <tr>
       <th>Name</th>
       <th>Domain</th>
       <th>Range</th>
-      <th>Subproperty of</th>
+      <th>Subclass of</th>
     </tr>
 </thead>
 <tr>
 <td id="hasProgramStep">[[[#model-hasprogramstep]]]</td>
 <td>sdth:Program, sdth:hasProgramStep</td>
-<td>sdth:ProgramStep</td>
-<td>provone:hasSubProgram</td>
+<td>sdth:hasProgramStep</td>
+<td></td>
 </tr>
 
 <tr>
 <td id="hasSourceCode">[[[#model-hassourcecode]]]</td>
-<td>sdth:Program, sdth:ProgramStep</td>
+<td>sdth:Program, sdth:hasProgramStep</td>
 <td>xsd:string</td>
 <td></td>
 </tr>
 <tr>
 <td id="hasSDTL">[[[#model-hassdtl]]]</td>
-<td>sdth:Program, sdth:ProgramStep</td>
+<td>sdth:Program, sdth:hasProgramStep</td>
 <td>xsd:string</td>
 <td></td>
 </tr>
 <tr>
 <td id="hasName">[[[#model-hasname]]]</td>
-<td>sdth:Program, sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance, sdth:TextInstance, sdth:ImageInstance</td>
+<td>sdth:Program, sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance</td>
 <td>xsd:string</td>
 <td></td>
 </tr>
@@ -125,63 +114,60 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in Tables 1 
 <tr>
 <td id="consumesData">[[[#model-consumesdata]]]</td>
 <td>sdth:ProgramStep</td>
-<td>sdth:DataInstance, sdth:DataframeInstance, sdth:TextInstance, sdth:ImageInstance</td>
+<td>sdth:DataInstance</td>
 <td></td>
 </tr>
 <tr>
 <td id="producesData">[[[#model-producesdata]]]</td>
 <td>sdth:ProgramStep</td>
-<td>sdth:DataInstance, sdth:DataframeInstance, sdth:TextInstance, sdth:ImageInstance</td>
+<td>sdth:DataInstance</td>
 <td></td>
 </tr>
 
 <tr>
-<td id="hasDataInstance">[[[#model-hasDataInstance]]]</td>
-<td>sdth:DataInstance</td>
-<td>sdth:DataInstance, sdth:DataframeInstance, sdth:TextInstance, sdth:ImageInstance</td>
+<td id="hasVariableInstance">[[[#model-hasVariableInstance]]]</td>
+<td>sdth:DataframeInstance</td>
+<td>sdth:VariableInstance</td>
 <td></td>
 </tr>
 <tr>
-<td id="hasVariableInstance">[[[#model-hasVariableInstance]]]</td>
-<td>sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance</td>
-<td>sdth:VariableInstance</td>
-<td>sdth:hasDataInstance</td>
-</tr>
-<tr>
-<td id="usesVariableInstance">[[[#model-usesvariable]]]</td>
+<td id="usesVariable">[[[#model-usesvariable]]]</td>
 <td>sdth:ProgramStep</td>
 <td>sdth:VariableInstance</td>
-<td>sdth:consumesData</td>
+<td></td>
 </tr>
 <tr>
-<td id="assignsVariableInstance">[[[#model-assignsvariable]]]</td>
+<td id="assignsVariable">[[[#model-assignsvariable]]]</td>
 <td>sdth:ProgramStep</td>
 <td>sdth:VariableInstance</td>
-<td>sdth:producesData</td>
+<td></td>
 </tr>
 <tr>
 <td id="wasDerivedFrom">[[[#model-wasderivedfrom]]]</td>
-<td>sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance, sdth:TextInstance, sdth:ImageInstance</td>
-<td>sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance, sdth:TextInstance, sdth:ImageInstance</td>
-<td>prov:wasDerivedFrom</td>
+<td>sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance</td>
+<td>sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance</td>
+<td></td>
 </tr>
 <tr>
 <td id="elaborationOf">[[[#model-elaborationof]]]</td>
 <td>sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance, sdth:TextInstance, sdth:ImageInstance</td>
 <td>sdth:FileInstance, sdth:DataInstance, sdth:DataframeInstance, sdth:VariableInstance, sdth:TextInstance, sdth:ImageInstance</td>
-<td>prov:wasDerivedFrom</td>
+<td></td>
 </tr>
 
-</tbody>
-</table>
+<tbody>
 
-# Other Vocabularies
+
+<figure id="sdth-relationships">
+  <img src="assets\sdth_diagram.png" alt="sdth relationships" />
+  <figcaption>shows relationships among the elements of SDTH</figcaption>
+</figure>
 
 Other vocabularies used in this document are listed in the table below, with their namespaces and associated prefixes.
 
 
 <table class="simple">
-    <caption>Table 3. Other vocabularies used in this document</caption>
+    <caption>Table 2. Other vocabularies used in this document</caption>
     <thead>
         <tr>
             <th>Prefix</th>
@@ -208,9 +194,7 @@ Other vocabularies used in this document are listed in the table below, with the
     </tbody>
 </table>
 
-ProvONE [[ProvONE]] is an extension of PROV designed to describe scientific workflow computational processes.
 
 RDF, RDFS and OWL vocabularies are also used, with their usual URIs and prefixes. Information on these standards can be found on the W3C web site.
 
-The RDF examples are expressed with the Terse RDF Triple language (Turtle) [[TURTLE]]. Unless otherwise specified, these examples use http://example.org/ns/ as a base namespace; resource names between angle brackets represent URIs in this namespace. Note however that individual resource names used as examples are entirely fictitious.
-
+The RDF examples are expressed with the Terse RDF Triple language (Turtle) [[TURTLE]]. Unless otherwise specified, these examples use http://example.org/ns/ as a base namespace; resource names between angle brackets represent URIs in this namespace. Note however that individual resource names used as examples are entirely fictious.

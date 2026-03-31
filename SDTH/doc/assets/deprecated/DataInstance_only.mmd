@@ -1,0 +1,17 @@
+%% ---
+%% config:
+%%   theme: redux
+%%   layout: fixed
+%% ---
+flowchart TB
+    DataInstance["DataInstance"] -- hasStructure --> DataStructureTypes(["str:Structure"])
+    Program["Program"] -- hasProgramStep --> ProgramStep["ProgramStep"]
+    ProgramStep -- consumesData --> DataInstance
+    ProgramStep -- producesData --> DataInstance
+    ProgramStep -- loadsFile --> FileInstance["FileInstance"]
+    ProgramStep -- savesFile --> FileInstance
+    DataInstance -- hasPart --> DataInstance
+    FileInstance -- hasDataInstance --> DataInstance
+    DataInstance -- hasName --> Name(["str:Name"])
+    ProgramStep -- hasPart --> ProgramStep
+    Program -- hasLanguage --> Language(["str:Language"])

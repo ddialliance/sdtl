@@ -1,0 +1,45 @@
+flowchart TB
+    DF01--hasPart-->V011
+    DF01--hasPart-->V012
+
+    DF01--hasName-->Dataframe01
+    Dataframe01([Dataframe01])
+    DF01--hasStructure-->DFS01
+    DFS01([Dataframe])
+
+
+    V011--hasName-->Variable01
+    V012--hasName-->Variable02
+    V013--hasName-->Variable03
+    Variable01([Variable01])
+    Variable02([Variable02])
+    Variable03([Variable03])
+    V013--derivedFrom-->V011
+    V013--derivedFrom-->V012
+
+    V011--hasStructure-->Vs011
+    VS011([Variable])
+    V012--hasStructure-->Vs012
+    VS011([Variable])
+    V013--hasStructure-->Vs013
+    VS013([Variable])
+
+
+    
+    DF02--hasName-->Dataframe02
+    Dataframe02([Dataframe02])
+    DF02--hasStructure-->DFS02
+    DFS02([Dataframe])
+
+    DF02--derivedFrom-->DF01
+    DF02--hasPart-->V011
+    DF02--hasPart-->V012
+    DF02--hasPart-->V013
+
+    PS01--hasSourceCode-->SC01
+    SC01([Variable03=Variable01+Variable02])
+
+    PS01--consumesData-->DF01
+    PS01--producesData-->DF02
+
+

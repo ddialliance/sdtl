@@ -1,0 +1,112 @@
+
+%%{init: {'theme': 'default', 'themeCSS': 'svg { background-color: white; }'}}%%
+
+classDiagram
+  
+  class DataInstance["sdth:DataInstance"] {
+    sdth:hasName
+    sdth:hasDataInstance()
+    sdth:producesData()
+    sdth:consumesData()
+    sdth:wasDerivedFrom()
+    sdth:elaborationOf()
+  }
+  class Program["sdth:Program"] {
+    sdth:hasName
+    sdth:hasProgramStep()
+     }
+
+  class ProgramStep["sdth:ProgramStep"] {
+    sdth:hasSourceCode
+    sdth:hasSDTL
+    sdth:hasProgramStep()
+    sdth:loadsFile()
+    sdth:savesFile()
+    sdth:producesData()
+    sdth:consumesData()
+    sdth:usesVariableInstance()
+    sdth:assignsVariableInstance()
+  } 
+ class FileInstance["sdth:FileInstance"] {
+    sdth:hasName
+    sdth:loadsFile
+    sdth:savesFile
+    sdth:wasDerivedFrom()
+    sdth:elaborationOf()
+  }
+  class DataframeInstance["sdth:DataframeInstance"] {
+    sdth:hasName
+    sdth:hasDataInstance
+    sdth:hasVariableInstance
+    sdth:wasDerivedFrom
+    sdth:elaborationOf
+    sdth:hasDataInstance()
+    sdth:producesData()
+    sdth:consumesData()
+    sdth:wasDerivedFrom()
+    sdth:elaborationOf()
+  }
+
+  class VariableInstance["sdth:VariableInstance"] {
+    sdth:hasName 
+    sdth:wasDerivedFrom
+    sdth:elaborationOf
+    sdth:hasVariableInstance()
+    sdth:usesVariableInstance()
+    sdth:assignsVariableInstance()
+    sdth:wasDerivedFrom()
+    sdth:elaborationOf()   
+  }
+
+  class TextInstance["sdth:TextInstance"] {
+    sdth:hasName
+    sdth:wasDerivedFrom
+    sdth:producesData()
+    sdth:consumesData()
+    sdth:wasDerivedFrom()
+  }
+  class ImageInstance["sdth:ImageInstance"] {
+    sdth:hasName
+    sdth:wasDerivedFrom
+    sdth:producesData()
+    sdth:consumesData()
+    sdth:wasDerivedFrom()
+  }
+
+
+ VariableInstance --> DataInstance : subclassOf
+ DataframeInstance --> DataInstance : subclassOf
+ TextInstance --> DataInstance : subclassOf
+ ImageInstance --> DataInstance : subclassOf
+%%  DataInstance --> VariableInstance  : specialization
+%%  DataInstance --> DataframeInstance : specialization  
+%%   DataInstance --> TextInstance : specialization
+%%  DataInstance --> ImageInstance : specialization
+
+
+ Program --> ProgramStep : hasProgramStep
+ ProgramStep --> ProgramStep : hasProgramStep
+
+ ProgramStep --> VariableInstance : usesVariable
+ ProgramStep --> VariableInstance : assignsVariable
+ ProgramStep --> DataframeInstance : consumesData
+ ProgramStep --> DataframeInstance : producesData
+ ProgramStep --> DataInstance : consumesData
+ ProgramStep --> DataInstance : producesData
+ProgramStep --> FileInstance : loadsFile
+ ProgramStep --> FileInstance : savesFile
+
+
+ DataframeInstance --> VariableInstance : hasVariableInstance
+
+ FileInstance --> DataInstance : hasDataInstance
+ DataInstance --> DataInstance : derivedFrom / elaborationOf
+
+%%   DataframeInstance --> DataframeInstance : sdth_derivedFrom
+%%   DataframeInstance --> DataframeInstance : sdth_elaborationOf
+
+%%   FileInstance --> FileInstance : sdth_derivedFrom
+%%   FileInstance --> FileInstance : sdth_elaborationOf
+%%  VariableInstance --> VariableInstance : sdth_derivedFrom
+%% VariableInstance --> VariableInstance : sdth_elaborationOf
+

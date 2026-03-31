@@ -1,0 +1,95 @@
+
+%%{init: {'theme': 'default', 'themeCSS': 'svg { background-color: white; }'}}%%
+
+classDiagram
+  
+  class DataInstance["sdth:DataInstance"] {
+    sdth:hasName
+    sdth:derivedFrom()
+    sdth:elaborationOf()
+  }
+  class Program["sdth:Program"] {
+    sdth:hasName
+     }
+
+  class ProgramStep["sdth:ProgramStep"] {
+    sdth:hasSourceCode
+    sdth:hasSDTL
+    sdth:hasProgramStep()
+  } 
+ class FileInstance["sdth:FileInstance"] {
+    sdth:hasName
+    sdth:derivedFrom()
+    sdth:elaborationOf()
+  }
+%%   class DataframeInstance["sdth:DataframeInstance"] {
+%%     sdth:hasName
+%%     sdth:derivedFrom()
+%%     sdth:elaborationOf()
+%%   }
+
+%%   class VariableInstance["sdth:VariableInstance"] {
+%%     sdth:hasName 
+%%     sdth:derivedFrom()
+%%     sdth:elaborationOf()   
+%%   }
+
+%%   class TextInstance["sdth:TextInstance"] {
+%%     sdth:hasName
+%%     sdth:derivedFrom()
+%%   }
+%%   class ImageInstance["sdth:ImageInstance"] {
+%%     sdth:hasName
+%%     sdth:derivedFrom()
+%%   }
+    class DataStructureTypes {
+        wide table
+        long table
+        variable
+        datacube
+        measure
+        dimension
+        scalar
+        list
+        matrix
+        DDI Codebook()
+        DDI Lifecycle()
+        EML ()      
+    }
+    %% class MetadataInstance ["sdth:MetadataInstance"] {
+    %% }
+ 
+
+%%  DataInstance --> VariableInstance  : specialization
+%%  DataInstance --> DataframeInstance : specialization  
+%%   DataInstance --> TextInstance : specialization
+%%  DataInstance --> ImageInstance : specialization
+
+    DataInstance --> DataStructureTypes : hasStructure
+    %% MetadataInstance --> DataInstance : describes
+
+    Program --> ProgramStep : hasProgramStep
+
+%%  ProgramStep --> VariableInstance : usesVariable
+%%  ProgramStep --> VariableInstance : assignsVariable
+ ProgramStep --> DataInstance : consumesData
+ ProgramStep --> DataInstance : producesData
+ ProgramStep --> FileInstance : loadsFile
+ ProgramStep --> FileInstance : savesFile
+
+   DataInstance --> DataInstance : hasPart
+ 
+%%  DataframeInstance --> VariableInstance : hasVariableInstance
+
+ FileInstance --> DataInstance : hasDataInstance
+ %%FileInstance --> MetadataInstance : hasMetadataInstance
+%% DataInstance --> DataInstance : sdth_derivedFrom
+
+%%   DataframeInstance --> DataframeInstance : sdth_derivedFrom
+%%   DataframeInstance --> DataframeInstance : sdth_elaborationOf
+
+%%   FileInstance --> FileInstance : sdth_derivedFrom
+%%   FileInstance --> FileInstance : sdth_elaborationOf
+%%  VariableInstance --> VariableInstance : sdth_derivedFrom
+%% VariableInstance --> VariableInstance : sdth_elaborationOf
+
