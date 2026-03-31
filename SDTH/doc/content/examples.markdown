@@ -1,6 +1,6 @@
 # Examples
 
-Figure 2 shows part of an SDTH graph consisting of three program steps (dark blue rectangles with white text) that create new variables. #ProgramStep5a is a part of a complex ProgramStep (#ProgramStep5).  (Due to space limitations, the example program and related files are available on Gitlab at https://gitlab.com/c2metadata/sdth-example.) Three variable instances are represented by red ovals. Each variable is linked to its name in the source code. 
+Figure 2 shows part of an SDTH graph consisting of three program steps (dark blue rectangles with white text) that create new variables. #ProgramStep5a is part of a complex ProgramStep (#ProgramStep5).  (Due to space limitations, the example program and related files are available on Gitlab at https://gitlab.com/c2metadata/sdth-example.) Three variable instances are represented by red ovals. Each variable is linked to its name in the source code. 
 
 <figure id="sdth-example">
   <img src="assets\ProgramStepRecursion_005a.png" alt="sdth example" />
