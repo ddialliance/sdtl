@@ -198,7 +198,7 @@ An sdth:ImageInstance is a data object that can be rendered as an image. An sdth
 
 sdth:hasName specifies the program-visible identifier for a data entity. The value of sdth:hasName MUST match the identifier used in the source code. All instances of SDTH data entities MUST have exactly one sdth:hasName value.
 
-The rdfs:label property may be used for human-friendly descriptions (e.g., “Age at last birthday”) which are available in languages like SPSS ('VARIABLE LABELS'), SAS ('LABEL'), Stata ('label variable'), and R ({sjlabelled} or {labelled} packages).
+The rdfs:label property may be used for human-friendly descriptions of SDTH data entities (e.g., “Age at last birthday”), which are available in languages like SPSS ('VARIABLE LABELS'), SAS ('LABEL'), Stata ('label variable'), and R ({sjlabelled} and {labelled} packages).
 
 Example in R:
 ```
