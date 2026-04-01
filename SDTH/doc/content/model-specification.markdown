@@ -49,7 +49,7 @@ sdth:hasProgramStep specifies sdth:ProgramSteps within an sdth:Program or sdth:P
 
 ### sdth:hasSourceCode {#model-hassourcecode}  
 
-sdth:hasSourceCode specifies the original program code represented by an sdth:Program or sdth:ProgramStep.
+sdth:hasSourceCode specifies the verbatim source code text represented by an sdth:Program or sdth:ProgramStep. The value is a string literal.
 
 **has domain**  
 
@@ -194,9 +194,26 @@ An sdth:ImageInstance is a data object that can be rendered as an image. An sdth
 - sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom  
 
 
-###  sdth:hasName  {#model-hasname}  
+###  sdth:hasName  and rdfs:label  {#model-hasname}  
 
-sdth:hasName specifies a name for a data entity.  All data entities in SDTH are expected to have names.  A name links an SDTH data entity to the object that it represents in a script or program code. 
+sdth:hasName specifies the program-visible identifier for a data entity. The value of sdth:hasName MUST match the identifier used in the source code. All instances of SDTH data entities MUST have exactly one sdth:hasName value.
+
+The rdfs:label property may be used for human-friendly descriptions (e.g., “Age at last birthday”) which are available in languages like SPSS ('VARIABLE LABELS'), SAS ('LABEL'), Stata ('label variable'), and R ({sjlabelled} or {labelled} packages).
+
+Example in R:
+```
+library(tidyverse)
+library(labelled)
+load("GSS_sample.Rdata")
+cdata <- GSS_sample
+var_label(cdata$AGE) <- "Age at last birthday"
+```
+
+- "GSS_sample.Rdata" is the name of a FileInstance.
+- "GSS_sample" is the name of a DataframeInstance.
+- "cdata" is the name of a DataframeInstance.
+- "cdata$AGE" is the name of a VariableInstance.
+- "Age at last birthday" is the label of the VariableInstance named "cdata$AGE".
 
 **has domain**  
 
