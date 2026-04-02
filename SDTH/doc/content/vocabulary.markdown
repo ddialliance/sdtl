@@ -16,8 +16,8 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in Tables 1 
   <thead>
     <tr>
       <th>Name</th>
-      <th>Domain of</th>
-      <th>Range of</th>
+      <th>In domain of</th>
+      <th>In range of</th>
       <th>Subclass of</th>
     </tr>
 </thead>
