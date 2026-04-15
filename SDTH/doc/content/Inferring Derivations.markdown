@@ -1,7 +1,7 @@
 # Inferring Derivations
 A Program may not provide enough information to describe the derivation of all of the data objects that it uses and creates.  
 
-- Data objects affected by the execution of a program are often not identified.  For example, when a  DataframeInstance is loaded into memory from a FileInstance, it may include many VariableInstances that are never mentioned in the program. Unidentified VariableInstances are included in most of the DataframeInstances derived from the original DataframeInstance.  
+- Data objects affected by the execution of a program are often not identified.  For example, when a  DataframeInstance is loaded into memory from a FileInstance, it may include many VariableInstances that are never mentioned in the program. Unidentified VariableInstances will be included in most of the DataframeInstances derived from the original DataframeInstance.  
 
 - When more than one file is loaded, the origins of data objects may be ambiguous.  For example, if two FileInstances are loaded into memory, it may be unclear which FileInstance is the source of a particular DataInstance mentioned later in the Program.  
 
@@ -9,7 +9,7 @@ A Program may not provide enough information to describe the derivation of all o
 
 - In some programming languages, the names of data objects can be assigned dynamically during execution of the program.
 
-- Data objects created or changed during execution of a program may  depend upon data.  When a dataframe is "reshaped" from "long" to "wide", the number of columns in the resulting dataframe depends upon the data.  A program may include loops or branches depending on logical conditions evaluated during execution.  
+- Data objects created or changed during execution of a program may  depend upon data.  When a dataframe is "reshaped" from "long" to "wide", the number of columns in the resulting "wide" dataframe depends upon the data.  A program may include loops or branches depending on logical conditions evaluated during execution that add or delete columns in a dataframe.  
 
 There are several ways to make unmentioned or dynamically created data objects visible, so that they are correctly described in SDTH.
 
@@ -19,4 +19,4 @@ There are several ways to make unmentioned or dynamically created data objects v
 
 3. In languages that allow multiple ways to reference a data object, like a column in a dataframe in R, these references should be resolved to a single name in SDTH.
 
-When the available information is incomplete or ambiguous, only derivation relationships that can be made with high confidence should be included SDTH.
+When the available information is incomplete or ambiguous, only derivation relationships that can be made with high confidence should be included SDTH. 
