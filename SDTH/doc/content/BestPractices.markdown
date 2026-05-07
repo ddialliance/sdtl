@@ -4,28 +4,31 @@
 2. If a VariableInstance is not changed by a ProgramStep, it passes to the next DataFrameInstance or FileInstance with the same @id
     - This means that a VariableInstance can exist in more than one DataFrameInstance at the same time.
 
-3. Every Program and ProgramStep should have:
+3. The SDTH type (i.e., sdth:Program, sdth:ProgramStep, sdth:DataInstance,...) of every entity must be explicitly declared.  
+
+4. Every Program and ProgramStep should have:
     - @id 
     - hasSourceCode or hasSDTL
-4. Every FileInstance, DataframeInstance, and VariableInstance should have:
+5. Every FileInstance, DataInstance, DataframeInstance, TextInstance, ImageInstance, and VariableInstance should have:
     - @id 
     - hasName
     - wasDerivedFrom or elaborationOf
-5. Every DataframeInstance and FileInstance should have at least one hasVariableInstance
-6. wasDerivedFrom is used for ProgramSteps that 
+6. Every DataframeInstance should have at least one hasVariableInstance
+    - A full enumeration of all VariableInstances in a DataframeInstance should always be created whenever a DataframeInstance is loaded from or saved into a FileInstance.
+7. wasDerivedFrom is used for ProgramSteps that 
     - change values in a data object 
     - change the number of rows or columns in a data object
     - change the order of rows or columns in a data object
-7. elaborationOf is used when metadata associated with a data object changes, but the values do not.  
+8. elaborationOf is used when metadata associated with a data object changes, but the values do not.  
 Examples are:
     - Labels for variables or values
     - Data type
     - Author
     - Title
     - Description
-8. A VariableInstance is an ordered set of data points
+9. A VariableInstance is an ordered set of data points
     - The order of data points is important, because operations on dataframes often use data points from preceding (lag) or following (lead) rows 
-9. A new VariableInstance is created when:
+10. A new VariableInstance is created when:
     - One or more values are changed
     - One or more rows are deleted
     - One or more rows are added

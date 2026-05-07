@@ -289,6 +289,8 @@ An sdth:producesData is used when an sdth:ProgramStep results in a new sdth:Data
 
 sdth:hasDataInstance is used when a complex DataInstance includes one or more other DataInstances.  For example, an array may consist of multiple vectors.  Each vector is a part of the array.  sdth:hasVariableInstance is a subclass of sdth:hasDataInstance used to describe the VariableInstances in a DataFrameInstance or FileInstance.
 
+When a new DataInstance is minted, all known DataInstances included in it **MUST** be enumerated with sdth:hasDataInstance.
+
 **has domain**  
 
 - sdth:DataInstance  
@@ -300,6 +302,8 @@ sdth:hasDataInstance is used when a complex DataInstance includes one or more ot
 ### sdth:hasVariableInstance {#model-hasVariableInstance}
 
 sdth:hasVariableInstance is used to enumerate the VariableInstances in a DataframeInstance or a FileInstance.  
+
+When a new DataframeInstance or a FileInstance is minted, all known VariableInstances in it **MUST** be enumerated with sdth:hasVariableInstance.
 
 **has super-class**  
 

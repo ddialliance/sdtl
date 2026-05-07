@@ -24,48 +24,48 @@ The SDTH vocabulary is a set of URIs, given in the left-hand column in Tables 1 
 <tbody>
 <tr>
 <td id="Program">[[[#model-program]]]</td>
-<td>sdth:hasName, sdth:hasProgramStep</td>
+<td>sdth:hasName, sdth:hasProgramStep, sdth:hasSourceCode, sdth:hasSDTL, rdfs:label </td>
 <td></td>
 <td>prov:Entity, prov:Plan, provone:Program</td>
 </tr>
 <tr>
 <td id="ProgramStep">[[[#model-programstep]]]</td>
-<td>sdth:hasProgramStep, sdth:loadsFile, sdth:savesFile, sdth:producesData, sdth:consumesData, sdth:usesVariableInstance, sdth:assignsVariableInstance </td>
+<td>sdth:hasProgramStep, sdth:loadsFile, sdth:savesFile, sdth:producesData, sdth:consumesData, sdth:usesVariableInstance, sdth:assignsVariableInstance, rdfs:label  </td>
 <td>sdth:hasProgramStep</td>
 <td>prov:Activity, provone:Program</td>
 </tr>
 <tr>
 <td id="DataInstance">[[[#model-datainstance]]]</td>
-<td>sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf, sdth:hasDataInstance, sdth:hasVariableInstance </td>
+<td>sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf, sdth:hasDataInstance, sdth:hasVariableInstance, rdfs:label  </td>
 <td>sdth:hasDataInstance, sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom, sdth:elaborationOf</td>
 <td>prov:Entity, provone:Data</td>
 </tr>
 <tr>
 <td id="FileInstance">[[[#model-fileinstance]]]</td>
-<td>sdth:hasName, sdth:hasDataInstance, sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf</td>
+<td>sdth:hasName, sdth:hasDataInstance, sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf, rdfs:label </td>
 <td>sdth:loadsFile, sdth:savesFile, sdth:wasDerivedFrom, sdth:elaborationOf</td>
 <td>prov:Entity, provone:Data</td>
 </tr>
 <tr>
 <td id="DataframeInstance">[[[#model-dataframeinstance]]]</td>
-<td>sdth:hasName, sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf</td>
+<td>sdth:hasName, sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf, rdfs:label </td>
 <td>sdth:hasDataInstance, sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom, sdth:elaborationOf</td>
 <td>prov:Entity, provone:Data, sdth:DataInstance</td>
 </tr>
 <tr>
 <td id="VariableInstance">[[[#model-variableinstance]]]</td>
-<td>sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf</td>
+<td>sdth:hasName, sdth:wasDerivedFrom, sdth:elaborationOf, rdfs:label </td>
 <td>sdth:hasVariableInstance, sdth:usesVariableInstance, sdth:assignsVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf</td>
 <td>prov:Entity, provone:Data, sdth:DataInstance</td>
 </tr>
 <td id="TextInstance">[[[#model-textinstance]]]</td>
 <td>sdth:hasName, sdth:wasDerivedFrom</td>
-<td>sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom</td>
+<td>sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom, rdfs:label </td>
 <td>prov:Entity, provone:Data, sdth:DataInstance</td>
 </tr>
 <td id="ImageInstance">[[[#model-imageinstance]]]</td>
 <td>sdth:hasName, sdth:wasDerivedFrom</td>
-<td>sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom</td>
+<td>sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom, rdfs:label </td>
 <td>prov:Entity, provone:Data, sdth:DataInstance</td>
 </tr>
 </tbody>
