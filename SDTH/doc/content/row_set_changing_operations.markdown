@@ -1,4 +1,4 @@
-##Row-set-changing operations
+# Row-set-changing operations
 A row-set-changing operation is any operation that changes the number of rows, identity of rows, or order of rows for every variable in a dataframe. This includes, but is not limited to, filtering rows, selecting cases, dropping rows, adding rows, sorting rows, deduplicating rows, joins/merges that add or remove rows, sampling rows, and aggregations/collapses.
 For every row-set-changing operation:
 
