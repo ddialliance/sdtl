@@ -130,22 +130,17 @@ Any change in one of the sdth:VariableInstances in an sdth:DataframeInstance res
 The sdth:VariableInstances in an sdth:DataframeInstance are enumerated using sdth:hasVariableInstance.
 
 **has super-class**  
-
 - prov:Entity, provone:Data, sdth:DataInstance
-
 **is in domain of**  
-
 - sdth:hasName, sdth:hasVariableInstance, sdth:wasDerivedFrom, sdth:elaborationOf
-
 **is in range of**  
-
 - sdth:producesData, sdth:consumesData, sdth:wasDerivedFrom, sdth:elaborationOf, sdth:hasDataInstance
 
 ### sdth:VariableInstance  {#model-variableinstance}  
 
-An sdth:VariableInstance refers to a set of values and their associated metadata appearing in an sdth:DataframeInstance or sdth:FileInstance.  Metadata associated with an sdth:VariableInstance can include data type (text, numeric, etc.), number of decimal places, or a value schema for a categorical variable.  The order of observations (rows) in an sdth:DataframeInstance or sdth:FileInstance is also an attribute of every sdth:VariableInstance.
+An sdth:VariableInstance refers to an **ordered set of values** and their associated metadata appearing in an sdth:DataInstance, sdth:DataframeInstance, or sdth:FileInstance.  Metadata associated with an sdth:VariableInstance can include data type (text, numeric, etc.), number of decimal places, or a value schema for a categorical variable.  The order of observations (rows) in an sdth:DataframeInstance or sdth:FileInstance is also an attribute of every sdth:VariableInstance.
 
-An sdth:VariableInstance is immutable. When an sdth:ProgramStep changes any aspect of an sdth:VariableInstance, it generates a new sdth:VariableInstance.  This includes changing any of the values in an sdth:DataframeInstance or any of the attributes of those values.  Sorting an sdth:DataframeInstance also results in a new set of sdth:VariableInstances.   This is necessary, because some data transformation commands use the order of rows in a dataframe in computations, such as the lag() function in statistical analysis programs like SAS and Stata.
+An sdth:VariableInstance is immutable. When an sdth:ProgramStep changes any aspect of an sdth:VariableInstance, it generates a new sdth:VariableInstance.  This includes changing any of the values in an sdth:DataframeInstance or any of the attributes of those values.  Sorting an sdth:DataframeInstance also results in a new set of sdth:VariableInstances.  This is necessary, because some data transformation commands use the order of rows in a dataframe in computations, such as the lag() function in statistical analysis programs like SAS and Stata.
 
 An sdth:VariableInstance may appear in more than one sdth:DataframeInstance or sdth:FileInstance.  For example, if one value in an sdth:VariableInstance changes, a new sdth:DataframeInstance is generated, but the new sdth:DataframeInstance contains all of the sdth:VariableInstances in the previous sdth:DataframeInstance except the one that was changed.  When an sdth:DataframeInstance is saved to an sdth:FileInstance, the sdth:VariableInstances in the sdth:FileInstance are the same as those in the sdth:DataframeInstance. 
 
@@ -377,7 +372,6 @@ sdth:wasDerivedFrom MUST be invoked when any of the data values in a data entity
 ### sdth:elaborationOf {#model-elaborationof}  
 
 When an attribute of an sdth:DataInstance (e.g., a data format or name) has changed but the values in the data entity have not changed, a new URI is minted and a new sdth:DataInstance is created.  sdth:elaborationOf MUST be invoked to link the new sdth:DataInstance to one or more sdth:DataInstances consumed in the sdth:ProgramStep that creates it.  These rules apply to all sub-classes of sdth:DataInstance.
-
 
 **has super-class**  
 
