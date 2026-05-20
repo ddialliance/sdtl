@@ -1,16 +1,16 @@
-# SDTH Model Specification  
+# SDTH Model Specification
 
-## Programs and Program Steps {#model-programs}  
+## Programs and Program Steps {#model-programs}
 
-### sdth:Program {#model-program}  
+### sdth:Program {#model-program}
 
 An sdth:Program is a set of instructions that modify data.   An sdth:Program consists of sdth:ProgramSteps.
 
-**has super-class**  
+**has super-class**
 
 - prov:Entity, prov:Plan, provone:Program
 
-**is in domain of**  
+**is in domain of**
 
 - sdth:hasProgramStep, sdth:hasName
 
@@ -19,7 +19,6 @@ An sdth:Program is a set of instructions that modify data.   An sdth:Program con
 An sdth:ProgramStep is an operation in an sdth:Program.  An sdth:ProgramStep may be associated with a single command in a program or script.   However, sdth:ProgramStep is recursive, which means that an sdth:ProgramStep may be linked to other sdth:ProgramSteps using sdth:hasProgramStep. This allows complex operations to be represented as a set of simpler operations.
 
 **has super-class**  
-
 - prov:Activity, provone:Program
 
 **is in domain of**  

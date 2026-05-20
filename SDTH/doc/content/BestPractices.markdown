@@ -38,4 +38,3 @@ Examples are:
         - Data type (numeric, text, etc.)
         - Description
         - Value labels
-
