@@ -355,7 +355,7 @@ Derivation and Elaboration describe the lineage of a data entity.  Derivation is
 
 sdth:wasDerivedFrom MUST be invoked when any of the data values in a data entity have changed.  A new URI is minted and a new sdth:DataInstance is created.  sdth:elaborationOf is used to link the new sdth:DataInstance to one or more sdth:DataInstances consumed in the sdth:ProgramStep that created it. These rules apply to all sub-classes of sdth:DataInstance.
 
-Derivation is interpreted broadly in SDTH, so that data instances used in contingent operations are also considered part of the lineage of a data instance.   For example, in a command like `IF (y > x) THEN x = z`, `x` is sdth:wasDerivedFrom both `y` and `z`.
+Derivation is interpreted broadly in SDTH, so that data instances used in contingent operations are also considered part of the lineage of a data instance.   For example, in a command like `IF (y > x) THEN x = z`, `x` sdth:wasDerivedFrom both `y` and `z`.
 
 
 **has super-class**  
