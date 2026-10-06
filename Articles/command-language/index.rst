@@ -650,7 +650,7 @@ and another file set to FALSE.
 The “SDTL Merge Gallery” includes more than thirty examples of merge 
 commands in source languages with corresponding SDTL.   
 
-See SDTL Merge Gallery: https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.pdf
+See SDTL Merge Gallery: https://github.com/ddialliance/sdtl/blob/master/SupportingMaterials/MergeDatasets/SDTL_Merge_Gallery.pdf
 
 **Aggregate** and **Collapse** involve computations across multiple
 rows. For example, consider a dataframe consisting of a row for each

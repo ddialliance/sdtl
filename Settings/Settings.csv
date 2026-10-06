@@ -1,10 +1,11 @@
 Key,Value
+CogsVersion,2.0
 Title,Structured Data Transform Language
 ShortTitle,SDTL
 Slug,sdtl
 Description,A model for describing data transformations
-Version,0.3
-Author,C2Metadata Contributors
-Copyright,Copyright (c) 2020 C2Metadata Contributors
+Version,2.0.0
+Author,C2Metadata Contributors and DDI Alliance
+Copyright,Copyright (c) 2026 C2Metadata Contributors and DDI Alliance
 NamespaceUrl,https://rdf-vocabulary.ddialliance.org/sdtl
 NamespacePrefix,sdtl

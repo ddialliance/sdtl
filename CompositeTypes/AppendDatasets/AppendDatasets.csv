@@ -1,3 +1,3 @@
 Name,DataType,MinCardinality,MaxCardinality,Description,Ordered,AllowSubtypes,MinLength,MaxLength,Enumeration,Pattern,MinInclusive,MinExclusive,MaxInclusive,MaxExclusive,DeprecatedNamespace,DeprecatedElementOrAttribute,DeprecatedChoiceGroup
-AppendFiles,AppendFileDescription,1,n,Description of files to be appended,,TRUE,,,,,,,,,,,
+AppendFiles,AppendFileDescription,1,n,Description of files to be appended,,true,,,,,,,,,,,
 AppendFlagVariable,string,0,1,Creates a new variable identifying the source dataframe for a row with the variable name given in the value of the property,,,,,,,,,,,,,

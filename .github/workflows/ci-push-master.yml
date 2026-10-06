@@ -11,14 +11,20 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Get short SHA
-      run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+    - name: Set build paths and short SHA
+      shell: pwsh
+      run: |
+        $shortSha = '${{ github.sha }}'.Substring(0, 8)
+        "SHORT_SHA=$shortSha" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        "SDTL_OUTPUT_ROOT=$(Join-Path $env:RUNNER_TEMP 'sdtl-outputs')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        "SDTL_PACKAGE_ROOT=$(Join-Path $env:RUNNER_TEMP "sdtl-$shortSha")" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        "SDTL_ARCHIVE_PATH=$(Join-Path $env:RUNNER_TEMP "sdtl-outputs-$shortSha.zip")" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7.0.1
 
     - name: Install .NET 10
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v6.0.0
       with:
         dotnet-version: '10.0.x'
 
@@ -26,13 +32,21 @@ jobs:
       run: dotnet tool install --global cogs
 
     - name: Set up python
-      uses: actions/setup-python@v5
+      id: python
+      uses: actions/setup-python@v7.0.0
       with:
         python-version: '3.12'
         cache: 'pip'
+        cache-dependency-path: build/requirements.txt
     
     - name: Install python dependencies
-      run: pip install -r build/requirements.txt
+      shell: pwsh
+      env:
+        COGS_PYTHON: ${{ steps.python.outputs.python-path }}
+      run: |
+        & $env:COGS_PYTHON -m pip install -r build/requirements.txt
+        if ($LASTEXITCODE -ne 0) { throw "Python dependency installation failed with exit $LASTEXITCODE" }
+        "COGS_PYTHON=$env:COGS_PYTHON" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
 
     - name: Install other dependencies
@@ -43,39 +57,51 @@ jobs:
       run: .\build\build-windows.bat
       shell: cmd
 
-    - name: Copy and rename outputs
+    - name: Package outputs
       shell: pwsh
       run: |
-        mkdir sdtl
-        xcopy sdtl-outputs\xsd sdtl\xsd /E /I
-        xcopy sdtl-outputs\json sdtl\json /E /I
-        xcopy sdtl-outputs\owl sdtl\rdf /E /I
-        xcopy sdtl-outputs\uml sdtl\uml /E /I
-        ren sdtl sdtl-${{env.SHORT_SHA}}
-        ren sdtl-outputs sdtl-outputs-${{env.SHORT_SHA}}
-        7z a -tzip "sdtl-outputs-${{env.SHORT_SHA}}.zip" "sdtl-outputs-${{ENV.SHORT_SHA}}\*"
+        foreach ($file in @('xsd/schema.xsd', 'json/jsonSchema.json', 'uml/sdtl.xmi', 'owl/sdtl.ttl', 'owl/sdtl.owl.ttl', 'owl/sdtl.shacl', 'owl/sdtl.shex', 'sphinx/build/dirhtml/index.html')) {
+          if (-not (Test-Path -LiteralPath (Join-Path $env:SDTL_OUTPUT_ROOT $file) -PathType Leaf)) {
+            throw "Required build artifact is missing: $file"
+          }
+        }
+        New-Item -ItemType Directory -Path $env:SDTL_PACKAGE_ROOT | Out-Null
+        foreach ($directory in @('xsd', 'json', 'owl', 'uml')) {
+          $destination = if ($directory -eq 'owl') { 'rdf' } else { $directory }
+          Copy-Item -LiteralPath (Join-Path $env:SDTL_OUTPUT_ROOT $directory) `
+            -Destination (Join-Path $env:SDTL_PACKAGE_ROOT $destination) -Recurse
+        }
+        7z a -tzip $env:SDTL_ARCHIVE_PATH (Join-Path $env:SDTL_OUTPUT_ROOT '*')
+        if ($LASTEXITCODE -ne 0) { throw "Output archiving failed with exit $LASTEXITCODE" }
 
     - name: Make all outputs artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7.0.1
       with:
           name: sdtl-outputs-${{env.SHORT_SHA}}
-          path: sdtl-outputs-${{env.SHORT_SHA}}.zip
+          path: ${{ env.SDTL_ARCHIVE_PATH }}
+          if-no-files-found: error
 
     - name: Make package artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7.0.1
       with:
         name: sdtl-${{env.SHORT_SHA}}
-        path: sdtl-${{env.SHORT_SHA}}
+        path: ${{ env.SDTL_PACKAGE_ROOT }}
+        if-no-files-found: error
 
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
+      uses: aws-actions/configure-aws-credentials@v6.3.0
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1 
 
     - name: Sync S3 dev bucket
+      shell: pwsh
       run: |
-        aws s3 sync sdtl-outputs-${{env.SHORT_SHA}}\sphinx\build\dirhtml s3://docs.ddialliance.org/SDTL/dev/model
-        aws s3 sync SDTH\doc\ s3://docs.ddialliance.org/SDTL/dev/SDTH
-        aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/SDTL/dev/*'
+        function Invoke-Aws {
+          & aws @args
+          if ($LASTEXITCODE -ne 0) { throw "AWS command failed with exit $LASTEXITCODE" }
+        }
+        Invoke-Aws s3 sync (Join-Path $env:SDTL_OUTPUT_ROOT 'sphinx/build/dirhtml') s3://docs.ddialliance.org/SDTL/dev/model
+        Invoke-Aws s3 sync (Join-Path $env:GITHUB_WORKSPACE 'SDTH/doc') s3://docs.ddialliance.org/SDTL/dev/SDTH
+        Invoke-Aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/SDTL/dev/*'
