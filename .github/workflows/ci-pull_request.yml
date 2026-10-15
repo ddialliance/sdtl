@@ -8,14 +8,29 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Get short SHA
-      run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+    - name: Set build paths and short SHA
+      shell: pwsh
+      run: |
+        $shortSha = '${{ github.sha }}'.Substring(0, 8)
+        "SHORT_SHA=$shortSha" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        "SDTL_OUTPUT_ROOT=$(Join-Path $env:RUNNER_TEMP 'sdtl-outputs')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        "SDTL_PACKAGE_ROOT=$(Join-Path $env:RUNNER_TEMP "sdtl-$shortSha")" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        "SDTL_ARCHIVE_PATH=$(Join-Path $env:RUNNER_TEMP "sdtl-outputs-$shortSha.zip")" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7.0.1
+
+    - name: Read model slug
+      shell: pwsh
+      run: |
+        $slugRows = @(Import-Csv -LiteralPath 'Settings/Settings.csv' | Where-Object { $_.Key -ceq 'Slug' })
+        if ($slugRows.Count -ne 1 -or $slugRows[0].Value -cnotmatch '\A[a-z][a-z0-9_]*\z') {
+          throw 'Settings/Settings.csv must contain exactly one valid Slug.'
+        }
+        "SDTL_MODEL_SLUG=$($slugRows[0].Value)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
     - name: Install .NET 10
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v6.0.0
       with:
         dotnet-version: '10.0.x'
 
@@ -23,43 +38,88 @@ jobs:
       run: dotnet tool install --global cogs
 
     - name: Set up python
-      uses: actions/setup-python@v5
+      id: python
+      uses: actions/setup-python@v7.0.0
       with:
         python-version: '3.12'
         cache: 'pip'
+        cache-dependency-path: build/requirements.txt
     
     - name: Install python dependencies
-      run: pip install -r build/requirements.txt
-
-
-    - name: Install other dependencies
-      run: .\build\install-dependencies.ps1
       shell: pwsh
+      env:
+        COGS_PYTHON: ${{ steps.python.outputs.python-path }}
+      run: |
+        & $env:COGS_PYTHON -m pip install -r build/requirements.txt
+        if ($LASTEXITCODE -ne 0) { throw "Python dependency installation failed with exit $LASTEXITCODE" }
+        "COGS_PYTHON=$env:COGS_PYTHON" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+
+    - name: Install Graphviz 16.1 or newer
+      shell: pwsh
+      run: |
+        .\build\test-graphviz.ps1
+        $dot = .\build\install-dependencies.ps1
+        "COGS_DOT=$dot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
     - name: Run build-windows.bat
       run: .\build\build-windows.bat
       shell: cmd
 
-    - name: Copy and rename outputs
+    - name: Package outputs
       shell: pwsh
       run: |
-        mkdir sdtl
-        xcopy sdtl-outputs\xsd sdtl\xsd /E /I
-        xcopy sdtl-outputs\json sdtl\json /E /I
-        xcopy sdtl-outputs\owl sdtl\rdf /E /I
-        xcopy sdtl-outputs\uml sdtl\uml /E /I
-        ren sdtl sdtl-${{env.SHORT_SHA}}
-        ren sdtl-outputs sdtl-outputs-${{env.SHORT_SHA}}
-        7z a -tzip "sdtl-outputs-${{env.SHORT_SHA}}.zip" "sdtl-outputs-${{ENV.SHORT_SHA}}\*"
+        $ErrorActionPreference = 'Stop'
+        $artifacts = @(& ./build/get-published-artifacts.ps1 -Slug $env:SDTL_MODEL_SLUG)
+        $activeDirectories = @('xsd', 'json', 'rdf', 'uml', 'dctap', 'linkml', 'graphql', 'csharp', 'sphinx')
+        $requiredFiles = @($artifacts | ForEach-Object { Join-Path $_.Directory $_.FileName })
+        $requiredFiles += @(
+          "linkml/$env:SDTL_MODEL_SLUG.linkml.yml"
+          "graphql/$env:SDTL_MODEL_SLUG.graphqls"
+          'csharp/Types.cs'
+          'sphinx/build/dirhtml/index.html'
+        )
+        foreach ($directory in $activeDirectories) {
+          if (-not (Test-Path -LiteralPath (Join-Path $env:SDTL_OUTPUT_ROOT $directory) -PathType Container)) {
+            throw "Missing output directory: $directory"
+          }
+        }
+        foreach ($file in $requiredFiles) {
+          if (-not (Test-Path -LiteralPath (Join-Path $env:SDTL_OUTPUT_ROOT $file) -PathType Leaf)) {
+            throw "Missing expected output: $file"
+          }
+        }
+        if ((Test-Path -LiteralPath $env:SDTL_PACKAGE_ROOT) -or (Test-Path -LiteralPath $env:SDTL_ARCHIVE_PATH)) {
+          throw 'Package and archive destinations must be new paths to avoid retaining stale artifacts.'
+        }
+        New-Item -ItemType Directory -Path $env:SDTL_PACKAGE_ROOT | Out-Null
+        foreach ($directory in ($artifacts.Directory | Select-Object -Unique)) {
+          New-Item -ItemType Directory -Path (Join-Path $env:SDTL_PACKAGE_ROOT $directory) | Out-Null
+        }
+        foreach ($artifact in $artifacts) {
+          $relativePath = Join-Path $artifact.Directory $artifact.FileName
+          Copy-Item -LiteralPath (Join-Path $env:SDTL_OUTPUT_ROOT $relativePath) `
+            -Destination (Join-Path $env:SDTL_PACKAGE_ROOT $relativePath)
+        }
+        Push-Location $env:SDTL_OUTPUT_ROOT
+        try {
+          & 7z a -tzip $env:SDTL_ARCHIVE_PATH @activeDirectories
+          if ($LASTEXITCODE -ne 0) { throw "Output archiving failed with exit $LASTEXITCODE" }
+        }
+        finally {
+          Pop-Location
+        }
 
     - name: Make all outputs artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7.0.1
       with:
           name: sdtl-outputs-${{env.SHORT_SHA}}
-          path: sdtl-outputs-${{env.SHORT_SHA}}.zip
+          path: ${{ env.SDTL_ARCHIVE_PATH }}
+          if-no-files-found: error
 
     - name: Make package artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7.0.1
       with:
         name: sdtl-${{env.SHORT_SHA}}
-        path: sdtl-${{env.SHORT_SHA}}
+        path: ${{ env.SDTL_PACKAGE_ROOT }}
+        if-no-files-found: error

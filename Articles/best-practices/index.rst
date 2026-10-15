@@ -114,8 +114,8 @@ This section provides information on best practices for using SDTL.
 8. **MergeDatasets**
    Examples of MergeDatasets can be found in the SDTL Merge Gallery:
 
-   * Spreadsheet version: https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.xlsx   
-   * PDF version: https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/MergeDatasets/SDTL_Merge_Gallery.pdf
+   * Spreadsheet version: https://github.com/ddialliance/sdtl/blob/master/SupportingMaterials/MergeDatasets/SDTL_Merge_Gallery.xlsx
+   * PDF version: https://github.com/ddialliance/sdtl/blob/master/SupportingMaterials/MergeDatasets/SDTL_Merge_Gallery.pdf
 
 9.  **MergeFileDescription**
 
@@ -262,7 +262,7 @@ This section provides information on best practices for using SDTL.
    variables, or it will halt with an error message.  
 	
    See *Collapse: Handling of Non-numeric Variables*
-   https://gitlab.com/c2metadata/sdtl-cogs/-/blob/master/CompositeTypes/Collapse/Collapse_Nonnumeric_Variables.rst
+   https://github.com/ddialliance/sdtl/blob/master/SupportingMaterials/Collapse/Collapse_Nonnumeric_Variables.rst
 
 17. **Variable names in case-insensitive languages**
 
