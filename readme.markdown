@@ -2,8 +2,14 @@
 
 A model for describing data transformations.
 
-[SDTL 1.0 Documentation](https://docs.ddialliance.org/SDTL/1.0/model/)
-[SDTL Development Version Documentation](https://docs.ddialliance.org/SDTL/dev/model/)
+Published 1.0
+- [SDTL 1.0 Documentation](https://docs.ddialliance.org/SDTL/1.0/model/)
+
+2.0 Development Version
+- [SDTL Development Version Documentation](https://docs.ddialliance.org/SDTL/dev/model/)
+- [SDTL Development Version Outputs](https://docs.ddialliance.org/SDTL/dev/output/)
+- [SDTH Development Version Documentation](https://docs.ddialliance.org/SDTL/dev/SDTH)
+
 
 ## SDTL Model Output Formats
 
