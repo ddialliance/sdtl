@@ -317,7 +317,7 @@ Usage and Assignment describe the Variable Instances accessed in a Program Step 
 
 ### sdth:usesVariable  {#model-usesvariable}
 
-sdth:usesVariable specifies an sdth:VariableInstance that affects the outcome of an sdth:ProgramStep.  
+sdth:usesVariable specifies an sdth:VariableInstance that affects the outcome of an sdth:ProgramStep without contributing to the value of a computation.  This predicate is used for dependence relationships, as described in section **Derivation and Dependence** above.  A common example is an sdth:VariableInstance used in a logical condition in an sdth:ProgramStep.
 
 **has super-class**  
 
@@ -355,7 +355,8 @@ Derivation and Elaboration describe the lineage of a data entity.  Derivation is
 
 sdth:wasDerivedFrom MUST be invoked when any of the data values in a data entity have changed.  A new URI is minted and a new sdth:DataInstance is created.  sdth:elaborationOf is used to link the new sdth:DataInstance to one or more sdth:DataInstances consumed in the sdth:ProgramStep that created it. These rules apply to all sub-classes of sdth:DataInstance.
 
-Derivation is interpreted broadly in SDTH, so that data instances used in contingent operations are also considered part of the lineage of a data instance.   For example, in a command like `IF (y > x) THEN x = z`, `x` sdth:wasDerivedFrom both `y` and `z`.
+The meaning of derivation in SDTH is described in section **Derivation and Dependence** above.  When the value of an sdth:DataInstances is used in a computation, it must be linked to the outcome sdth:DataInstance by sdth:wasDerivedFrom.  If a data instance is only used in a logical condition, it is linked to the sdth:ProgramStep with sdth:usesVariable.
+For example, in a command like ```IF (y > x) THEN x = z```, `x` sdth:wasDerivedFrom `z` and `y` is linked to the sdth:ProgramStep with sdth:usesVariable.
 
 
 **has super-class**  
