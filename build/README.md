@@ -73,10 +73,20 @@ a ZIP of all nine active output directories listed above. Workflows verify
 required outputs before packaging and require new package/archive paths.
 Old directories such as `owl` are excluded from the archive.
 
-S3 deployment continues to upload model and SDTH documentation only, followed
-by CloudFront invalidation. Generated schemas and RDF files are delivered through
-GitHub artifacts; the workflows do not upload standalone output files to S3.
-Local builds do not deploy.
+Master CI continues to upload model and SDTH documentation to `/SDTL/dev/model/`
+and `/SDTL/dev/SDTH/`. It also uploads all eleven packaged files to
+`s3://docs.ddialliance.org/SDTL/dev/output/`, using their basenames and explicit
+media types from the shared artifact inventory. All required files are checked
+before upload; failures stop deployment before CloudFront invalidation.
+Successful deployment invalidates `/SDTL/dev/*`.
+
+The [SDTL 2.0 Development Outputs page](https://docs.ddialliance.org/SDTL/dev/output/)
+lists the nine main downloads. The supporting `xml.xsd` and JSON meta-schema are
+also uploaded, without separate page links. Individual file uploads preserve
+the page's `index.html` and other existing objects. The website repository
+maintains and deploys the page separately.
+
+GitHub artifacts remain available. Pull-request CI and local builds do not deploy.
 
 ## Validation
 

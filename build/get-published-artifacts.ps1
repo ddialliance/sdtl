@@ -5,19 +5,19 @@ param(
     [string]$Slug
 )
 
-# Shared inventory for the downloadable package in both GitHub workflows.
+# Shared inventory for the downloadable package and S3 publication.
 $artifacts = @(
-    @{ Directory = 'xsd'; Suffix = '.xsd' }
-    @{ Directory = 'xsd'; FileName = 'xml.xsd' }
-    @{ Directory = 'json'; Suffix = '.schema.json' }
-    @{ Directory = 'json'; Suffix = '.meta-schema.json' }
-    @{ Directory = 'rdf'; Suffix = '.ttl' }
-    @{ Directory = 'rdf'; Suffix = '.ontology.jsonld' }
-    @{ Directory = 'rdf'; Suffix = '.context.jsonld' }
-    @{ Directory = 'rdf'; Suffix = '.shacl.ttl' }
-    @{ Directory = 'rdf'; Suffix = '.shacl12.ttl' }
-    @{ Directory = 'uml'; Suffix = '.xmi' }
-    @{ Directory = 'dctap'; Suffix = '.dctap.csv' }
+    @{ Directory = 'xsd'; Suffix = '.xsd'; ContentType = 'application/xml' }
+    @{ Directory = 'xsd'; FileName = 'xml.xsd'; ContentType = 'application/xml' }
+    @{ Directory = 'json'; Suffix = '.schema.json'; ContentType = 'application/json' }
+    @{ Directory = 'json'; Suffix = '.meta-schema.json'; ContentType = 'application/json' }
+    @{ Directory = 'rdf'; Suffix = '.ttl'; ContentType = 'text/turtle' }
+    @{ Directory = 'rdf'; Suffix = '.ontology.jsonld'; ContentType = 'application/ld+json' }
+    @{ Directory = 'rdf'; Suffix = '.context.jsonld'; ContentType = 'application/ld+json' }
+    @{ Directory = 'rdf'; Suffix = '.shacl.ttl'; ContentType = 'text/turtle' }
+    @{ Directory = 'rdf'; Suffix = '.shacl12.ttl'; ContentType = 'text/turtle' }
+    @{ Directory = 'uml'; Suffix = '.xmi'; ContentType = 'application/xml' }
+    @{ Directory = 'dctap'; Suffix = '.dctap.csv'; ContentType = 'text/csv' }
 )
 foreach ($artifact in $artifacts) {
     [pscustomobject]@{
@@ -27,5 +27,6 @@ foreach ($artifact in $artifacts) {
         } else {
             $Slug + $artifact.Suffix
         }
+        ContentType = $artifact.ContentType
     }
 }

@@ -137,10 +137,31 @@ jobs:
     - name: Sync S3 dev bucket
       shell: pwsh
       run: |
+        $ErrorActionPreference = 'Stop'
+        $artifacts = @(& ./build/get-published-artifacts.ps1 -Slug $env:SDTL_MODEL_SLUG)
+        foreach ($artifact in $artifacts) {
+          $relativePath = Join-Path $artifact.Directory $artifact.FileName
+          if (-not (Test-Path -LiteralPath (Join-Path $env:SDTL_PACKAGE_ROOT $relativePath) -PathType Leaf)) {
+            throw "Missing published artifact: $relativePath"
+          }
+        }
+        $documentation = Join-Path $env:SDTL_OUTPUT_ROOT 'sphinx/build/dirhtml'
+        if (-not (Test-Path -LiteralPath (Join-Path $documentation 'index.html') -PathType Leaf)) {
+          throw 'Missing built Sphinx documentation.'
+        }
+        $sdthDocumentation = Join-Path $env:GITHUB_WORKSPACE 'SDTH/doc'
+        if (-not (Test-Path -LiteralPath (Join-Path $sdthDocumentation 'index.html') -PathType Leaf)) {
+          throw 'Missing SDTH documentation.'
+        }
         function Invoke-Aws {
           & aws @args
           if ($LASTEXITCODE -ne 0) { throw "AWS command failed with exit $LASTEXITCODE" }
         }
-        Invoke-Aws s3 sync (Join-Path $env:SDTL_OUTPUT_ROOT 'sphinx/build/dirhtml') s3://docs.ddialliance.org/SDTL/dev/model
-        Invoke-Aws s3 sync (Join-Path $env:GITHUB_WORKSPACE 'SDTH/doc') s3://docs.ddialliance.org/SDTL/dev/SDTH
+        Invoke-Aws s3 sync $documentation s3://docs.ddialliance.org/SDTL/dev/model
+        Invoke-Aws s3 sync $sdthDocumentation s3://docs.ddialliance.org/SDTL/dev/SDTH
+        foreach ($artifact in $artifacts) {
+          $source = Join-Path $env:SDTL_PACKAGE_ROOT (Join-Path $artifact.Directory $artifact.FileName)
+          $destination = "s3://docs.ddialliance.org/SDTL/dev/output/$($artifact.FileName)"
+          Invoke-Aws s3 cp $source $destination --content-type $artifact.ContentType
+        }
         Invoke-Aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/SDTL/dev/*'
